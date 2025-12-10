@@ -1,0 +1,39 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+% Atajos
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\eps}{\varepsilon}
+
+% Entornos de teorema
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{lema}[teo]{Lema}
+\theoremstyle{definition}
+\newtheorem{defi}[teo]{Definición}
+\newtheorem{ej}[teo]{Ejemplo}
+\theoremstyle{remark}
+\newtheorem*{obs}{Observación}
+
+\begin{document}
+
+\title{Demostraciones Análisis Avanzado}
+\author{Lucas Dowhyj}
+\date{}
+\maketitle
+
+\tableofcontents
+
+\section{Unidad 1: Infimo, supremo y sucesiones}
+\input{Unidades/p1}
+
+\end{document}

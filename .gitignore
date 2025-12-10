@@ -1,0 +1,106 @@
+########################
+# SISTEMA OPERATIVO
+########################
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux / genéricos
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+
+########################
+# VISUAL STUDIO CODE
+########################
+
+.vscode/
+.history/
+
+########################
+# LATEX / LATEXMK
+########################
+
+# Archivos auxiliares básicos
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.idx
+*.glo
+*.ist
+*.ilg
+*.ind
+
+# Latexmk
+*.fls
+*.fdb_latexmk
+
+# Sincronización con visor PDF
+*.synctex.gz
+*.synctex
+*.synctex(busy)
+
+# Beamer
+*.nav
+*.snm
+*.vrb
+
+# BibTeX / biber
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# Metapost / gráficos
+*.mp
+*.mpx
+
+# Otros temporales LaTeX
+*.acn
+*.acr
+*.alg
+*.glg
+*.gls
+*.glsdefs
+*.lol
+*.maf
+*.mtc*
+*.mtt
+*.out.ps
+*.ps
+*.dvi
+*.xdv
+
+# Directorios auxiliares típicos
+auto/
+_build/
+_texbuild/
+latex.out/
+tmp/
+
+########################
+# OTROS EDITORES / IDEs
+########################
+
+# JetBrains / IntelliJ / etc.
+.idea/
+*.iml
+
+# VS / C#
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
