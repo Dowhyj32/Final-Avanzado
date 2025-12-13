@@ -1,0 +1,444 @@
+\subsection{Axioma de completitud}
+Dado $A \subset\mathbb{R}$ no vacío y acotado superiormente, existe $\sup A$.\\
+Dado $A \subset\mathbb{R}$ no vacío y acotado inferiormente, existe $\inf A$.
+
+\subsection{Infimo}
+Sea $A \subset\mathbb{R}$, no vacío y acotado inferiormente.
+\[
+i = \inf A \Longleftrightarrow
+\begin{cases}
+i \le a & \text{para todo } a \in A,\\[4pt]
+\forall \varepsilon > 0 \ \exists a \in A \text{ tal que } i \le a < i + \varepsilon.
+\end{cases}
+\]
+\begin{proof}
+Supongamos que $i = \inf A$.
+
+(i) Como $i$ es el ínfimo de $A$, por definición $i$ es cota inferior de $A$.
+Es decir, para todo $a \in A$ se cumple $i \le a$.
+
+(ii) Sea $\varepsilon > 0$. Supongamos, buscando una contradicción, que no existe
+$a \in A$ tal que $i \le a < i + \varepsilon$. Entonces, para todo $a \in A$
+se cumple $a \ge i + \varepsilon$, de modo que $i + \varepsilon$ es una cota
+inferior de $A$. Como además $\varepsilon>0$, tenemos $i + \varepsilon > i$,
+lo que contradice que $i$ es la mayor de las cotas inferiores de $A$.
+Por lo tanto, debe existir $a \in A$ tal que $i \le a < i + \varepsilon$.
+
+Recíprocamente, supongamos que se verifican:
+(i) $i \le a$ para todo $a \in A$;
+(ii) para todo $\varepsilon>0$ existe $a \in A$ tal que $i \le a < i + \varepsilon$.
+
+De (i) se sigue que $i$ es cota inferior de $A$.
+Sea $i'$ otra cota inferior de $A$. Queremos ver que $i' \le i$.
+Supongamos, buscando una contradicción, que $i' > i$.
+Sea $\varepsilon = i' - i > 0$. Por (ii) existe $a \in A$ tal que
+$i \le a < i + \varepsilon$. Como $i + \varepsilon = i'$, obtenemos
+$a < i'$, lo cual contradice que $i'$ es cota inferior de $A$.
+Por lo tanto $i' \le i$ y, en consecuencia, $i = \inf A$.
+\end{proof}
+
+
+\subsection{Supremo}
+Sea $A \subset\mathbb{R}$, no vacío y acotado superiormente.
+\[
+s = \sup A \Longleftrightarrow
+\begin{cases}
+s \ge a & \text{para todo } a \in A,\\[4pt]
+\forall \varepsilon > 0 \ \exists a \in A \text{ tal que } s - \varepsilon < a \le s.
+\end{cases}
+\]
+\begin{proof}
+Supongamos que $s = \sup A$.
+
+(i) Como $s$ es el supremo de $A$, por definición $s$ es cota superior de $A$.
+Es decir, para todo $a \in A$ se cumple $a \le s$.
+
+(ii) Sea $\varepsilon>0$. Supongamos, buscando una contradicción, que no existe
+$a \in A$ tal que $s-\varepsilon < a \le s$. Entonces, para todo $a \in A$
+se cumple $a \le s-\varepsilon$, y por lo tanto $s-\varepsilon$ es una cota
+superior de $A$. Como además $\varepsilon>0$, tenemos $s-\varepsilon < s$,
+lo que contradice que $s$ es la menor de las cotas superiores de $A$.
+Por lo tanto, debe existir $a \in A$ tal que $s-\varepsilon < a \le s$.
+
+Supongamos que se cumplen:
+\\
+(i) $a \le s$ para todo $a \in A$\\
+(ii) para todo $\varepsilon>0$ existe $a \in A$ tal que $s-\varepsilon < a \le s$.
+
+Entonces (i) dice que $s$ es cota superior de $A$.
+Sea ahora $s'$ otra cota superior de $A$. Queremos ver que $s \le s'$.
+Supongamos, buscando una contradicción, que $s' < s$.
+Sea $\varepsilon = s - s' > 0$. Por (ii) existe $a \in A$ tal que
+$s-\varepsilon < a \le s$. Como $s-\varepsilon = s'$, obtenemos $s' < a$,
+lo cual contradice que $s'$ es cota superior de $A$.
+Por lo tanto $s \le s'$ y, en consecuencia, $s = \sup A$.
+\end{proof}
+
+\subsection{Principio de Arquímedes}
+
+\subsubsection*{Versión 1}
+\[
+\forall x \in \R \ \exists n \in \N \text{ tal que } x \le n.
+\]
+
+\begin{proof}[Demostración]
+Supongamos por el absurdo que el conjunto de los naturales $\N$ está acotado superiormente.
+Como $\N$ es no vacío, por el axioma de completitud existe $s = \sup \N$.
+
+Tomamos $\varepsilon = 1$. Por la propiedad caracterizadora del supremo, existe
+$n \in \N$ tal que
+\[
+s - 1 < n \le s.
+\]
+De $s - 1 < n$ se sigue que $n + 1 > s$. Como $n \in \N$, también $n+1 \in \N$,
+y por lo tanto hemos encontrado un número natural estrictamente mayor que $s$,
+lo que contradice que $s$ sea cota superior de $\N$.
+
+Esta contradicción muestra que $\N$ no está acotado superiormente, es decir,
+para todo $M \in \R$ existe $n \in \N$ tal que $n > M$. En particular, dado
+$x \in \R$, tomando $M = x$ obtenemos un $n \in \N$ con $n \ge x$, que es
+justamente lo que afirma la versión 1.
+\end{proof}
+
+
+\subsubsection*{Versión 2}
+\[
+\forall y > 0 \ \exists n \in \N \text{ tal que } 0 < \frac{1}{n} < y.
+\]
+
+\begin{proof}[Demostración]
+Sea $y > 0$. Por la Versión 1 del principio de Arquímedes aplicada a $x = 1/y$,
+existe $n \in \N$ tal que
+\[
+n > \frac{1}{y}.
+\]
+Como $n > 0$, al invertir la desigualdad obtenemos
+\[
+0 < \frac{1}{n} < y.
+\]
+Por lo tanto, para todo $y > 0$ existe $n \in \N$ tal que $0 < \dfrac{1}{n} < y$,
+como queríamos demostrar.
+\end{proof}
+
+\subsection{Sucesiones}
+
+\begin{prop}
+Sea $(a_n)_{n\in\N}$ una sucesión real y sea $l \in \R$ tal que
+\[
+\lim_{n\to\infty} a_n = l.
+\]
+Entonces la sucesión $(a_n)$ está acotada.
+\end{prop}
+
+\begin{proof}
+Por hipótesis, $\lim_{n\to\infty} a_n = l$. Esto significa que
+\[
+\forall \varepsilon > 0 \ \exists N \in \N \ \text{tal que} \ \forall n \ge N:
+\ |a_n - l| < \varepsilon.
+\]
+
+Tomamos ahora $\varepsilon = 1$. Entonces existe $N \in \N$ tal que para todo
+$n \ge N$ se cumple
+\[
+|a_n - l| < 1.
+\]
+Por la desigualdad triangular,
+\[
+|a_n| = |(a_n - l) + l| \le |a_n - l| + |l| < 1 + |l|
+\]
+para todo $n \ge N$. Es decir, para todos los índices grandes,
+\[
+|a_n| \le |l| + 1.
+\]
+
+Consideremos ahora los primeros términos de la sucesión:
+\[
+a_1, a_2, \dots, a_{N-1}.
+\]
+Se trata de un conjunto finito de números reales, por lo que el conjunto
+\[
+\{|a_1|, |a_2|, \dots, |a_{N-1}|\}
+\]
+tiene un máximo. Sea
+\[
+M_0 = \max\{|a_1|, |a_2|, \dots, |a_{N-1}|\}
+\]
+(en el caso $N = 1$ podemos tomar, por ejemplo, $M_0 = 0$).
+
+Definimos ahora
+\[
+M = \max\{M_0,\ |l| + 1\}.
+\]
+
+Entonces:
+\\- Si $n < N$, se cumple $|a_n| \le M_0 \le M$.
+\\- Si $n \ge N$, se cumple $|a_n| \le |l| + 1 \le M$.
+\\
+En ambos casos obtenemos
+\[
+|a_n| \le M \quad \text{para todo } n \in \N.
+\]
+Por lo tanto, la sucesión $(a_n)$ está acotada.
+\end{proof}
+
+\begin{prop}
+Sea $(a_n)_{n\in\N}$ una sucesión real monótona creciente y acotada superiormente.
+Sea
+\[
+s = \sup\{a_n : n \in \N\}.
+\]
+Entonces
+\[
+\lim_{n\to\infty} a_n = s.
+\]
+\end{prop}
+
+\begin{proof}
+Como $(a_n)$ está acotada superiormente, el conjunto
+\[
+A = \{a_n : n \in \N\}
+\]
+tiene supremo $s \in \R$.
+
+Queremos probar que $\lim_{n\to\infty} a_n = s$, es decir,
+\[
+\forall \varepsilon > 0 \ \exists N \in \N \ \forall n \ge N:
+\ |a_n - s| < \varepsilon.
+\]
+
+Sea entonces $\varepsilon > 0$ arbitrario. Por la propiedad
+caracterizadora del supremo aplicada al conjunto $A$, existe
+$N \in \N$ tal que
+\[
+s - \varepsilon < a_N \le s.
+\]
+
+Como la sucesión $(a_n)$ es monótona creciente, se cumple
+\[
+a_N \le a_n \le s \quad \text{para todo } n \ge N.
+\]
+
+De $a_n \le s$ obtenemos $a_n - s \le 0$, luego
+\[
+|a_n - s| = s - a_n.
+\]
+Además, de $a_N \le a_n$ se sigue
+\[
+s - a_n \le s - a_N.
+\]
+Juntando estas desigualdades,
+\[
+|a_n - s|
+= s - a_n
+\le s - a_N
+< s - (s - \varepsilon)
+= \varepsilon
+\]
+para todo $n \ge N$.
+
+Por lo tanto, para todo $\varepsilon>0$ encontramos $N \in \N$ tal que
+para todo $n \ge N$ se cumple $|a_n - s|<\varepsilon$, y esto significa
+exactamente que $\lim_{n\to\infty} a_n = s$.
+\end{proof}
+
+\begin{prop}
+Sea $(a_n)_{n\in\N}$ una sucesión real monótona decreciente y acotada inferiormente.
+Sea
+\[
+i = \inf\{a_n : n \in \N\}.
+\]
+Entonces
+\[
+\lim_{n\to\infty} a_n = i.
+\]
+\end{prop}
+
+\begin{proof}
+Como $(a_n)$ está acotada inferiormente, el conjunto
+\[
+A = \{a_n : n \in \N\}
+\]
+tiene ínfimo $i \in \R$.
+
+Queremos probar que $\lim_{n\to\infty} a_n = i$, es decir,
+\[
+\forall \varepsilon > 0 \ \exists N \in \N \ \forall n \ge N:
+\ |a_n - i| < \varepsilon.
+\]
+
+Sea $\varepsilon>0$ arbitrario. Por la propiedad caracterizadora del
+ínfimo aplicada al conjunto $A$, existe $N \in \N$ tal que
+\[
+i \le a_N < i + \varepsilon.
+\]
+
+Como la sucesión $(a_n)$ es monótona decreciente, se cumple
+\[
+i \le a_n \le a_N \quad \text{para todo } n \ge N.
+\]
+
+De $a_n \ge i$ se obtiene $a_n - i \ge 0$, luego
+\[
+|a_n - i| = a_n - i.
+\]
+Además, de $a_n \le a_N$ se sigue
+\[
+a_n - i \le a_N - i.
+\]
+Por lo tanto,
+\[
+|a_n - i|
+= a_n - i
+\le a_N - i
+< (i + \varepsilon) - i
+= \varepsilon
+\]
+para todo $n \ge N$.
+
+Entonces, para todo $\varepsilon>0$ encontramos $N \in \N$ tal que
+para todo $n \ge N$ se cumple $|a_n - i|<\varepsilon$, lo cual prueba
+que $\lim_{n\to\infty} a_n = i$.
+\end{proof}
+
+\begin{prop}[Equivalencia del supremo]
+Sea $A \subset \R$ un conjunto no vacío y acotado superiormente, y sea $s \in \R$.
+Entonces
+\[
+s = \sup A
+\]
+si y sólo si se cumplen:
+\begin{enumerate}[label=(\roman*)]
+    \item $s$ es cota superior de $A$, es decir, $a \le s$ para todo $a \in A$;
+    \item existe una sucesión $(a_n)_{n\in\N}$ con $a_n \in A$ para todo $n$, tal que
+    \[
+    \lim_{n\to\infty} a_n = s.
+    \]
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Supongamos primero que $s = \sup A$. Entonces, por definición de supremo,
+$s$ es cota superior de $A$, con lo cual se cumple (i).
+
+Nos queda probar (ii). Usamos la caracterización del supremo que ya vimos:
+para todo $\varepsilon > 0$ existe $a \in A$ tal que
+\[
+s - \varepsilon < a \le s.
+\]
+Para cada $n \in \N$, aplicamos esta propiedad con $\varepsilon = \tfrac{1}{n}$.
+Obtenemos así un elemento $a_n \in A$ tal que
+\[
+s - \frac{1}{n} < a_n \le s.
+\]
+Esto define una sucesión $(a_n)_{n\in\N}$ de elementos de $A$.
+
+Veamos ahora que $\lim_{n\to\infty} a_n = s$. Sea $\varepsilon > 0$. Elegimos
+$N \in \N$ tal que $\frac{1}{N} < \varepsilon$. Entonces, si $n \ge N$,
+se tiene $\frac{1}{n} \le \frac{1}{N} < \varepsilon$, y por la construcción
+de $(a_n)$ se cumple
+\[
+s - \frac{1}{n} < a_n \le s.
+\]
+De aquí, $s - \varepsilon = s - \frac{1}{n} < a_n \le s$, luego
+\[
+0 \le s - a_n < \varepsilon,
+\]
+lo que implica
+\[
+|a_n - s| = s - a_n < \varepsilon.
+\]
+Por lo tanto,
+\[
+\forall \varepsilon > 0\ \exists N \in \N\ \forall n \ge N:\ |a_n - s| < \varepsilon,
+\]
+es decir, $\lim_{n\to\infty} a_n = s$. Esto prueba (ii).
+
+\medskip
+
+Recíprocamente, supongamos que se cumplen (i) y (ii). Entonces $s$ es cota
+superior de $A$. Para ver que $s = \sup A$, basta probar que $s$ es la menor
+de las cotas superiores de $A$. Sea $M$ otra cota superior de $A$. Queremos
+ver que $s \le M$.
+
+Supongamos, buscando una contradicción, que $s > M$. Definimos
+\[
+\varepsilon = \frac{s - M}{2} > 0.
+\]
+Como $\lim_{n\to\infty} a_n = s$, existe $N \in \N$ tal que, para todo
+$n \ge N$, se cumple
+\[
+|a_n - s| < \varepsilon.
+\]
+En particular, para $n \ge N$ tenemos
+\[
+a_n > s - \varepsilon = s - \frac{s - M}{2}
+= \frac{2s - s + M}{2}
+= \frac{s + M}{2}.
+\]
+Pero, como $s > M$, se tiene
+\[
+\frac{s + M}{2} > M,
+\]
+de modo que
+\[
+a_n > \frac{s + M}{2} > M
+\]
+para todo $n \ge N$. Sin embargo, $a_n \in A$ y $M$ es cota superior de $A$,
+luego debería cumplirse $a_n \le M$ para todo $n$, lo que contradice la
+desigualdad anterior.
+
+Esta contradicción muestra que no puede ocurrir $s > M$, por lo que necesariamente
+$s \le M$. Como $M$ era una cota superior cualquiera de $A$, concluimos que
+$s$ es la menor de las cotas superiores de $A$, es decir, $s = \sup A$.
+
+Queda así demostrada la equivalencia.
+\end{proof}
+
+\begin{prop}
+Sea $(a_n)_{n\in\N}$ una sucesión real y sea $(a_{n_j})_{j\in\N}$ una subsucesión de $(a_n)$,
+donde $(n_j)_{j\in\N}$ es una sucesión estrictamente creciente de números naturales.
+Si
+\[
+\lim_{n\to\infty} a_n = l,
+\]
+entonces
+\[
+\lim_{j\to\infty} a_{n_j} = l.
+\]
+\end{prop}
+
+\begin{proof}
+Supongamos que $\lim_{n\to\infty} a_n = l$. Por definición de límite, esto significa que
+\[
+\forall \varepsilon > 0 \ \exists N \in \N \ \text{tal que} \ \forall n \ge N:
+\ |a_n - l| < \varepsilon.
+\]
+
+Sea ahora $\varepsilon > 0$ fijo. Por la hipótesis anterior, existe $N \in \N$ tal que
+\[
+n \ge N \ \Rightarrow\ |a_n - l| < \varepsilon.
+\]
+
+Como $(n_j)_{j\in\N}$ es una sucesión estrictamente creciente de números naturales,
+podemos elegir $J \in \N$ tal que
+\[
+n_J \ge N.
+\]
+Entonces, para todo $j \ge J$ se tiene
+\[
+n_j \ge n_J \ge N.
+\]
+Aplicando la propiedad de arriba a $n = n_j$, obtenemos
+\[
+|a_{n_j} - l| < \varepsilon \quad \text{para todo } j \ge J.
+\]
+
+Por lo tanto,
+\[
+\forall \varepsilon > 0 \ \exists J \in \N \ \forall j \ge J:\ |a_{n_j} - l| < \varepsilon,
+\]
+lo cual significa exactamente que
+\[
+\lim_{j\to\infty} a_{n_j} = l.
+\]
+\end{proof}
