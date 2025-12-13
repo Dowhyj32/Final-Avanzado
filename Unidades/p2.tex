@@ -1,0 +1,807 @@
+\subsection{Conjuntos coordinables y cardinal}
+
+\begin{defi}
+Sean $X$ e $Y$ dos conjuntos. Decimos que son \emph{coordinables}
+(o \emph{equipotentes}, o que tienen el mismo cardinal) si existe
+una función biyectiva $f : X \to Y$. En este caso escribimos
+\[
+X \sim Y.
+\]
+\end{defi}
+
+\begin{prop}
+La relación $\sim$ es una relación de equivalencia en la clase de
+todos los conjuntos.
+\end{prop}
+
+\begin{proof}
+Debemos probar que la relación $\sim$ es reflexiva, simétrica
+y transitiva.
+
+\medskip
+
+\noindent\textbf{Reflexividad.}
+Sea $X$ un conjunto cualquiera. Consideramos la función identidad
+\[
+\operatorname{id}_X : X \to X, \quad \operatorname{id}_X(x) = x.
+\]
+La función identidad es inyectiva (si $\operatorname{id}_X(x)
+= \operatorname{id}_X(y)$, entonces $x = y$) y sobreyectiva
+(para todo $x \in X$ existe $x \in X$ tal que
+$\operatorname{id}_X(x) = x$). Luego es biyectiva, y por la
+definición de $\sim$ se tiene $X \sim X$. Por lo tanto, $\sim$
+es reflexiva.
+
+\medskip
+
+\noindent\textbf{Simetría.}
+Sean $X$ e $Y$ conjuntos tales que $X \sim Y$. Por definición,
+existe una biyección $f : X \to Y$. Toda función biyectiva tiene
+inversa $f^{-1} : Y \to X$, y dicha inversa es también biyectiva.
+Por lo tanto, existe una biyección de $Y$ en $X$, es decir,
+$Y \sim X$. Luego, $\sim$ es simétrica.
+
+\medskip
+
+\noindent\textbf{Transitividad.}
+Sean $X, Y, Z$ conjuntos tales que $X \sim Y$ y $Y \sim Z$.
+Entonces existen biyecciones
+\[
+f : X \to Y,
+\qquad
+g : Y \to Z.
+\]
+Consideramos la composición
+\[
+g \circ f : X \to Z, \quad (g \circ f)(x) = g(f(x)).
+\]
+Como composición de funciones biyectivas, $g \circ f$ es también
+biyectiva: la composición de funciones inyectivas es inyectiva y
+la composición de funciones sobreyectivas es sobreyectiva. En
+consecuencia, existe una biyección de $X$ en $Z$, es decir,
+$X \sim Z$. Esto muestra que $\sim$ es transitiva.
+
+\medskip
+
+Como $\sim$ es reflexiva, simétrica y transitiva, concluimos que
+$\sim$ es una relación de equivalencia.
+\end{proof}
+
+\begin{defi}
+Definimos el \emph{cardinal} de un conjunto $X$ como la clase de
+equivalencia de los conjuntos coordinables con $X$:
+\[
+\#X = \operatorname{Card}(X)
+:= \{ Y \mid X \sim Y \}.
+\]
+A algunos cardinales les damos nombres especiales:
+\begin{itemize}
+    \item $\#\N = \aleph_0$ (cardinal numerable),
+    \item $\#\R = \mathfrak{c}$ (el \emph{continuo}),
+    \item $\#\{1,2,\dots,n\} = n$ para $n \in \N$.
+\end{itemize}
+\end{defi}
+
+\begin{defi}
+Para $n \in \N$, llamamos
+\[
+I_n = \{1,2,\dots,n\}
+\]
+al \emph{intervalo inicial} del conjunto $\N$ de los números naturales.
+\end{defi}
+
+\begin{defi}
+Un conjunto $A$ es \emph{finito} si existe $n \in \N$ tal que
+\[
+A \sim I_n.
+\]
+\end{defi}
+
+\begin{defi}
+Un conjunto $A$ es \emph{infinito} si no es finito.
+\end{defi}
+
+\begin{defi}
+Un conjunto $A$ es \emph{numerable} si $A \sim \N$.
+Equivalente y simbólicamente, si
+\[
+\#A = \aleph_0.
+\]
+\end{defi}
+\begin{defi}
+Decimos que un conjunto $A$ es \emph{a lo sumo numerable}
+(o \emph{contable}) si es finito o numerable. Es decir,
+$A$ es a lo sumo numerable si cumple
+\[
+A \sim I_n \quad \text{para algún } n \in \N
+\quad \text{o bien} \quad
+A \sim \N.
+\]
+\end{defi}
+
+\begin{prop}
+Sea $A$ un conjunto numerable y sea $B \subseteq A$.
+Entonces $B$ es a lo sumo numerable.
+\end{prop}
+
+\begin{proof}
+Si $B$ es finito, por definición ya es a lo sumo numerable y no hay nada que
+probar. Supongamos entonces que $B$ es infinito. Veremos que en ese caso
+$B$ es numerable.
+
+Como $A$ es numerable, por definición existe una biyección
+\[
+f : \N \longrightarrow A.
+\]
+Consideremos la sucesión $(f(1), f(2), f(3),\dots)$ de elementos de $A$ y
+vamos a “extraer” de ella una enumeración de los elementos de $B$.
+
+Definimos, por inducción, una sucesión estrictamente creciente
+$(n_k)_{k\in\N}$ de números naturales de la siguiente manera.
+
+En primer lugar, como $B$ es infinito, en particular es no vacío y existe
+algún $b_1 \in B$. Como $f$ es sobreyectiva, existe $n_1 \in \N$ tal que
+$f(n_1) = b_1$. Además, podemos elegir $n_1$ como el mínimo de los
+naturales $n$ que satisfacen $f(n) \in B$:
+\[
+n_1 = \min\{\,n \in \N : f(n) \in B\,\}.
+\]
+Este mínimo existe porque el conjunto entre llaves es no vacío y está
+contenido en $\N$.
+
+Supuesto definido $n_k$ para algún $k \in \N$, definimos $n_{k+1}$ así.
+Como $B$ es infinito, el conjunto
+\[
+B_k := B \setminus \{f(n_1), f(n_2), \dots, f(n_k)\}
+\]
+no es vacío (si fuera vacío, $B$ tendría a lo sumo $k$ elementos y sería
+finito). Entonces existe $b_{k+1} \in B_k$. Nuevamente, como $f$ es
+sobreyectiva, existe $m \in \N$ tal que $f(m) = b_{k+1}$. Además, podemos
+elegir $m$ de manera que $m > n_k$ (basta tomar algún índice de $b_{k+1}$
+mayor que todos $n_1,\dots,n_k$). Definimos
+\[
+n_{k+1} = \min\{\,n \in \N : n > n_k,\ f(n) \in B_k\,\}.
+\]
+Este mínimo existe porque el conjunto entre llaves es no vacío y contenido
+en los naturales mayores que $n_k$. De la definición se deduce que
+\[
+n_1 < n_2 < n_3 < \dots,
+\]
+es decir, $(n_k)$ es estrictamente creciente.
+
+Definimos ahora una función
+\[
+g : \N \longrightarrow B, \qquad g(k) = f(n_k).
+\]
+
+Veamos que $g$ es biyectiva.
+
+\medskip
+
+\noindent\textbf{Inyectividad.}
+Sean $k,\ell \in \N$ tales que $g(k) = g(\ell)$, es decir,
+$f(n_k) = f(n_\ell)$. Como $f$ es inyectiva, se sigue que $n_k = n_\ell$.
+Pero la sucesión $(n_k)$ es estrictamente creciente, luego de
+$n_k = n_\ell$ se deduce $k = \ell$. Por lo tanto, $g$ es inyectiva.
+
+\medskip
+
+\noindent\textbf{Sobreyectividad.}
+Sea $b \in B$. Como $f$ es sobreyectiva, existe $n \in \N$ tal que
+$f(n) = b$. En el proceso de construcción de la sucesión $(n_k)$, en algún
+paso $k$ el elemento $b$ aparece por primera vez entre los valores de $f$;
+es decir, existe un único $k$ tal que $n_k$ es el mínimo índice con
+$f(n_k) = b$ y $n_k > n_{k-1}$ (para $k=1$ entendemos que no hay condición
+anterior). Por la definición de $g$, se tiene entonces
+\[
+g(k) = f(n_k) = b.
+\]
+De este modo, para todo $b \in B$ existe $k \in \N$ tal que $g(k) = b$, y
+por lo tanto $g$ es sobreyectiva.
+
+\medskip
+
+Hemos construido una biyección $g : \N \to B$, lo cual muestra que $B$ es
+numerable. Recordando que al principio separamos el caso en que $B$ es
+finito, concluimos que, en todos los casos, $B$ es a lo sumo numerable.
+\end{proof}
+
+\begin{teo}
+Sea $A$ un conjunto infinito. Entonces existe un subconjunto
+$B \subseteq A$ tal que $B$ es numerable.
+\end{teo}
+
+\begin{proof}
+Como $A$ es infinito, en particular es no vacío, de modo que podemos elegir
+un elemento $a_1 \in A$.
+
+Supondremos construidos elementos distintos $a_1,\dots,a_n \in A$ para algún
+$n \in \N$. Consideremos el conjunto
+\[
+F_n = \{a_1,\dots,a_n\}.
+\]
+Si $A \setminus F_n$ fuera vacío, tendríamos $A = F_n$, es decir, $A$
+sería finito, lo cual contradice la hipótesis de que $A$ es infinito.
+Por lo tanto,
+\[
+A \setminus F_n \neq \varnothing,
+\]
+y podemos elegir un elemento
+\[
+a_{n+1} \in A \setminus F_n.
+\]
+En particular, $a_{n+1} \in A$ y $a_{n+1} \notin \{a_1,\dots,a_n\}$, por
+lo que los elementos $a_1,\dots,a_{n+1}$ siguen siendo todos distintos.
+
+De este modo, por inducción, obtenemos una sucesión $(a_n)_{n\in\N}$ de
+elementos de $A$ tales que
+\[
+a_n \neq a_m \quad \text{si } n \neq m.
+\]
+
+Definimos ahora
+\[
+B = \{a_n : n \in \N\}.
+\]
+Claramente $B \subseteq A$, por construcción.
+
+Consideremos la función
+\[
+f : \N \longrightarrow B, \qquad f(n) = a_n.
+\]
+
+\emph{Inyectividad.}  
+Si $f(n) = f(m)$, entonces $a_n = a_m$, y como la sucesión $(a_n)$ tiene
+todos sus términos distintos, se sigue que $n = m$. Por lo tanto, $f$ es
+inyectiva.
+
+\emph{Sobreyectividad.}  
+Sea $b \in B$. Por definición de $B$, existe $n \in \N$ tal que $b = a_n$.
+Entonces $f(n) = a_n = b$, de modo que todo elemento de $B$ es imagen de
+algún $n \in \N$. Por lo tanto, $f$ es sobreyectiva.
+
+Concluimos que $f : \N \to B$ es una biyección, es decir, $B$ es numerable.
+Como además $B \subseteq A$, hemos encontrado un subconjunto numerable de
+$A$, tal como queríamos.
+\end{proof}
+
+\subsection{Orden entre cardinales}
+
+Recordemos que, por definición,
+\[
+\#A = \#B \quad \Longleftrightarrow \quad A \sim B
+\]
+es decir, si y sólo si existe una biyección \(f : A \to B\).
+
+\begin{defi}
+Sean $X$ e $Y$ conjuntos. Decimos que
+\[
+\#X \le \#Y
+\]
+si existe una función inyectiva \(f : X \to Y\).
+\end{defi}
+
+\begin{defi}
+Decimos que
+\[
+\#X < \#Y
+\]
+si se cumplen:
+\begin{enumerate}[label=(\roman*)]
+    \item \(\#X \le \#Y\), es decir, existe una inyección \(f : X \to Y\);
+    \item \(X \not\sim Y\), es decir, no existe biyección entre \(X\) e \(Y\).
+\end{enumerate}
+\end{defi}
+
+\begin{prop}
+Sean $X$ e $Y$ conjuntos. Existe una función inyectiva
+$f : X \to Y$ si y sólo si existe una función sobreyectiva
+$g : Y \to X$.
+\end{prop}
+
+\begin{proof}
+\textbf{($\Rightarrow$)} Supongamos que existe una función inyectiva
+$f : X \to Y$. Distinguimos dos casos.
+
+Si $X = \varnothing$, entonces $f$ es la única función posible
+$\varnothing \to Y$. En este caso, la única función de $Y$ a $X$
+es la función vacía $g : Y \to \varnothing$, que es sobreyectiva
+sólo si $Y = \varnothing$. En muchas aplicaciones se descarta el
+caso trivial $X = \varnothing$, así que supongamos ahora que
+$X \ne \varnothing$.
+
+Como $X \ne \varnothing$, elegimos un elemento fijo $x_0 \in X$.
+Definimos $g : Y \to X$ de la siguiente manera:
+\[
+g(y) =
+\begin{cases}
+x & \text{si existe } x \in X \text{ tal que } f(x) = y,\\
+x_0 & \text{si no existe tal } x.
+\end{cases}
+\]
+La inyectividad de $f$ garantiza que, cuando $y$ está en la imagen
+de $f$, el elemento $x$ tal que $f(x) = y$ es único, de modo que
+$g$ está bien definida.
+
+Veamos que $g$ es sobreyectiva. Sea $x \in X$. Como $f$ es función
+de $X$ en $Y$, tenemos $f(x) \in Y$, y por definición de $g$,
+\[
+g(f(x)) = x.
+\]
+Luego todo $x \in X$ es imagen de algún elemento de $Y$ (por ejemplo,
+de $f(x)$), y por lo tanto $g$ es sobreyectiva.
+
+\medskip
+
+\textbf{($\Leftarrow$)} Recíprocamente, supongamos que existe una función
+sobreyectiva $g : Y \to X$. Para cada $x \in X$ consideremos el conjunto
+de sus preimágenes:
+\[
+Y_x = \{\, y \in Y : g(y) = x \,\}.
+\]
+Como $g$ es sobreyectiva, $Y_x$ es no vacío para todo $x \in X$.
+
+Elegimos, para cada $x \in X$, un elemento $y_x \in Y_x$ (es decir,
+$g(y_x) = x$), y definimos
+\[
+f : X \to Y, \qquad f(x) = y_x.
+\]
+
+Probemos que $f$ es inyectiva. Sean $x_1,x_2 \in X$ tales que
+$f(x_1) = f(x_2)$. Entonces
+\[
+y_{x_1} = y_{x_2}.
+\]
+Aplicando $g$ a ambos lados obtenemos
+\[
+g(y_{x_1}) = g(y_{x_2}),
+\]
+es decir,
+\[
+x_1 = x_2,
+\]
+ya que por definición de $y_x$ se cumple $g(y_x) = x$. Por lo tanto,
+$f$ es inyectiva.
+
+\medskip
+
+Hemos probado en un sentido que de una inyectiva $X \to Y$ obtenemos
+una sobreyectiva $Y \to X$, y en el otro que de una sobreyectiva
+$Y \to X$ obtenemos una inyectiva $X \to Y$. Esto completa la
+demostración.
+\end{proof}
+
+\subsection{Conjunto de partes y teorema de Cantor}
+
+\begin{defi}
+Dado un conjunto $X$, llamamos \emph{conjunto de partes} de $X$ al conjunto
+\[
+\mathcal{P}(X) = \{ A : A \subseteq X\}.
+\]
+\end{defi}
+
+\begin{teo}[Cantor]
+Sea $X$ un conjunto. Entonces
+\[
+\#X < \#\mathcal{P}(X).
+\]
+\end{teo}
+
+\begin{proof}
+Recordemos que, por la definición de orden entre cardinales,
+\[
+\#X < \#\mathcal{P}(X)
+\quad\Longleftrightarrow\quad
+\begin{cases}
+\text{existe una inyección } f : X \to \mathcal{P}(X),\\
+\text{no existe biyección entre } X \text{ y } \mathcal{P}(X).
+\end{cases}
+\]
+
+\textbf{(1) Existe una inyección $X \to \mathcal{P}(X)$.}
+
+Definimos
+\[
+f : X \longrightarrow \mathcal{P}(X), \qquad f(x) = \{x\}.
+\]
+Claramente $f(x) \subseteq X$ para todo $x$, luego $f(x) \in \mathcal{P}(X)$.
+Si $f(x) = f(y)$, entonces $\{x\} = \{y\}$ y por lo tanto $x = y$.
+Así, $f$ es inyectiva, y obtenemos
+\[
+\#X \le \#\mathcal{P}(X).
+\]
+
+\textbf{(2) No existe biyección entre $X$ y $\mathcal{P}(X)$.}
+
+Basta ver que \emph{no existe ninguna función sobreyectiva}
+$g : X \to \mathcal{P}(X)$.
+
+Procedemos por absurdo. Supongamos que existe una función
+\[
+g : X \longrightarrow \mathcal{P}(X)
+\]
+sobreyectiva. Consideremos el subconjunto
+\[
+B = \{ x \in X : x \notin g(x) \}.
+\]
+Por definición, $B \subseteq X$, de modo que $B \in \mathcal{P}(X)$.
+
+Como $g$ es sobreyectiva, debe existir algún elemento $a \in X$ tal que
+\[
+g(a) = B.
+\]
+
+Estudiemos ahora si $a$ pertenece o no a $B$:
+
+- Supongamos que $a \in B$.  
+  Por la definición de $B$, esto significa que $a \notin g(a)$. Pero
+  $g(a) = B$, luego $a \notin B$, lo que contradice $a \in B$.
+
+- Supongamos que $a \notin B$.  
+  Entonces, por la definición de $B$, se tiene $a \in g(a)$. Como
+  $g(a) = B$, esto implica $a \in B$, contradiciendo $a \notin B$.
+
+En ambos casos llegamos a una contradicción. Por lo tanto, nuestra
+suposición inicial es falsa: no existe función sobreyectiva
+$g : X \to \mathcal{P}(X)$.
+
+Concluimos que no existe biyección entre $X$ y $\mathcal{P}(X)$.
+Junto con (1), esto implica
+\[
+\#X < \#\mathcal{P}(X),
+\]
+como queríamos demostrar.
+\end{proof}
+
+\subsection{Suma y resta de conjuntos numerables}
+
+\begin{prop}
+Sea $X$ un conjunto infinito. Entonces existe un subconjunto
+$Z \subset X$, con $Z$ numerable, tal que
+\[
+X \sim X \setminus Z.
+\]
+\end{prop}
+
+\begin{proof}
+Como $X$ es infinito, por el teorema anterior existe un subconjunto
+numerable infinito $C \subset X$. Como $C$ es numerable, existe una
+biyección
+\[
+\varphi : \N \to C.
+\]
+Escribimos $c_n = \varphi(n)$ para todo $n \in \N$, de modo que
+\[
+C = \{c_1, c_2, c_3,\dots\}.
+\]
+
+Definimos ahora dos subconjuntos disjuntos de $C$:
+\[
+Z = \{c_{2n} : n \in \N\}, \qquad
+D = \{c_{2n-1} : n \in \N\}.
+\]
+Entonces $C = D \cup Z$ y $D \cap Z = \varnothing$. Además, tanto $D$
+como $Z$ son numerables (son imágenes de $\N$ por las aplicaciones
+$n \mapsto c_{2n-1}$ y $n \mapsto c_{2n}$, respectivamente).
+
+Sea
+\[
+Y = X \setminus C.
+\]
+Entonces tenemos una partición
+\[
+X = Y \cup D \cup Z
+\quad\text{(unión disjunta)}.
+\]
+Por otra parte,
+\[
+X \setminus Z = Y \cup D.
+\]
+
+Definimos una aplicación $f : X \to X \setminus Z$ por:
+\[
+f(x) =
+\begin{cases}
+x, & \text{si } x \in Y \cup D,\\
+c_{2n-1}, & \text{si } x = c_{2n} \in Z \text{ para algún } n \in \N.
+\end{cases}
+\]
+
+Veamos que $f$ es biyectiva.
+
+\medskip
+
+\noindent\textbf{Inyectividad.}
+- Si $x_1,x_2 \in Y \cup D$ y $f(x_1) = f(x_2)$, entonces $x_1 = x_2$
+  porque $f$ actúa como la identidad en $Y \cup D$.
+
+- Si $x_1 = c_{2n_1}$ e $x_2 = c_{2n_2}$ pertenecen a $Z$ y
+  $f(x_1) = f(x_2)$, entonces
+  \[
+  c_{2n_1-1} = f(c_{2n_1}) = f(c_{2n_2}) = c_{2n_2-1},
+  \]
+  de donde $2n_1-1 = 2n_2-1$ y luego $n_1 = n_2$, es decir
+  $x_1 = x_2$.
+
+- No puede ocurrir que $x_1 \in Y \cup D$ y $x_2 \in Z$ tengan la
+  misma imagen, porque las imágenes de $Y \cup D$ están en $Y \cup D$
+  y las de $Z$ están contenidas en $D$; pero $Y$ y $D$ son disjuntos.
+
+En todos los casos, de $f(x_1) = f(x_2)$ se deduce $x_1 = x_2$, luego
+$f$ es inyectiva.
+
+\medskip
+
+\noindent\textbf{Sobreyectividad.}
+Sea $y \in X \setminus Z = Y \cup D$.
+
+- Si $y \in Y$, entonces $f(y) = y$, así que $y$ es imagen de sí mismo.
+
+- Si $y \in D$, digamos $y = c_{2n-1}$ para algún $n \in \N$, entonces
+  $f(c_{2n}) = c_{2n-1} = y$, de modo que $y$ es imagen de $c_{2n} \in Z$.
+
+En consecuencia, todo elemento de $X \setminus Z$ es imagen de algún
+elemento de $X$, y $f$ es sobreyectiva.
+
+\medskip
+
+Hemos construido una biyección $f : X \to X \setminus Z$ con
+$Z \subset X$ numerable, por lo que $X \sim X \setminus Z$.
+\end{proof}
+
+\begin{prop}
+Sea $B$ un conjunto y sea $A$ un conjunto numerable.
+Suponemos que $B \setminus A$ es infinito. Entonces
+\[
+B \sim B \setminus A.
+\]
+\end{prop}
+
+\begin{proof}
+Podemos reemplazar $A$ por $A \cap B$, que sigue siendo numerable y
+cumple
+\[
+B \setminus (A \cap B) = B \setminus A.
+\]
+Por simplicidad, suponemos desde ahora que $A \subseteq B$.
+
+Como $A$ es numerable, existe una biyección
+\[
+(a_n)_{n\in\N} : \N \to A,
+\]
+es decir, podemos escribir
+\[
+A = \{a_1, a_2, a_3,\dots\}.
+\]
+
+Por hipótesis, $B \setminus A$ es infinito. Entonces, por el teorema
+“conjunto infinito contiene un subconjunto numerable”, existe un
+subconjunto numerable infinito
+\[
+C \subseteq B \setminus A.
+\]
+Tomamos una biyección
+\[
+(c_n)_{n\in\N} : \N \to C, \quad C = \{c_1, c_2, c_3,\dots\}.
+\]
+
+Definimos ahora una aplicación $f : B \to B \setminus A$ por:
+\[
+f(x) =
+\begin{cases}
+c_n, & \text{si } x = a_n \in A \text{ para algún } n \in \N,\\[4pt]
+x,   & \text{si } x \in B \setminus A.
+\end{cases}
+\]
+
+Observemos primero que $f$ está bien definida: si $x \in A$, entonces
+$f(x) = c_n \in C \subseteq B \setminus A$; si $x \in B \setminus A$,
+entonces $f(x) = x \in B \setminus A$. En cualquier caso,
+$f(x) \in B \setminus A$.
+
+\medskip
+
+\noindent\textbf{Inyectividad.}
+- Si $x_1, x_2 \in B \setminus A$ y $f(x_1) = f(x_2)$, entonces
+  $x_1 = x_2$ porque $f$ actúa como la identidad en $B \setminus A$.
+
+- Si $x_1 = a_n$ y $x_2 = a_m$ pertenecen a $A$ y
+  $f(x_1) = f(x_2)$, entonces $c_n = c_m$, y como la sucesión
+  $(c_n)$ tiene todos sus términos distintos, se sigue $n = m$ y
+  por lo tanto $x_1 = x_2$.
+
+- No puede ocurrir que $x_1 \in A$ y $x_2 \in B \setminus A$ tengan
+  la misma imagen, porque $f(x_1) \in C \subseteq B \setminus A$,
+  mientras que $f(x_2) = x_2 \in B \setminus A \setminus C$, y
+  $C$ es disjunto de $B \setminus A \setminus C$.
+
+En consecuencia, $f$ es inyectiva.
+
+\medskip
+
+\noindent\textbf{Sobreyectividad.}
+Sea $y \in B \setminus A$. Distinguimos dos casos:
+
+- Si $y \in B \setminus (A \cup C)$, entonces $f(y) = y$, de modo que
+  $y$ es imagen de sí mismo.
+
+- Si $y \in C$, digamos $y = c_n$ para algún $n \in \N$, entonces
+  $f(a_n) = c_n = y$, de modo que $y$ es imagen de $a_n \in A$.
+
+Por lo tanto, todo elemento de $B \setminus A$ es imagen de algún
+elemento de $B$, y $f$ es sobreyectiva.
+
+\medskip
+
+Hemos construido una biyección $f : B \to B \setminus A$, lo cual prueba
+que $B \sim B \setminus A$.
+\end{proof}
+
+\begin{prop}
+Sea $X$ un conjunto infinito y sea $A$ un conjunto numerable.
+Entonces
+\[
+X \sim X \cup A.
+\]
+\end{prop}
+
+\begin{proof}
+Si $A \subseteq X$, entonces $X \cup A = X$ y la afirmación es trivial.
+Supongamos, por lo tanto, que $A$ no está contenido en $X$. Definimos
+\[
+A_0 = A \setminus X,
+\]
+que es el conjunto de los elementos de $A$ que no pertenecen a $X$.
+Como $A$ es numerable, también $A_0$ es numerable (subconjunto de un
+numerable). Además,
+\[
+X \cup A = X \cup A_0
+\]
+y la unión es disjunta, ya que $A_0 \cap X = \varnothing$.
+
+Notemos que $X$ es infinito, luego el conjunto $X \cup A_0$ también es
+infinito. Consideremos ahora el conjunto
+\[
+B = X \cup A_0.
+\]
+Entonces $A_0$ es numerable y
+\[
+B \setminus A_0 = X.
+\]
+Como $X$ es infinito, también $B \setminus A_0$ es infinito. Podemos
+aplicar la proposición anterior con $A = A_0$ y este conjunto $B$:
+obtenemos
+\[
+B \sim B \setminus A_0.
+\]
+Pero $B = X \cup A_0$ y $B \setminus A_0 = X$, por lo que
+\[
+X \cup A_0 \sim X.
+\]
+
+Como $X \cup A = X \cup A_0$, concluimos que
+\[
+X \cup A \sim X.
+\]
+Por simetría de la relación de equipotencia, también escribimos
+$X \sim X \cup A$, como queríamos.
+\end{proof}
+
+\begin{cor}
+Un conjunto $X$ es infinito si y sólo si es coordinable con un subconjunto
+propio suyo, es decir, si y sólo si existe $Y \subsetneq X$ tal que
+$X \sim Y$.
+\end{cor}
+
+\begin{proof}
+($\Rightarrow$) Supongamos que $X$ es infinito.
+Por la proposición anterior, existe un subconjunto numerable
+$Z \subset X$ tal que $X \sim X \setminus Z$.
+Como $Z \ne \varnothing$ (pues es numerable) y $Z \subset X$, se tiene
+$X \setminus Z \subsetneq X$.
+Por lo tanto, $X$ es coordinable con el subconjunto propio
+$X \setminus Z$.
+
+($\Leftarrow$) Recíprocamente, supongamos que existe un subconjunto propio
+$Y \subsetneq X$ tal que $X \sim Y$.
+Procedamos por absurdo: supongamos que $X$ es finito.
+Sea $n = \#X$. Entonces $X \sim I_n$.
+Como $Y$ es subconjunto propio de $X$, tiene un número $m$ de elementos
+con $m < n$, de modo que $Y \sim I_m$.
+
+Por transitividad de la relación de equipotencia, tendríamos
+\[
+I_n \sim X \sim Y \sim I_m,
+\]
+de donde se seguiría $I_n \sim I_m$.
+Pero por el teorema anterior, $I_n \sim I_m$ implica $n = m$,
+lo cual contradice $m < n$.
+Esta contradicción muestra que $X$ no puede ser finito, luego
+$X$ es infinito.
+\end{proof}
+
+\begin{teo}[Cantor–Schröder–Bernstein]
+Sean $X$ e $Y$ dos conjuntos. Si existe una función inyectiva
+$f : X \to Y$ y una función inyectiva $g : Y \to X$, entonces
+$X$ e $Y$ son coordinables, es decir, existe una biyección
+$h : X \to Y$.
+\end{teo}
+
+Equivalentemente, en términos de cardinales:
+\[
+\#X \le \#Y \ \text{y} \ \#Y \le \#X \quad \Longrightarrow \quad \#X = \#Y.
+\]
+
+\begin{lema}
+El producto cartesiano $\N \times \N$ es numerable.
+\end{lema}
+
+\begin{proof}
+Consideremos la aplicación $f : \N \times \N \to \N$ dada por
+\[
+f(m,n) = 2^m 3^n.
+\]
+Por el teorema fundamental de la aritmética, todo número natural
+tiene una única factorización en primos, de modo que distintos pares
+$(m,n)$ producen distintos números $2^m 3^n$. Por lo tanto, $f$ es
+inyectiva.
+
+Como hemos construido una inyección de $\N \times \N$ en $\N$, se sigue
+que $\N \times \N$ es a lo sumo numerable. Además, es infinito, por lo
+que es numerable.
+\end{proof}
+
+\begin{teo}
+Sea $(A_n)_{n\in\N}$ una familia de conjuntos numerables.
+Entonces la unión
+\[
+A = \bigcup_{n\in\N} A_n
+\]
+es a lo sumo numerable. En particular, si $A$ es infinita, entonces
+$A$ es numerable.
+\end{teo}
+
+\begin{proof}
+Como cada $A_n$ es numerable, para todo $n \in \N$ existe una
+biyección
+\[
+f_n : \N \to A_n.
+\]
+Escribimos $a_{n,k} = f_n(k)$, de modo que
+\[
+A_n = \{a_{n,1}, a_{n,2}, a_{n,3}, \dots\}.
+\]
+
+Definimos ahora una aplicación
+\[
+F : \N \times \N \to A, \qquad F(n,k) = a_{n,k}.
+\]
+Para todo $(n,k) \in \N\times\N$ se tiene $a_{n,k} \in A_n \subseteq A$,
+luego $F$ está bien definida. Además, por la definición de $A$,
+todo elemento de $A$ es de la forma $a_{n,k}$ para algún $n,k \in \N$,
+y por lo tanto $F$ es sobreyectiva.
+
+Por el lema anterior, $\N \times \N$ es numerable. Entonces existe una
+biyectiva
+\[
+g : \N \to \N \times \N.
+\]
+Consideremos la composición
+\[
+h = F \circ g : \N \to A.
+\]
+Como composición de una biyección con una sobreyección, $h$ sigue
+siendo sobreyectiva: para todo $a \in A$ existe $(n,k) \in \N \times \N$
+tal que $F(n,k) = a$, y como $g$ es biyectiva, existe $m \in \N$ con
+$g(m) = (n,k)$; entonces
+\[
+h(m) = (F \circ g)(m) = F(n,k) = a.
+\]
+
+Así hemos construido una función sobreyectiva $h : \N \to A$.
+Por la proposición que relaciona inyecciones y sobreyecciones entre
+cardinales, esto implica que $A$ es a lo sumo numerable.
+
+Si además $A$ es infinito, por definición de “a lo sumo numerable”
+resulta que $A$ es numerable.
+\end{proof}
