@@ -1,0 +1,611 @@
+\subsection{Definición y caracterizaciones de continuidad}
+
+Sea $(E,d_E)$ y $(F,d_F)$ espacios métricos, y sea $A \subseteq E$.
+Consideramos funciones $f : A \to F$.
+
+\begin{defi}[Continuidad en un punto]
+Sea $x_0 \in A$. Decimos que $f$ es \emph{continua en $x_0$} si
+\[
+\forall \varepsilon > 0\ \exists \delta > 0\ \text{tal que}\ 
+\forall x \in A,\ d_E(x,x_0) < \delta \ \Rightarrow\ d_F\bigl(f(x),f(x_0)\bigr) < \varepsilon.
+\]
+\end{defi}
+
+\begin{defi}[Continuidad en un conjunto]
+Decimos que $f$ es \emph{continua en $A$} si es continua en todo punto
+$x_0 \in A$. En particular, cuando $A = E$, diremos simplemente que
+$f : E \to F$ es \emph{continua}.
+\end{defi}
+
+\begin{defi}[Continuidad secuencial en un punto]
+Sea $x_0 \in A$. Decimos que $f$ es \emph{secuencialmente continua en $x_0$}
+si para toda sucesión $(x_n)_{n\in\N} \subseteq A$ tal que
+\[
+x_n \to x_0 \text{ en } (E,d_E),
+\]
+se cumple
+\[
+f(x_n) \to f(x_0) \text{ en } (F,d_F).
+\]
+\end{defi}
+
+\begin{prop}[Equivalencia $\varepsilon$--$\delta$ / sucesiones]
+Sea $f : A \to F$ y $x_0 \in A$. Entonces las siguientes afirmaciones
+son equivalentes:
+\begin{enumerate}[label=(\roman*)]
+    \item $f$ es continua en $x_0$ (en el sentido $\varepsilon$--$\delta$).
+    \item $f$ es secuencialmente continua en $x_0$, es decir:
+    para toda sucesión $(x_n) \subseteq A$ con $x_n \to x_0$ en $(E,d_E)$,
+    se tiene $f(x_n) \to f(x_0)$ en $(F,d_F)$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+$(i) \Rightarrow (ii)$) Supongamos que $f$ es continua en $x_0$ en el sentido
+$\varepsilon$--$\delta$. Sea $(x_n)_{n\in\N} \subseteq A$ una sucesión tal que
+$x_n \to x_0$ en $(E,d_E)$.
+
+Sea $\varepsilon>0$. Por continuidad en $x_0$, existe $\delta>0$ tal que
+\[
+d_E(x,x_0) < \delta \ \Rightarrow\ d_F\bigl(f(x),f(x_0)\bigr) < \varepsilon
+\quad \text{para todo } x \in A.
+\]
+Como $x_n \to x_0$, existe $N \in \N$ tal que, si $n \ge N$, se cumple
+\[
+d_E(x_n,x_0) < \delta.
+\]
+Aplicando la condición de continuidad a cada $x_n$ con $n \ge N$, obtenemos
+\[
+d_F\bigl(f(x_n),f(x_0)\bigr) < \varepsilon
+\quad \text{para todo } n \ge N.
+\]
+Por definición de límite de sucesión en $(F,d_F)$, esto significa que
+$f(x_n) \to f(x_0)$. Luego (ii) es verdadera.
+
+\medskip
+
+$(ii) \Rightarrow (i)$) Supongamos ahora que $f$ es secuencialmente continua
+en $x_0$ y probemos que es continua en $x_0$ en el sentido $\varepsilon$--$\delta$.
+
+Razonamos por absurdo. Supongamos que $f$ \emph{no} es continua en $x_0$.
+Entonces existe algún $\varepsilon_0 > 0$ tal que, para todo $\delta > 0$,
+existe $x \in A$ con
+\[
+d_E(x,x_0) < \delta
+\quad \text{pero} \quad
+d_F\bigl(f(x),f(x_0)\bigr) \ge \varepsilon_0.
+\]
+
+En particular, para cada $n \in \N$, aplicamos esta propiedad con
+$\delta = \frac{1}{n}$ y obtenemos un punto $x_n \in A$ tal que
+\[
+d_E\Bigl(x_n,x_0\Bigr) < \frac{1}{n}
+\quad \text{y} \quad
+d_F\bigl(f(x_n),f(x_0)\bigr) \ge \varepsilon_0.
+\]
+De aquí se ve que $x_n \to x_0$ en $(E,d_E)$, porque para todo
+$\varepsilon>0$ basta tomar $N$ con $\frac{1}{N} < \varepsilon$;
+entonces si $n \ge N$,
+\[
+d_E(x_n,x_0) < \frac{1}{n} \le \frac{1}{N} < \varepsilon.
+\]
+
+Sin embargo, la sucesión $(f(x_n))$ no puede converger a $f(x_0)$ en
+$(F,d_F)$, ya que para todo $n$ se tiene
+\[
+d_F\bigl(f(x_n),f(x_0)\bigr) \ge \varepsilon_0,
+\]
+y esto contradice la definición de límite. Esto contradice la hipótesis
+de continuidad secuencial en $x_0$.
+
+Por lo tanto, nuestra suposición era falsa y $f$ debe ser continua
+en $x_0$ en el sentido $\varepsilon$--$\delta$.
+\end{proof}
+
+\begin{defi}[Imagen inversa]
+Sea $f : A \to F$ y $B \subseteq F$. Definimos la \emph{imagen inversa}
+de $B$ por $f$ como
+\[
+f^{-1}(B) = \{x \in A : f(x) \in B\}.
+\]
+\end{defi}
+
+\begin{teo}[Continuidad y abiertos]
+Sea $f : A \to F$ una función entre espacios métricos. Entonces las
+siguientes afirmaciones son equivalentes:
+\begin{enumerate}[label=(\roman*)]
+    \item $f$ es continua en $A$.
+    \item Para todo abierto $G \subseteq F$, el conjunto
+    $f^{-1}(G)$ es abierto en el subespacio $A$ (es decir,
+    $f^{-1}(G) = A \cap U$ para algún abierto $U$ de $E$).
+    \item Si $A = E$, entonces (ii) dice simplemente:
+    para todo abierto $G \subseteq F$, $f^{-1}(G)$ es abierto en $E$.
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+$(i) \Rightarrow (ii)$) Supongamos que $f$ es continua en $A$ y sea
+$G \subseteq F$ un conjunto abierto. Consideremos $f^{-1}(G) \subseteq A$.
+
+Tomemos $x_0 \in f^{-1}(G)$. Entonces $f(x_0) \in G$. Como $G$ es abierto
+en $(F,d_F)$, existe $\varepsilon > 0$ tal que
+\[
+B_{d_F}\bigl(f(x_0),\varepsilon\bigr) \subseteq G.
+\]
+Como $f$ es continua en $x_0$, existe $\delta > 0$ tal que para todo
+$x \in A$,
+\[
+d_E(x,x_0) < \delta \ \Rightarrow\ d_F\bigl(f(x),f(x_0)\bigr) < \varepsilon,
+\]
+es decir,
+\[
+x \in B_{d_E}(x_0,\delta) \cap A \ \Rightarrow\ f(x) \in
+B_{d_F}\bigl(f(x_0),\varepsilon\bigr) \subseteq G.
+\]
+Por lo tanto,
+\[
+B_{d_E}(x_0,\delta) \cap A \subseteq f^{-1}(G).
+\]
+
+Esto muestra que, en el subespacio $A$, el punto $x_0$ tiene una “bola”
+(dada por $B_{d_E}(x_0,\delta) \cap A$) contenida en $f^{-1}(G)$.
+Por definición, $f^{-1}(G)$ es abierto en $A$.
+
+\medskip
+
+$(ii) \Rightarrow (i)$) Supongamos ahora que para todo abierto $G \subseteq F$,
+el conjunto $f^{-1}(G)$ es abierto en el subespacio $A$.
+
+Sea $x_0 \in A$ y probemos que $f$ es continua en $x_0$.
+
+Sea $\varepsilon>0$. Consideramos el abierto
+\[
+G = B_{d_F}\bigl(f(x_0),\varepsilon\bigr) \subseteq F.
+\]
+Por hipótesis, $f^{-1}(G)$ es abierto en $A$. En particular,
+$x_0 \in f^{-1}(G)$ (porque $f(x_0) \in G$), y como $f^{-1}(G)$ es abierto
+en el subespacio $A$, existe $\delta>0$ tal que
+\[
+B_{d_E}(x_0,\delta) \cap A \subseteq f^{-1}(G).
+\]
+
+Entonces, si $x \in A$ y $d_E(x,x_0) < \delta$, se tiene $x \in A$ y
+$x \in B_{d_E}(x_0,\delta)$, por lo que $x \in f^{-1}(G)$; esto significa
+que $f(x) \in G$, es decir,
+\[
+d_F\bigl(f(x),f(x_0)\bigr) < \varepsilon.
+\]
+
+Hemos probado exactamente la condición $\varepsilon$--$\delta$ de continuidad
+de $f$ en $x_0$. Como $x_0$ es arbitrario en $A$, $f$ es continua en $A$.
+
+\medskip
+
+La equivalencia con (iii) es sólo una simplificación de notación cuando
+$A=E$, ya que en ese caso “abierto en $A$” coincide con “abierto en $E$”.
+\end{proof}
+
+\begin{teo}[Continuidad y cerrados]
+Sea $f : A \to F$ una función entre espacios métricos. Son equivalentes:
+\begin{enumerate}[label=(\roman*)]
+    \item $f$ es continua en $A$.
+    \item Para todo cerrado $C \subseteq F$, el conjunto
+    $f^{-1}(C)$ es cerrado en el subespacio $A$.
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+$(i) \Rightarrow (ii)$) Supongamos $f$ continua en $A$ y sea $C \subseteq F$
+un cerrado. Su complemento $F \setminus C$ es abierto en $F$.
+
+Por el teorema anterior, $f^{-1}(F \setminus C)$ es abierto en $A$.
+Notemos que
+\[
+A \setminus f^{-1}(C) = f^{-1}(F \setminus C).
+\]
+Entonces el complemento de $f^{-1}(C)$ en $A$ es abierto en $A$, por lo que
+$f^{-1}(C)$ es cerrado en $A$.
+
+\medskip
+
+$(ii) \Rightarrow (i)$) Recíprocamente, supongamos que la preimagen de
+todo cerrado en $F$ es cerrada en $A$.
+
+Sea $G \subseteq F$ un abierto. Entonces $F \setminus G$ es cerrado en $F$,
+y por hipótesis
+\[
+f^{-1}(F \setminus G)
+\]
+es cerrado en $A$. Su complemento en $A$,
+\[
+A \setminus f^{-1}(F \setminus G),
+\]
+es abierto en $A$. Pero
+\[
+A \setminus f^{-1}(F \setminus G) = f^{-1}(G).
+\]
+Concluimos que $f^{-1}(G)$ es abierto en $A$ para todo abierto $G$ de $F$.
+Por el teorema anterior, esto implica que $f$ es continua en $A$.
+\end{proof}
+
+\begin{teo}[Continuidad y clausura de la imagen]
+Sea $f : E \to E'$ una función entre espacios métricos. Entonces las
+siguientes afirmaciones son equivalentes:
+\begin{enumerate}[label=(\roman*)]
+    \item $f$ es continua en $E$.
+    \item Para todo subconjunto $A \subseteq E$ se cumple
+    \[
+    f(\overline{A}) \subseteq \overline{f(A)}.
+    \]
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+$(i) \Rightarrow (ii)$) Supongamos que $f$ es continua en $E$
+(en cada punto de $E$).
+
+Sea $A \subseteq E$ y sea $x \in \overline{A}$. Por la caracterización
+secuencial de la clausura, existe una sucesión $(a_n)_{n\in\N} \subseteq A$
+tal que
+\[
+a_n \to x \quad \text{en } E.
+\]
+Como $f$ es continua en $x$, se tiene
+\[
+f(a_n) \to f(x) \quad \text{en } E'.
+\]
+
+Además, cada $f(a_n)$ pertenece a $f(A)$, luego por la caracterización
+secuencial de la clausura en $E'$ concluimos que
+\[
+f(x) \in \overline{f(A)}.
+\]
+
+Esto vale para todo $x \in \overline{A}$, por lo tanto
+\[
+f(\overline{A}) \subseteq \overline{f(A)}.
+\]
+
+\medskip
+
+$(ii) \Rightarrow (i)$) Supongamos ahora que para todo $A \subseteq E$
+se cumple
+\[
+f(\overline{A}) \subseteq \overline{f(A)}.
+\]
+Queremos probar que $f$ es continua en $E$.
+
+Usaremos el criterio de continuidad en términos de cerrados:
+$f$ es continua si y sólo si, para todo conjunto cerrado
+$C \subseteq E'$, la preimagen $f^{-1}(C)$ es cerrada en $E$.
+
+Sea entonces $C \subseteq E'$ un cerrado y definamos
+\[
+A = f^{-1}(C) = \{x \in E : f(x) \in C\}.
+\]
+Tenemos $A \subseteq E$ y, en particular, $f(A) \subseteq C$.
+De la hipótesis aplicada a este conjunto $A$ se obtiene
+\[
+f(\overline{A}) \subseteq \overline{f(A)}.
+\]
+Como $f(A) \subseteq C$, se cumple
+\[
+\overline{f(A)} \subseteq \overline{C} = C
+\]
+(porque $C$ es cerrado). Por lo tanto,
+\[
+f(\overline{A}) \subseteq C.
+\]
+
+Tomando preimagen por $f$ de ambos lados,
+\[
+f^{-1}\bigl(f(\overline{A})\bigr) \subseteq f^{-1}(C) = A.
+\]
+En particular, como $\overline{A} \subseteq f^{-1}\bigl(f(\overline{A})\bigr)$
+(siempre se cumple $B \subseteq f^{-1}(f(B))$ para cualquier función y
+cualquier conjunto $B$), obtenemos
+\[
+\overline{A} \subseteq A.
+\]
+
+Pero siempre se tiene $A \subseteq \overline{A}$, por definición de clausura.
+Luego
+\[
+A \subseteq \overline{A} \subseteq A,
+\]
+de donde se deduce $\overline{A} = A$. Es decir, $A$ es cerrado en $E$.
+
+Hemos probado que, para todo cerrado $C \subseteq E'$, la preimagen
+$f^{-1}(C)$ es cerrada en $E$. Por el criterio de continuidad mediante
+cerrados, esto implica que $f$ es continua en $E$.
+
+Así queda demostrada la equivalencia entre (i) y (ii).
+\end{proof}
+
+\subsection{Continuidad uniforme}
+
+Sea $f : E \to E'$ entre espacios métricos $(E,d)$ y $(E',d')$.
+
+\begin{defi}[Continuidad uniforme, versión con bolas]
+Decimos que $f$ es \emph{uniformemente continua} en $E$ si
+\[
+\forall \varepsilon>0\ \exists \delta>0\ \text{tal que}\ 
+f\bigl(B_d(x,\delta)\bigr) \subseteq B_{d'}(f(x),\varepsilon)
+\quad \text{para todo } x \in E.
+\]
+Es decir: dado $\varepsilon>0$ se puede elegir un mismo $\delta>0$
+(válido para todos los puntos $x$) de modo que, siempre que $y$ esté
+$\delta$-cerca de $x$, las imágenes $f(y)$ y $f(x)$ estén
+$\varepsilon$-cerca.
+\end{defi}
+
+\begin{defi}[Definición equivalente, versión $\varepsilon$--$\delta$]
+Equivalente y más usada:
+$f$ es \emph{uniformemente continua} en $E$ si
+\[
+\forall \varepsilon>0\ \exists \delta>0\ \text{tal que}\ 
+\forall x,y \in E,\ d(x,y) < \delta \ \Rightarrow\ d'\bigl(f(x),f(y)\bigr) < \varepsilon.
+\]
+Aquí $\delta$ depende sólo de $\varepsilon$, no de los puntos $x,y$.
+\end{defi}
+
+\begin{prop}
+Las dos definiciones anteriores de continuidad uniforme son equivalentes.
+\end{prop}
+
+\begin{proof}
+Supongamos primero la definición con bolas. Sea $\varepsilon>0$ y
+sea $\delta>0$ el correspondiente en esa definición. Si $x,y \in E$
+y $d(x,y) < \delta$, entonces $y \in B_d(x,\delta)$ y, por la hipótesis,
+\[
+f(y) \in f\bigl(B_d(x,\delta)\bigr)
+\subseteq B_{d'}(f(x),\varepsilon),
+\]
+es decir, $d'(f(x),f(y)) < \varepsilon$. Esto da la definición
+$\varepsilon$--$\delta$.
+
+Recíprocamente, supongamos que vale la definición $\varepsilon$--$\delta$.
+Fijamos $\varepsilon>0$ y tomamos el correspondiente $\delta>0$.
+Sea $x \in E$ y $y \in B_d(x,\delta)$, entonces $d(x,y) < \delta$ y por
+la hipótesis
+\[
+d'(f(x),f(y)) < \varepsilon,
+\]
+es decir, $f(y) \in B_{d'}(f(x),\varepsilon)$. Por lo tanto,
+\[
+f\bigl(B_d(x,\delta)\bigr) \subseteq B_{d'}(f(x),\varepsilon)
+\quad \text{para todo } x \in E,
+\]
+que es la definición con bolas.
+\end{proof}
+
+\begin{prop}[Criterio secuencial para \emph{no} continuidad uniforme]
+Sea $f : E \to E'$. Entonces $f$ \textbf{no} es uniformemente continua en $E$
+si y sólo si existen $\varepsilon_0>0$ y sucesiones
+$(x_n)_{n\in\N}$, $(y_n)_{n\in\N}$ en $E$ tales que
+\[
+d(x_n,y_n) \xrightarrow[n\to\infty]{} 0
+\quad \text{pero} \quad
+d'\bigl(f(x_n),f(y_n)\bigr) \ge \varepsilon_0
+\quad \text{para todo } n \in \N.
+\]
+\end{prop}
+
+\begin{proof}
+($\Rightarrow$) Supongamos que $f$ no es uniformemente continua.
+Entonces existe $\varepsilon_0>0$ tal que \emph{para todo} $\delta>0$
+no se cumple la condición de continuidad uniforme, es decir:
+\[
+\forall \delta>0\ \exists x,y \in E\ \text{con}\ d(x,y)<\delta
+\ \text{y}\ d'\bigl(f(x),f(y)\bigr) \ge \varepsilon_0.
+\]
+
+Para cada $n \in \N$, aplicamos esto con $\delta = \frac{1}{n}$, obteniendo
+puntos $x_n,y_n \in E$ tales que
+\[
+d(x_n,y_n) < \frac{1}{n}
+\quad \text{y} \quad
+d'\bigl(f(x_n),f(y_n)\bigr) \ge \varepsilon_0.
+\]
+Entonces $d(x_n,y_n) \to 0$ cuando $n \to \infty$, mientras que
+las distancias entre las imágenes están siempre acotadas inferiormente
+por $\varepsilon_0$. Esto da las sucesiones pedidas.
+
+\medskip
+
+($\Leftarrow$) Recíprocamente, supongamos que existen $\varepsilon_0>0$
+y sucesiones $(x_n)$, $(y_n)$ en $E$ tales que
+\[
+d(x_n,y_n) \to 0
+\quad \text{y} \quad
+d'\bigl(f(x_n),f(y_n)\bigr) \ge \varepsilon_0\ \forall n.
+\]
+
+Supongamos, por absurdo, que $f$ fuera uniformemente continua.
+Tomemos $\varepsilon = \varepsilon_0$ en la definición de continuidad
+uniforme. Entonces existiría $\delta>0$ tal que, para todo $x,y \in E$,
+\[
+d(x,y) < \delta \ \Rightarrow\ d'\bigl(f(x),f(y)\bigr) < \varepsilon_0.
+\]
+
+Como $d(x_n,y_n) \to 0$, existe $N \in \N$ tal que, para todo $n \ge N$,
+\[
+d(x_n,y_n) < \delta.
+\]
+Aplicando la condición de uniformidad, tendríamos
+\[
+d'\bigl(f(x_n),f(y_n)\bigr) < \varepsilon_0
+\quad \text{para todo } n \ge N,
+\]
+lo que contradice la hipótesis
+$d'(f(x_n),f(y_n)) \ge \varepsilon_0$ para todo $n$.
+
+Por lo tanto, $f$ no puede ser uniformemente continua.
+\end{proof}
+
+\begin{defi}[Aplicación de Lipschitz]
+Sea $C>0$. Decimos que $f : E \to E'$ es \emph{Lipschitz} (o
+\emph{$C$-Lipschitz}) si
+\[
+d'\bigl(f(x),f(y)\bigr) \le C\, d(x,y)
+\quad \text{para todo } x,y \in E.
+\]
+\end{defi}
+
+\begin{teo}
+Sea $f : E \to E'$. Si existe $C>0$ tal que
+\[
+d'\bigl(f(x),f(y)\bigr) \le C\, d(x,y)
+\quad \text{para todo } x,y \in E,
+\]
+entonces $f$ es uniformemente continua en $E$.
+\end{teo}
+
+\begin{proof}
+Sea $\varepsilon>0$. Definimos
+\[
+\delta = \frac{\varepsilon}{C} > 0.
+\]
+Si $x,y \in E$ satisfacen $d(x,y) < \delta$, entonces
+\[
+d'\bigl(f(x),f(y)\bigr) \le C\, d(x,y) < C \delta = \varepsilon.
+\]
+Esto es exactamente la definición de continuidad uniforme
+(con $\delta = \varepsilon/C$). Por lo tanto $f$ es uniformemente
+continua.
+\end{proof}
+
+\subsubsection{Isometrías}
+
+\begin{defi}
+Sea $f : E \to E'$ entre espacios métricos $(E,d)$ y $(E',d')$.
+Decimos que $f$ es una \emph{isometría} si
+\[
+d(x,y) = d'\bigl(f(x),f(y)\bigr)
+\quad \text{para todo } x,y \in E.
+\]
+\end{defi}
+
+\begin{prop}
+Sea $f : E \to E'$ una isometría. Entonces:
+\begin{enumerate}[label=(\roman*)]
+    \item $f$ es inyectiva.
+    \item $f$ es $1$-Lipschitz, luego uniformemente continua.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+(i) Si $f(x) = f(y)$, entonces
+\[
+d(x,y) = d'\bigl(f(x),f(y)\bigr) = d'(f(x),f(x)) = 0,
+\]
+lo que implica $x=y$. Por lo tanto, $f$ es inyectiva.
+
+(ii) De la definición de isometría se tiene directamente
+\[
+d'\bigl(f(x),f(y)\bigr) = d(x,y) \le 1 \cdot d(x,y)
+\quad \forall x,y \in E,
+\]
+es decir, $f$ es $1$-Lipschitz. Por el teorema anterior, toda
+aplicación Lipschitz es uniformemente continua, así que $f$ lo es.
+\end{proof}
+
+\begin{obs}
+Si $f : E \to E'$ es una isometría \emph{biyectiva}, entonces su inversa
+$f^{-1} : E' \to E$ también es una isometría: para $u,v \in E'$,
+escribiendo $u = f(x)$ y $v = f(y)$ con $x,y \in E$, se tiene
+\[
+d\bigl(f^{-1}(u),f^{-1}(v)\bigr) = d(x,y) = d'\bigl(f(x),f(y)\bigr)
+= d'(u,v).
+\]
+En particular, $f^{-1}$ también es uniformemente continua.
+\end{obs}
+
+\subsubsection{Homeomorfismos}
+
+\begin{defi}
+Sea $f : E \to E'$ una función entre espacios métricos.
+Decimos que $f$ es un \emph{homeomorfismo} si:
+\begin{enumerate}[label=(\roman*)]
+    \item $f$ es biyectiva,
+    \item $f$ es continua,
+    \item la inversa $f^{-1} : E' \to E$ es continua.
+\end{enumerate}
+\end{defi}
+
+\begin{defi}
+Dos espacios métricos $(E,d)$ y $(E',d')$ se dicen \emph{homeomorfos}
+si existe un homeomorfismo $f : E \to E'$.
+\end{defi}
+
+\begin{prop}
+Si $f : E \to E'$ es un homeomorfismo, entonces:
+\begin{enumerate}[label=(\roman*)]
+    \item $G \subseteq E$ es abierto si y sólo si $f(G)$ es abierto en $E'$.
+    \item $F \subseteq E$ es cerrado si y sólo si $f(F)$ es cerrado en $E'$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+(i) Si $G$ es abierto en $E$ y $f$ es continua, entonces
+$f(G)$ es abierto en $E'$ si y sólo si $f^{-1}$ es continua,
+porque $G = f^{-1}(f(G))$ y $f^{-1}$ es continua por hipótesis.
+
+Formalmente: como $f$ es biyectiva, $G = f^{-1}(H)$ para $H = f(G)$.
+La continuidad de $f^{-1}$ implica que, si $H$ es abierto en $E'$,
+entonces $G$ es abierto en $E$. Inversamente, dado $G$ abierto en $E$,
+$H=f(G)$ es abierto en $E'$ porque $H$ es la imagen inversa de un
+abierto por $f^{-1}$ (que es continua).
+
+(ii) Se deduce de (i) aplicando el resultado a los complementos:
+$F$ es cerrado en $E$ si y sólo si $E \setminus F$ es abierto, y
+la imagen por $f$ de $E \setminus F$ es el complemento de $f(F)$ en $E'$.
+\end{proof}
+
+\begin{obs}
+En general, una aplicación biyectiva y continua \emph{no} tiene por qué
+tener inversa continua, es decir, no todo biectivo continuo es un
+homeomorfismo. El requisito $f^{-1}$ continua es esencial en la definición.
+\end{obs}
+
+\subsubsection{Conjuntos densos}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico. Un subconjunto $D \subseteq E$ se dice
+\emph{denso en $E$} si
+\[
+\overline{D} = E.
+\]
+Equivalente: todo punto de $E$ es límite de una sucesión de puntos de $D$.
+\end{defi}
+
+\begin{prop}
+Sea $(E,d)$ un espacio métrico y $D \subseteq E$. Son equivalentes:
+\begin{enumerate}[label=(\roman*)]
+    \item $D$ es denso en $E$, es decir, $\overline{D} = E$.
+    \item Para todo abierto no vacío $G \subseteq E$ se cumple
+    \[
+    G \cap D \neq \varnothing.
+    \]
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+$(i) \Rightarrow (ii)$) Supongamos $\overline{D} = E$. Sea $G$ un abierto
+no vacío en $E$. Como $G \subseteq E = \overline{D}$, y $G$ es abierto,
+se cumple $G \cap D \neq \varnothing$ (porque todo abierto que intersecta
+la clausura de un conjunto debe intersectar al conjunto mismo).
+
+Más formalmente: si $G \cap D = \varnothing$, entonces $G \subseteq E\setminus D$,
+y el complemento $E\setminus D$ sería un cerrado que contiene a $G$,
+contradiciendo que $G \subseteq \overline{D}$.
+
+\medskip
+
+$(ii) \Rightarrow (i)$) Supongamos que todo abierto no vacío $G$ verifica
+$G \cap D \neq \varnothing$. Si existiera $x \in E \setminus \overline{D}$,
+entonces $x$ estaría en el abierto $E \setminus \overline{D}$, que por
+definición de clausura no intersecta a $D$. Esto contradice (ii).
+Por lo tanto, $E \setminus \overline{D} = \varnothing$, es decir,
+$\overline{D} = E$.
+\end{proof}
