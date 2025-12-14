@@ -1,0 +1,1249 @@
+\subsection{Conjuntos abiertos}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico. Un subconjunto $U \subseteq E$ se dice
+\emph{abierto} si
+\[
+\forall x \in U\ \exists r > 0 \ \text{tal que} \ B(x,r) \subseteq U,
+\]
+donde
+\[
+B(x,r) = \{y \in E : d(x,y) < r\}
+\]
+es la bola abierta de centro $x$ y radio $r$.
+\end{defi}
+
+\begin{prop}
+Sea $(E,d)$ un espacio métrico, $x_0 \in E$ y $r>0$.
+Entonces la bola abierta $B(x_0,r)$ es un conjunto abierto.
+\end{prop}
+
+\begin{proof}
+Debemos ver que para todo punto $x \in B(x_0,r)$ existe un radio
+$\varepsilon > 0$ tal que
+\[
+B(x,\varepsilon) \subseteq B(x_0,r).
+\]
+
+Sea $x \in B(x_0,r)$. Por definición de bola abierta,
+\[
+d(x,x_0) < r.
+\]
+Definimos
+\[
+\varepsilon = r - d(x,x_0).
+\]
+Entonces $\varepsilon > 0$ porque $d(x,x_0) < r$.
+
+Tomemos ahora un punto cualquiera $y \in B(x,\varepsilon)$; es decir,
+\[
+d(x,y) < \varepsilon.
+\]
+Aplicando la desigualdad triangular, obtenemos
+\[
+d(y,x_0) \le d(y,x) + d(x,x_0).
+\]
+Sustituyendo las cotas anteriores,
+\[
+d(y,x_0) < \varepsilon + d(x,x_0)
+= \bigl(r - d(x,x_0)\bigr) + d(x,x_0) = r.
+\]
+Por lo tanto, $d(y,x_0) < r$, lo que significa que $y \in B(x_0,r)$.
+
+Como $y$ fue elegido arbitrariamente en $B(x,\varepsilon)$, hemos probado
+\[
+B(x,\varepsilon) \subseteq B(x_0,r).
+\]
+Y esto vale para todo $x \in B(x_0,r)$, con el $\varepsilon$ definido
+como arriba. Por definición de conjunto abierto, $B(x_0,r)$ es abierto.
+\end{proof}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico y sea $A \subseteq E$.
+El \emph{interior} de $A$ es el conjunto
+\[
+A^\circ = \{\,x \in A : \exists r>0 \text{ tal que } B(x,r) \subseteq A\,\}.
+\]
+Equivalente: $A^\circ$ es el conjunto de los puntos interiores de $A$.
+\end{defi}
+
+\begin{prop}
+Sea $(E,d)$ un espacio métrico y $A,A_1,A_2 \subseteq E$.
+Se tienen las siguientes propiedades:
+\begin{enumerate}[label=(\roman*)]
+    \item $A^\circ \subseteq A$.
+    \item Si $A_1 \subseteq A_2$, entonces $A_1^\circ \subseteq A_2^\circ$.
+    \item $A^\circ$ es un conjunto abierto.
+    \item Si $G$ es abierto y $G \subseteq A$, entonces $G \subseteq A^\circ$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+(i) Por definición,
+\[
+A^\circ = \{x \in A : \exists r>0 \text{ tal que } B(x,r) \subseteq A\}.
+\]
+En particular, todo $x \in A^\circ$ pertenece a $A$, luego
+$A^\circ \subseteq A$.
+
+\medskip
+
+(ii) Supongamos que $A_1 \subseteq A_2$ y sea $x \in A_1^\circ$.
+Entonces, por definición de interior, existe $r>0$ tal que
+\[
+B(x,r) \subseteq A_1.
+\]
+Como $A_1 \subseteq A_2$, se tiene también
+\[
+B(x,r) \subseteq A_2,
+\]
+de modo que $x$ es punto interior de $A_2$, es decir, $x \in A_2^\circ$.
+Hemos probado que $A_1^\circ \subseteq A_2^\circ$.
+
+\medskip
+
+(iii) Queremos ver que $A^\circ$ es abierto. Sea $x \in A^\circ$.
+Entonces existe $r>0$ tal que
+\[
+B(x,r) \subseteq A.
+\]
+Por la proposición ya demostrada, $B(x,r)$ es un conjunto abierto.
+En particular, como $x \in B(x,r)$ y $B(x,r)$ es abierto, existe
+$\varepsilon>0$ tal que
+\[
+B(x,\varepsilon) \subseteq B(x,r).
+\]
+Como además $B(x,r) \subseteq A$, obtenemos
+\[
+B(x,\varepsilon) \subseteq A.
+\]
+Por definición de interior, esto implica que $x \in A^\circ$ y, de hecho,
+para todo $y \in B(x,\varepsilon)$ se cumple $y \in A^\circ$.
+Por lo tanto, $B(x,\varepsilon) \subseteq A^\circ$.
+
+Hemos visto que para todo $x \in A^\circ$ existe $\varepsilon>0$ tal que
+$B(x,\varepsilon) \subseteq A^\circ$, lo cual significa que $A^\circ$
+es abierto.
+
+\medskip
+
+(iv) Sea $G$ un conjunto abierto tal que $G \subseteq A$, y sea
+$x \in G$. Como $G$ es abierto, existe $r>0$ tal que
+\[
+B(x,r) \subseteq G.
+\]
+De la inclusión $G \subseteq A$ se deduce
+\[
+B(x,r) \subseteq A.
+\]
+Luego $x$ es punto interior de $A$, es decir, $x \in A^\circ$.
+Como $x$ era un punto arbitrario de $G$, concluimos que $G \subseteq A^\circ$.
+\end{proof}
+
+\begin{prop}
+Sea $(E,d)$ un espacio métrico. Entonces se verifican:
+\begin{enumerate}[label=(\roman*)]
+    \item La unión arbitraria de conjuntos abiertos es un conjunto abierto.
+    \item La intersección finita de conjuntos abiertos es un conjunto abierto.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+(i) Sea $(G_i)_{i\in I}$ una familia cualquiera de conjuntos abiertos en $E$
+(indexada por un conjunto $I$ no necesariamente numerable) y definamos
+\[
+G = \bigcup_{i\in I} G_i.
+\]
+Queremos ver que $G$ es abierto.
+
+Sea $x \in G$. Entonces existe algún índice $i_0 \in I$ tal que
+$x \in G_{i_0}$. Como $G_{i_0}$ es abierto, existe $r>0$ tal que
+\[
+B(x,r) \subseteq G_{i_0}.
+\]
+De aquí se deduce
+\[
+B(x,r) \subseteq G_{i_0} \subseteq G.
+\]
+Por lo tanto, para todo $x \in G$ hemos encontrado un radio $r>0$ con
+$B(x,r) \subseteq G$. Por definición, $G$ es abierto.
+
+\medskip
+
+(ii) Sea $G_1,\dots,G_n$ una familia finita de conjuntos abiertos en $E$
+y definamos
+\[
+H = \bigcap_{k=1}^n G_k.
+\]
+Probemos que $H$ es abierto.
+
+Tomemos $x \in H$. Entonces $x \in G_k$ para todo $k=1,\dots,n$.
+Como cada $G_k$ es abierto, existe $r_k > 0$ tal que
+\[
+B(x,r_k) \subseteq G_k
+\quad \text{para cada } k=1,\dots,n.
+\]
+Definimos
+\[
+r = \min\{r_1,\dots,r_n\}.
+\]
+Entonces $r > 0$ y, para todo $k$,
+\[
+B(x,r) \subseteq B(x,r_k) \subseteq G_k.
+\]
+De aquí se sigue
+\[
+B(x,r) \subseteq \bigcap_{k=1}^n G_k = H.
+\]
+Por lo tanto, para cada $x \in H$ existe $r>0$ tal que
+$B(x,r) \subseteq H$, lo que muestra que $H$ es abierto.
+\end{proof}
+
+\begin{obs}
+El resultado sobre intersección de abiertos es, en general, válido sólo
+para intersecciones finitas. Una intersección infinita de abiertos puede
+no ser abierta.
+
+Por ejemplo, en $(\R,d_{\text{eucl}})$, para cada $n \in \N$ el conjunto
+\[
+G_n = \left(-\frac{1}{n}, \frac{1}{n}\right)
+\]
+es un abierto. Consideremos la intersección
+\[
+\bigcap_{n\in\N} G_n
+= \bigcap_{n\in\N} \left(-\frac{1}{n}, \frac{1}{n}\right).
+\]
+Es fácil ver que
+\[
+\bigcap_{n\in\N} \left(-\frac{1}{n}, \frac{1}{n}\right) = \{0\}.
+\]
+El conjunto $\{0\}$ no es abierto en $\R$ con la métrica usual, ya que si
+tomamos cualquier $r>0$, la bola $B(0,r) = (-r,r)$ contiene puntos distintos
+de $0$, de modo que nunca se cumple $B(0,r) \subseteq \{0\}$.
+Por lo tanto, la intersección numerable de los abiertos $G_n$ no es abierta.
+\end{obs}
+
+\subsection{Conjuntos cerrados}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico y $A \subseteq E$.
+Un punto $x \in E$ se llama \emph{punto de adherencia} (o
+\emph{punto de clausura}) de $A$ si
+\[
+\forall r > 0 \quad B(x,r) \cap A \ne \varnothing.
+\]
+\end{defi}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico y $A \subseteq E$.
+La \emph{clausura} (o \emph{adherencia}) de $A$ es el conjunto
+\[
+\overline{A}
+= \{x \in E : x \text{ es punto de adherencia de } A\}.
+\]
+\end{defi}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico. Un subconjunto $F \subseteq E$ se dice
+\emph{cerrado} si su complemento $E \setminus F$ es un conjunto abierto.
+\end{defi}
+
+\begin{prop}
+Sea $(E,d)$ un espacio métrico, $x_0 \in E$ y $r>0$.
+Entonces la bola cerrada
+\[
+\overline{B}(x_0,r) = \{x \in E : d(x,x_0) \le r\}
+\]
+es un conjunto cerrado.
+\end{prop}
+
+\begin{proof}
+Por definición, $\overline{B}(x_0,r)$ es cerrada si su complemento
+$E \setminus \overline{B}(x_0,r)$ es abierto. Sea
+\[
+x \in E \setminus \overline{B}(x_0,r).
+\]
+Entonces $d(x,x_0) > r$. Definimos
+\[
+\varepsilon = \frac{d(x,x_0) - r}{2}.
+\]
+Como $d(x,x_0) > r$, se tiene $\varepsilon > 0$.
+
+Mostremos que
+\[
+B(x,\varepsilon) \subseteq E \setminus \overline{B}(x_0,r).
+\]
+Sea $y \in B(x,\varepsilon)$, es decir,
+\[
+d(x,y) < \varepsilon.
+\]
+Por la desigualdad triangular,
+\[
+d(y,x_0) \ge d(x,x_0) - d(x,y).
+\]
+Luego
+\[
+d(y,x_0) > d(x,x_0) - \varepsilon
+= d(x,x_0) - \frac{d(x,x_0) - r}{2}
+= \frac{d(x,x_0) + r}{2}.
+\]
+Como $d(x,x_0) > r$, se tiene
+\[
+\frac{d(x,x_0) + r}{2} > \frac{r + r}{2} = r,
+\]
+de modo que $d(y,x_0) > r$. En particular, $d(y,x_0) \not\le r$, así que
+$y \notin \overline{B}(x_0,r)$.
+
+Hemos probado que todo $y \in B(x,\varepsilon)$ pertenece al complemento
+de la bola cerrada:
+\[
+B(x,\varepsilon) \subseteq E \setminus \overline{B}(x_0,r).
+\]
+Por lo tanto, para cada $x$ del complemento existe un $\varepsilon>0$
+tal que la bola $B(x,\varepsilon)$ está contenida en dicho complemento.
+Esto significa que $E \setminus \overline{B}(x_0,r)$ es abierto.
+
+Concluimos que $\overline{B}(x_0,r)$ es cerrado.
+\end{proof}
+
+
+\begin{prop}[Caracterización de la clausura mediante cerrados]
+Sea $(E,d)$ un espacio métrico y $A \subseteq E$.
+Entonces:
+\begin{enumerate}[label=(\roman*)]
+    \item $A \subseteq \overline{A}$.
+    \item $\overline{A}$ es un conjunto cerrado.
+    \item Si $F$ es un conjunto cerrado con $A \subseteq F$, entonces
+    $\overline{A} \subseteq F$.
+\end{enumerate}
+En particular, $\overline{A}$ es el menor conjunto cerrado que contiene a $A$,
+y se puede escribir
+\[
+\overline{A} = \bigcap\{F \subseteq E : F \text{ es cerrado y } A \subseteq F\}.
+\]
+\end{prop}
+
+\begin{proof}
+(i) Sea $x \in A$. Entonces, para cualquier $r>0$, se tiene
+$x \in B(x,r)$, y por lo tanto $B(x,r) \cap A \ne \varnothing$.
+Es decir, $x es$ punto de adherencia de $A$, y por definición
+$x \in \overline{A}$. Luego $A \subseteq \overline{A}$.
+
+\medskip
+
+(ii) Probemos que $\overline{A}$ es cerrado mostrando que
+$E \setminus \overline{A}$ es abierto.
+
+Sea $x \in E \setminus \overline{A}$. Entonces $x$ no es punto
+de adherencia de $A$, es decir, existe $r>0$ tal que
+\[
+B(x,r) \cap A = \varnothing.
+\]
+Mostraremos que $B(x,r/2) \subseteq E \setminus \overline{A}$.
+
+Sea $y \in B(x,r/2)$, de modo que $d(x,y) < r/2$.
+Tomemos $s = r/2$. Consideremos un punto $z \in B(y,s)$;
+entonces $d(y,z) < s = r/2$. Por la desigualdad triangular,
+\[
+d(x,z) \le d(x,y) + d(y,z) < \frac{r}{2} + \frac{r}{2} = r,
+\]
+luego $z \in B(x,r)$. Como $B(x,r) \cap A = \varnothing$,
+se sigue que $z \notin A$. En consecuencia,
+\[
+B(y,s) \cap A = \varnothing.
+\]
+Esto significa que $y$ no es punto de adherencia de $A$,
+es decir, $y \notin \overline{A}$.
+
+Como $y$ fue un punto arbitrario de $B(x,r/2)$, hemos probado
+que $B(x,r/2) \subseteq E \setminus \overline{A}$. Por lo tanto,
+$E \setminus \overline{A}$ es abierto, y en consecuencia
+$\overline{A}$ es cerrado.
+
+\medskip
+
+(iii) Sea $F$ un conjunto cerrado tal que $A \subseteq F$.
+Debemos probar que $\overline{A} \subseteq F$.
+
+Sea $x \in E \setminus F$. Como $F$ es cerrado, su complemento
+$E \setminus F$ es abierto. Entonces existe $r>0$ tal que
+\[
+B(x,r) \subseteq E \setminus F.
+\]
+Como $A \subseteq F$, se tiene $A \cap (E \setminus F) = \varnothing$,
+y en particular
+\[
+B(x,r) \cap A = \varnothing.
+\]
+Esto muestra que $x$ no es punto de adherencia de $A$, es decir,
+$x \notin \overline{A}$. Hemos probado
+\[
+E \setminus F \subseteq E \setminus \overline{A}.
+\]
+Tomando complementos,
+\[
+\overline{A} \subseteq F.
+\]
+Esto vale para todo conjunto cerrado $F$ que contiene a $A$, con lo cual
+queda demostrado que $\overline{A}$ es el menor cerrado que contiene a $A$,
+y en particular
+\[
+\overline{A} = \bigcap\{F \subseteq E : F \text{ es cerrado y } A \subseteq F\}.
+\]
+\end{proof}
+
+\begin{prop}
+Un conjunto $F \subseteq E$ es cerrado si y sólo si
+\[
+F = \overline{F}.
+\]
+\end{prop}
+
+\begin{proof}
+($\Rightarrow$) Si $F$ es cerrado y $F$ contiene a $F$, por la proposición
+anterior, $\overline{F} \subseteq F$. Por otra parte, siempre se cumple
+$F \subseteq \overline{F}$. De aquí se deduce $F = \overline{F}$.
+
+($\Leftarrow$) Si $F = \overline{F}$, como sabemos que $\overline{F}$ es
+cerrado, se sigue que $F$ es cerrado.
+\end{proof}
+
+\begin{prop}[Caracterización secuencial de la clausura]
+Sea $(E,d)$ un espacio métrico, $A \subseteq E$ y $x \in E$.
+Entonces las siguientes afirmaciones son equivalentes:
+\begin{enumerate}[label=(\roman*)]
+    \item $x \in \overline{A}$.
+    \item Existe una sucesión $(a_n)_{n\in\N}$ con $a_n \in A$ para todo $n$ tal que
+    \[
+    \lim_{n\to\infty} a_n = x.
+    \]
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+$(i) \Rightarrow (ii)$) Supongamos que $x \in \overline{A}$. Por definición
+de clausura, esto significa que para todo $r>0$ se cumple
+\[
+B(x,r) \cap A \ne \varnothing.
+\]
+
+Para cada $n \in \N$, consideremos el radio $r_n = \frac{1}{n} > 0$.
+Como $B(x,r_n) \cap A \ne \varnothing$, podemos elegir un punto
+\[
+a_n \in B\Bigl(x,\frac{1}{n}\Bigr) \cap A.
+\]
+Así definimos una sucesión $(a_n)_{n\in\N}$ de puntos de $A$ que satisface
+\[
+d(a_n,x) < \frac{1}{n} \quad \text{para todo } n \in \N.
+\]
+
+Veamos que $a_n \to x$. Sea $\varepsilon > 0$. Elegimos $N \in \N$ tal que
+\[
+\frac{1}{N} < \varepsilon.
+\]
+Si $n \ge N$, entonces
+\[
+d(a_n,x) < \frac{1}{n} \le \frac{1}{N} < \varepsilon.
+\]
+Por lo tanto,
+\[
+\forall \varepsilon>0\ \exists N \in \N\ \forall n \ge N:\ d(a_n,x) < \varepsilon,
+\]
+lo cual significa que $a_n \to x$. Esto prueba (ii).
+
+\medskip
+
+$(ii) \Rightarrow (i)$) Recíprocamente, supongamos que existe una sucesión
+$(a_n)_{n\in\N}$ con $a_n \in A$ para todo $n$ tal que $a_n \to x$.
+Debemos probar que $x \in \overline{A}$, es decir, que
+\[
+\forall r>0 \quad B(x,r) \cap A \ne \varnothing.
+\]
+
+Sea $r>0$. Como $a_n \to x$, por definición de límite existe $N \in \N$
+tal que, para todo $n \ge N$,
+\[
+d(a_n,x) < r.
+\]
+En particular, tomando $n = N$, tenemos $a_N \in B(x,r)$.
+Como además $a_N \in A$ por construcción de la sucesión, se obtiene
+\[
+a_N \in B(x,r) \cap A,
+\]
+y por lo tanto $B(x,r) \cap A \ne \varnothing$.
+
+Como esto vale para todo $r>0$, concluimos que $x$ es punto de adherencia
+de $A$, es decir, $x \in \overline{A}$.
+\end{proof}
+
+\begin{prop}
+Sea $(E,d)$ un espacio métrico y $F \subseteq E$.
+Entonces $F$ es cerrado si y sólo si se verifica:
+\[
+\text{si } (x_n)_{n\in\N} \subseteq F \text{ y } x_n \to x \text{ en } E,
+\text{ entonces } x \in F.
+\]
+\end{prop}
+
+\begin{proof}
+($\Rightarrow$) Supongamos que $F$ es cerrado y sea $(x_n)$ una sucesión
+de puntos de $F$ tal que $x_n \to x$ en $E$. Supongamos, por absurdo,
+que $x \notin F$. Entonces $x \in E \setminus F$.
+
+Como $E \setminus F$ es abierto (porque $F$ es cerrado), existe $r>0$
+tal que
+\[
+B(x,r) \subseteq E \setminus F.
+\]
+Por la convergencia de $(x_n)$ a $x$, sabemos que
+\[
+\forall \varepsilon > 0 \ \exists N \in \N \ \forall n \ge N:
+\ d(x_n,x) < \varepsilon.
+\]
+Tomamos $\varepsilon = r$. Entonces existe $N \in \N$ tal que
+si $n \ge N$, se cumple $d(x_n,x) < r$, es decir, $x_n \in B(x,r)$.
+Pero $B(x,r) \subseteq E \setminus F$, luego $x_n \notin F$ para
+todo $n \ge N$. Esto contradice el hecho de que $x_n \in F$ para
+todos los $n$, por hipótesis. Por lo tanto, debe ser $x \in F$.
+
+\medskip
+
+($\Leftarrow$) Supongamos ahora que se cumple la propiedad secuencial:
+toda sucesión de puntos de $F$ que converge en $E$ tiene su límite en $F$.
+Queremos ver que $F$ es cerrado, es decir, que $E \setminus F$ es abierto.
+
+Tomemos un punto $x \in E \setminus F$. Supongamos, por absurdo, que
+$E \setminus F$ no es abierto. Entonces no existe ningún $r>0$ tal que
+$B(x,r) \subseteq E \setminus F$. En particular, para todo $n \in \N$,
+el radio $r = \tfrac{1}{n}$ no sirve, es decir:
+\[
+B\Bigl(x,\frac{1}{n}\Bigr) \not\subseteq E \setminus F.
+\]
+Esto significa que para cada $n \in \N$ existe algún punto
+\[
+x_n \in B\Bigl(x,\frac{1}{n}\Bigr) \cap F.
+\]
+Por construcción, $x_n \in F$ y, además,
+\[
+d(x_n,x) < \frac{1}{n} \quad \text{para todo } n \in \N.
+\]
+De aquí se deduce que $x_n \to x$ en el espacio métrico $(E,d)$.
+
+Pero, por hipótesis secuencial, el límite de cualquier sucesión de puntos
+de $F$ que converge en $E$ debe pertenecer a $F$, de modo que $x \in F$.
+Esto contradice que $x \in E \setminus F$.
+
+Por lo tanto, nuestra suposición era falsa: para cada $x \in E \setminus F$
+debe existir $r>0$ tal que $B(x,r) \subseteq E \setminus F$, lo que muestra
+que $E \setminus F$ es abierto. En consecuencia, $F$ es cerrado.
+\end{proof}
+
+\begin{prop}
+Sea $(E,d)$ un espacio métrico. Entonces se verifican:
+\begin{enumerate}[label=(\roman*)]
+    \item $\varnothing$ y $E$ son conjuntos cerrados.
+    \item La intersección arbitraria de conjuntos cerrados es un conjunto cerrado.
+    \item La unión finita de conjuntos cerrados es un conjunto cerrado.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+(i) Notemos que
+\[
+E \setminus \varnothing = E
+\quad\text{y}\quad
+E \setminus E = \varnothing.
+\]
+Como ya sabemos que $E$ y $\varnothing$ son abiertos, por definición
+de conjunto cerrado se sigue que $\varnothing$ y $E$ son cerrados.
+
+\medskip
+
+(ii) Sea $(F_i)_{i\in I}$ una familia cualquiera de conjuntos cerrados
+en $E$, indexada por un conjunto $I$ arbitrario, y consideremos
+\[
+F = \bigcap_{i\in I} F_i.
+\]
+Queremos probar que $F$ es cerrado.
+
+Usamos la relación entre complementos, uniones e intersecciones:
+\[
+E \setminus F
+= E \setminus \bigg(\bigcap_{i\in I} F_i\bigg)
+= \bigcup_{i\in I} (E \setminus F_i).
+\]
+Cada $F_i$ es cerrado, así que $E \setminus F_i$ es abierto para todo $i$.
+Por lo tanto, la unión $\bigcup_{i\in I} (E \setminus F_i)$ es abierta
+(por la propiedad ya demostrada para uniones arbitrarias de abiertos).
+En consecuencia, $E \setminus F$ es abierto, lo que implica que $F$
+es cerrado.
+
+\medskip
+
+(iii) Sean $F_1,\dots,F_n$ conjuntos cerrados en $E$ y consideremos
+\[
+H = \bigcup_{k=1}^n F_k.
+\]
+Entonces
+\[
+E \setminus H
+= E \setminus \bigg(\bigcup_{k=1}^n F_k\bigg)
+= \bigcap_{k=1}^n (E \setminus F_k).
+\]
+Como cada $F_k$ es cerrado, $E \setminus F_k$ es abierto para todo $k$.
+La intersección finita de abiertos es abierta, por lo tanto
+$\bigcap_{k=1}^n (E \setminus F_k)$ es abierta. De aquí se deduce
+que $E \setminus H$ es abierto y, por definición, $H$ es cerrado.
+\end{proof}
+
+\subsection{Puntos de acumulación y frontera}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico y $A \subseteq E$.
+Un punto $x \in E$ se llama \emph{punto de acumulación} (o
+\emph{punto límite}) de $A$ si
+\[
+\forall r>0 \quad \bigl(B(x,r) \setminus \{x\}\bigr) \cap A \neq \varnothing.
+\]
+Denotamos por $A'$ al conjunto de todos los puntos de acumulación de $A$.
+\end{defi}
+
+\begin{prop}[Caracterización secuencial de puntos de acumulación]
+Sea $(E,d)$ un espacio métrico, $A \subseteq E$ y $x \in E$.
+Entonces las siguientes afirmaciones son equivalentes:
+\begin{enumerate}[label=(\roman*)]
+    \item $x$ es punto de acumulación de $A$, es decir $x \in A'$.
+    \item Existe una sucesión $(a_n)_{n\in\N}$ con $a_n \in A \setminus \{x\}$
+    para todo $n$ tal que
+    \[
+    \lim_{n\to\infty} a_n = x.
+    \]
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+$(i) \Rightarrow (ii)$) Supongamos que $x \in A'$. Entonces, por definición,
+para todo $r>0$ se cumple
+\[
+\bigl(B(x,r) \setminus \{x\}\bigr) \cap A \neq \varnothing.
+\]
+Para cada $n \in \N$, tomamos $r_n = \frac{1}{n}$ y elegimos
+\[
+a_n \in \bigl(B(x,r_n) \setminus \{x\}\bigr) \cap A.
+\]
+Entonces $a_n \in A \setminus \{x\}$ y $d(a_n,x) < \frac{1}{n}$ para todo
+$n \in \N$.
+
+Sea $\varepsilon>0$. Elegimos $N \in \N$ tal que
+\(
+\frac{1}{N} < \varepsilon.
+\)
+Si $n \ge N$, entonces
+\[
+d(a_n,x) < \frac{1}{n} \le \frac{1}{N} < \varepsilon.
+\]
+Por definición de límite, $a_n \to x$.
+
+\medskip
+
+$(ii) \Rightarrow (i)$) Recíprocamente, supongamos que existe una sucesión
+$(a_n)$ con $a_n \in A \setminus \{x\}$ para todo $n$ y $a_n \to x$.
+Sea $r>0$. Como $a_n \to x$, existe $N \in \N$ tal que, para todo $n \ge N$,
+\[
+d(a_n,x) < r.
+\]
+En particular, $a_N \in B(x,r)$, y como $a_N \neq x$ se tiene
+$a_N \in B(x,r) \setminus \{x\}$. Además, $a_N \in A$.
+
+Por lo tanto,
+\[
+\bigl(B(x,r) \setminus \{x\}\bigr) \cap A \neq \varnothing
+\]
+para todo $r>0$, lo que significa que $x$ es punto de acumulación de $A$,
+es decir, $x \in A'$.
+\end{proof}
+
+\begin{teo}
+Sea $A \subseteq E$ un subconjunto de un espacio métrico $(E,d)$.
+Entonces
+\[
+\overline{A} = A \cup A'.
+\]
+\end{teo}
+
+\begin{proof}
+Primero probamos la inclusión $\overline{A} \subseteq A \cup A'$.
+Sea $x \in \overline{A}$. Si $x \in A$, ya está.
+Supongamos que $x \notin A$. Como $x \in \overline{A}$, por definición de
+clausura se cumple
+\[
+\forall r>0 \quad B(x,r) \cap A \neq \varnothing.
+\]
+Pero como $x \notin A$, esto implica automáticamente que
+\[
+\forall r>0 \quad \bigl(B(x,r) \setminus \{x\}\bigr) \cap A \neq \varnothing,
+\]
+es decir, $x$ es punto de acumulación de $A$, $x \in A'$. En cualquiera de
+los dos casos, $x \in A \cup A'$. Por lo tanto
+\[
+\overline{A} \subseteq A \cup A'.
+\]
+
+Ahora probamos la inclusión inversa $A \cup A' \subseteq \overline{A}$.
+Si $x \in A$, ya vimos que siempre se cumple $A \subseteq \overline{A}$,
+así que $x \in \overline{A}$.
+
+Si $x \in A'$, entonces para todo $r>0$ se tiene
+\[
+\bigl(B(x,r) \setminus \{x\}\bigr) \cap A \neq \varnothing.
+\]
+En particular, esto implica $B(x,r) \cap A \neq \varnothing$ para todo $r>0$,
+de modo que $x$ es punto de adherencia de $A$, es decir, $x \in \overline{A}$.
+
+En ambos casos $x \in \overline{A}$, por lo que
+\[
+A \cup A' \subseteq \overline{A}.
+\]
+
+Concluimos que $\overline{A} = A \cup A'$.
+\end{proof}
+
+\begin{cor}
+Sea $A \subseteq E$. Entonces $A$ es cerrado si y sólo si
+\[
+A' \subseteq A.
+\]
+\end{cor}
+
+\begin{proof}
+($\Rightarrow$) Si $A$ es cerrado, por definición $A = \overline{A}$.
+Por el teorema anterior,
+\[
+\overline{A} = A \cup A'.
+\]
+Luego
+\[
+A = A \cup A'.
+\]
+Esto sólo puede ocurrir si $A' \subseteq A$.
+
+\medskip
+
+($\Leftarrow$) Recíprocamente, supongamos que $A' \subseteq A$.
+Del teorema anterior tenemos
+\[
+\overline{A} = A \cup A'.
+\]
+Como $A' \subseteq A$, se obtiene
+\[
+\overline{A} = A.
+\]
+Pero un conjunto es cerrado si y sólo si coincide con su clausura, por lo que
+$A$ es cerrado.
+\end{proof}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico y $A \subseteq E$.
+Un punto $x \in E$ se llama \emph{punto frontera} (o \emph{punto de borde})
+de $A$ si para todo $r>0$ se cumple
+\[
+B(x,r) \cap A \neq \varnothing
+\quad\text{y}\quad
+B(x,r) \cap (E \setminus A) \neq \varnothing.
+\]
+El conjunto de todos los puntos frontera de $A$ se denota por $\partial A$
+y se llama \emph{frontera} (o \emph{borde}) de $A$.
+\end{defi}
+
+\begin{prop}
+Para todo $A \subseteq E$ se verifica
+\[
+\partial A = \overline{A} \setminus A^\circ.
+\]
+\end{prop}
+
+\begin{proof}
+Sea $x \in \partial A$. Entonces, por definición de punto frontera,
+para todo $r>0$,
+\[
+B(x,r) \cap A \neq \varnothing
+\quad\text{y}\quad
+B(x,r) \cap (E \setminus A) \neq \varnothing.
+\]
+En particular, la primera condición implica que $x$ es punto de adherencia
+de $A$, es decir $x \in \overline{A}$. Por otra parte, la segunda condición
+impide que exista algún $r>0$ con $B(x,r) \subseteq A$, luego $x$ no es
+punto interior de $A$, es decir $x \notin A^\circ$. Por lo tanto
+$x \in \overline{A} \setminus A^\circ$.
+
+Recíprocamente, sea $x \in \overline{A} \setminus A^\circ$. Entonces
+$x \in \overline{A}$, de modo que para todo $r>0$,
+\[
+B(x,r) \cap A \neq \varnothing.
+\]
+Además, $x \notin A^\circ$, es decir, no existe ningún $r>0$ tal que
+$B(x,r) \subseteq A$. Por lo tanto, para todo $r>0$ se tiene
+\[
+B(x,r) \not\subseteq A,
+\]
+lo que significa que para todo $r>0$ existe $y \in B(x,r)$ tal que
+$y \notin A$, es decir,
+\[
+B(x,r) \cap (E \setminus A) \neq \varnothing.
+\]
+Juntando ambas condiciones, $x$ es punto frontera de $A$, es decir
+$x \in \partial A$.
+
+Hemos probado ambas inclusiones, así que $\partial A = \overline{A} \setminus A^\circ$.
+\end{proof}
+
+\begin{prop}
+Sea $A \subseteq E$. Entonces:
+\begin{enumerate}[label=(\roman*)]
+    \item $\partial A$ es un conjunto cerrado.
+    \item Se tiene la descomposición
+    \[
+    E = A^\circ \,\dot\cup\, \partial A \,\dot\cup\, (E \setminus \overline{A}),
+    \]
+    donde las uniones son disjuntas.
+    \item Se verifica
+    \[
+    \overline{A} = A \cup \partial A.
+    \]
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+(i) Por la proposición anterior,
+\[
+\partial A = \overline{A} \setminus A^\circ
+= \overline{A} \cap (E \setminus A^\circ).
+\]
+Sabemos que $\overline{A}$ es cerrado. Como $A^\circ$ es abierto,
+su complemento $E \setminus A^\circ$ es cerrado. La intersección de
+conjuntos cerrados es cerrada, luego $\partial A$ es cerrado.
+
+\medskip
+
+(ii) Por definición de interior, clausura y frontera, se tiene
+\[
+A^\circ \subseteq A \subseteq \overline{A}.
+\]
+Además, por la proposición anterior,
+\[
+\partial A = \overline{A} \setminus A^\circ.
+\]
+Entonces
+\[
+\overline{A} = A^\circ \,\dot\cup\, \partial A.
+\]
+Por otra parte, el complemento de $\overline{A}$ es
+$E \setminus \overline{A}$, y es abierto. Así, todo punto de $E$
+pertenece o bien a $\overline{A}$ o bien a $E \setminus \overline{A}$,
+y dentro de $\overline{A}$ está exactamente en $A^\circ$ o en
+$\partial A$. Esto da la descomposición
+\[
+E = A^\circ \,\dot\cup\, \partial A \,\dot\cup\, (E \setminus \overline{A}).
+\]
+
+\medskip
+
+(iii) De la igualdad del teorema anterior
+\(
+\overline{A} = A \cup A'
+\)
+y del hecho de que $\partial A \subseteq \overline{A}$, se deduce
+en particular que
+\[
+A \subseteq \overline{A}
+\quad\text{y}\quad
+\partial A \subseteq \overline{A}.
+\]
+Por lo tanto,
+\[
+A \cup \partial A \subseteq \overline{A}.
+\]
+
+Recíprocamente, sea $x \in \overline{A}$. Si $x \in A$, ya está.
+Si $x \notin A$, como $x \in \overline{A}$, para todo $r>0$ se cumple
+$B(x,r) \cap A \neq \varnothing$. Además, como $x \notin A$, se tiene
+$x \in E \setminus A$, luego para todo $r>0$ se cumple
+$x \in B(x,r) \cap (E \setminus A)$, o sea
+\[
+B(x,r) \cap (E \setminus A) \neq \varnothing.
+\]
+Por definición, esto significa que $x \in \partial A$.
+En cualquier caso, $x \in A \cup \partial A$, con lo cual
+\[
+\overline{A} \subseteq A \cup \partial A.
+\]
+Concluimos que $\overline{A} = A \cup \partial A$.
+\end{proof}
+
+\subsection{Métricas equivalentes}
+
+Sea $E$ un conjunto y $d_1,d_2$ dos métricas en $E$.
+
+\begin{defi}
+Decimos que las métricas $d_1$ y $d_2$ en $E$ son
+\emph{equivalentes} si inducen los mismos conjuntos abiertos, es decir,
+si para todo $U \subseteq E$ se cumple:
+\[
+U \text{ es abierto en } (E,d_1)
+\quad \Longleftrightarrow \quad
+U \text{ es abierto en } (E,d_2).
+\]
+\end{defi}
+
+\begin{prop}[Caracterización secuencial]
+Sean $d_1,d_2$ dos métricas en $E$. Son equivalentes si y sólo si
+para toda sucesión $(x_n)_{n\in\N}$ en $E$ y todo $x \in E$ se verifica
+\[
+x_n \to x \text{ en } (E,d_1)
+\quad \Longleftrightarrow \quad
+x_n \to x \text{ en } (E,d_2).
+\]
+\end{prop}
+
+\begin{proof}
+($\Rightarrow$) Supongamos que $d_1$ y $d_2$ son equivalentes, es decir,
+tienen los mismos conjuntos abiertos.
+
+Recordemos que, en un espacio métrico, una sucesión $(x_n)$ converge a $x$
+si y sólo si se verifica la siguiente propiedad topológica:
+\[
+\forall U \text{ abierto con } x \in U,\ \exists N \in \N\ \forall n \ge N:
+\ x_n \in U.
+\]
+
+Sea $(x_n)$ una sucesión en $E$ y $x \in E$.
+Supongamos que $x_n \to x$ en $(E,d_1)$.
+Entonces, para todo abierto $U$ de $(E,d_1)$ con $x \in U$, existe
+$N$ tal que, si $n \ge N$, se cumple $x_n \in U$.
+
+Como $d_1$ y $d_2$ tienen los mismos abiertos, ese mismo conjunto $U$
+es abierto también en $(E,d_2)$. La condición anterior es exactamente
+la definición de convergencia de $(x_n)$ a $x$ en $(E,d_2)$. Por lo tanto,
+$x_n \to x$ en $(E,d_2)$.
+
+La implicación recíproca se demuestra igual, intercambiando el rol de
+$d_1$ y $d_2$.
+
+\medskip
+
+($\Leftarrow$) Supongamos ahora que las sucesiones convergentes son las
+mismas para $d_1$ y $d_2$.
+
+Queremos ver que los conjuntos abiertos también coinciden.
+Sea $U \subseteq E$ abierto en $(E,d_1)$, y probemos que es abierto en
+$(E,d_2)$.
+
+Para eso, basta ver que si $(x_n)$ es una sucesión en $E \setminus U$
+que converge a algún $x \in E$ respecto de $d_2$, entonces
+$x \in E \setminus U$ (es decir, $x \notin U$). En efecto, esta propiedad
+caracteriza a los cerrados, y al tomar complementos caracteriza a los
+abiertos.
+
+Sea entonces $(x_n)$ una sucesión con $x_n \in E \setminus U$ para todo $n$
+y $x_n \to x$ en $(E,d_2)$. Por hipótesis, las sucesiones convergentes son
+las mismas en ambas métricas, así que también $x_n \to x$ en $(E,d_1)$.
+
+Como $U$ es abierto en $(E,d_1)$, su complemento $E \setminus U$ es cerrado
+en $(E,d_1)$. Por la caracterización secuencial de cerrados,
+si una sucesión de puntos de $E \setminus U$ converge (en $d_1$),
+su límite debe pertenecer a $E \setminus U$. En particular,
+$x \in E \setminus U$, es decir, $x \notin U$.
+
+Hemos probado que el complemento de $U$ es cerrado también con la métrica
+$d_2$, luego $U$ es abierto en $(E,d_2)$. El mismo argumento, cambiando
+el rol de $d_1$ y $d_2$, muestra la implicación inversa. Por lo tanto,
+los abiertos de $d_1$ coinciden con los de $d_2$, y las métricas son
+equivalentes.
+\end{proof}
+
+\begin{defi}
+Decimos que dos métricas $d_1,d_2$ en $E$ son \emph{fuertemente
+equivalentes} si existen constantes $c_1,c_2 > 0$ tales que
+\[
+c_1\, d_1(x,y) \le d_2(x,y) \le c_2\, d_1(x,y)
+\quad \text{para todo } x,y \in E.
+\]
+\end{defi}
+
+\begin{prop}
+Si $d_1$ y $d_2$ son fuertemente equivalentes, entonces son
+equivalentes (en el sentido de que inducen los mismos conjuntos abiertos).
+\end{prop}
+
+\begin{proof}
+Sea $U$ un abierto de $(E,d_1)$ y tomemos $x \in U$.
+Por definición de abierto, existe $r>0$ tal que
+\[
+B_{d_1}(x,r) \subseteq U,
+\]
+donde $B_{d_1}(x,r) = \{y : d_1(x,y) < r\}$.
+
+Consideremos ahora la bola en la métrica $d_2$
+\[
+B_{d_2}\bigl(x, c_1 r\bigr)
+= \{y \in E : d_2(x,y) < c_1 r\}.
+\]
+Si $y \in B_{d_2}(x,c_1 r)$, entonces $d_2(x,y) < c_1 r$, y usando
+la desigualdad $c_1 d_1(x,y) \le d_2(x,y)$ obtenemos
+\[
+c_1 d_1(x,y) \le d_2(x,y) < c_1 r
+\quad\Longrightarrow\quad
+d_1(x,y) < r.
+\]
+Luego $y \in B_{d_1}(x,r)$, y por lo tanto
+\[
+B_{d_2}(x,c_1 r) \subseteq B_{d_1}(x,r) \subseteq U.
+\]
+Hemos mostrado que para todo $x \in U$ existe un radio $c_1 r>0$ tal que
+la bola $d_2$-abierta correspondiente está contenida en $U$, de modo que
+$U$ es abierto en $(E,d_2)$.
+
+La implicación recíproca (todo abierto $d_2$-abierto es $d_1$-abierto)
+se prueba exactamente igual usando la otra desigualdad
+$d_2(x,y) \le c_2 d_1(x,y)$. Concluimos que $d_1$ y $d_2$ tienen los mismos
+abiertos, es decir, son métricas equivalentes.
+\end{proof}
+
+\begin{obs}
+En espacios de dimensión finita (por ejemplo, $\R^n$), todas las normas
+son fuertemente equivalentes. En particular, las métricas inducidas
+por las normas $d_1,d_2,d_\infty$ en $\R^n$ son equivalentes, y por lo tanto
+tienen los mismos abiertos, los mismos cerrados, las mismas sucesiones
+convergentes, etc.
+\end{obs}
+
+\begin{teo}
+Sean $d$ y $d'$ dos métricas sobre un mismo conjunto $E$.
+Las métricas $d$ y $d'$ son (topológicamente) equivalentes si y sólo si
+para todo $x \in E$ y todo $r>0$ existen $r_1,r_2>0$ tales que
+\[
+B_{d'}(x,r_1) \subseteq B_d(x,r)
+\quad\text{y}\quad
+B_d(x,r_2) \subseteq B_{d'}(x,r),
+\]
+donde
+\[
+B_d(x,r) = \{y \in E : d(x,y) < r\},
+\qquad
+B_{d'}(x,r) = \{y \in E : d'(x,y) < r\}.
+\]
+\end{teo}
+
+\begin{proof}
+($\Rightarrow$) Supongamos que $d$ y $d'$ son métricas equivalentes, es decir,
+inducen los mismos conjuntos abiertos.
+
+Sea $x \in E$ y $r>0$ arbitrarios. Entonces $B_d(x,r)$ es un abierto en
+$(E,d)$; como los abiertos de $(E,d)$ y $(E,d')$ coinciden, $B_d(x,r)$
+es también abierto en $(E,d')$.
+
+Por definición de abierto en la métrica $d'$, existe $r_1>0$ tal que
+\[
+B_{d'}(x,r_1) \subseteq B_d(x,r).
+\]
+
+Para obtener la otra inclusión, usamos el mismo argumento intercambiando
+el rol de $d$ y $d'$: como $B_{d'}(x,r)$ es abierto en $(E,d')$ y las
+familias de abiertos coinciden, $B_{d'}(x,r)$ es abierto en $(E,d)$.
+Luego existe $r_2>0$ tal que
+\[
+B_d(x,r_2) \subseteq B_{d'}(x,r).
+\]
+Así se verifica la condición del enunciado.
+
+\medskip
+
+($\Leftarrow$) Recíprocamente, supongamos que para todo $x \in E$ y
+todo $r>0$ existen $r_1,r_2>0$ tales que
+\[
+B_{d'}(x,r_1) \subseteq B_d(x,r)
+\quad\text{y}\quad
+B_d(x,r_2) \subseteq B_{d'}(x,r).
+\]
+
+Queremos probar que los abiertos de $(E,d)$ y $(E,d')$ coinciden.
+
+Sea $U \subseteq E$ un conjunto abierto en $(E,d)$. Sea $x \in U$.
+Como $U$ es abierto para $d$, existe $r>0$ tal que
+\[
+B_d(x,r) \subseteq U.
+\]
+Por hipótesis, existe $r_2>0$ tal que
+\[
+B_d(x,r_2) \subseteq B_{d'}(x,r).
+\]
+Aplicando de nuevo la hipótesis, pero ahora a la bola $d'$-abierta
+$B_{d'}(x,r)$, podemos elegir $r_3>0$ con
+\[
+B_{d'}(x,r_3) \subseteq B_d(x,r_2).
+\]
+Por lo tanto,
+\[
+B_{d'}(x,r_3) \subseteq B_d(x,r_2) \subseteq B_d(x,r) \subseteq U.
+\]
+Hemos encontrado, para cada $x \in U$, un radio $r_3>0$ tal que
+$B_{d'}(x,r_3) \subseteq U$, lo que significa que $U$ es abierto en
+$(E,d')$.
+
+El argumento recíproco (si $U$ es abierto en $(E,d')$ entonces lo es
+en $(E,d)$) se obtiene exactamente igual, usando de nuevo la hipótesis
+para pasar de bolas $d'$-abiertas a bolas $d$-abiertas. Concluimos que
+las familias de conjuntos abiertos de $(E,d)$ y $(E,d')$ coinciden, es
+decir, $d$ y $d'$ son métricas equivalentes.
+\end{proof}
+
+\subsection{Sucesiones de Cauchy y espacios métricos completos}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico y $A \subseteq E$.
+Decimos que $A$ es \emph{acotado} si existen $x \in E$ y $r>0$ tales que
+\[
+A \subset B(x,r),
+\]
+donde $B(x,r) = \{y \in E : d(x,y) < r\}$ es la bola abierta de centro $x$
+y radio $r$.
+\end{defi}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico y $(x_n)_{n\in\N} \subseteq E$ una sucesión.
+Decimos que $(x_n)$ es \emph{acotada} si existen $x \in E$ y $r>0$ tales que
+\[
+x_n \in B(x,r) \quad \text{para todo } n \in \N.
+\]
+Equivalente: el conjunto $\{x_n : n \in \N\}$ es acotado en $E$.
+\end{defi}
+
+\begin{defi}
+Sea $(E,d)$ un espacio métrico y $(x_n)_{n\in\N} \subseteq E$ una sucesión.
+Decimos que $(x_n)$ es una \emph{sucesión de Cauchy} si
+\[
+\forall \varepsilon>0\ \exists n_0 \in \N\ \text{tal que}\ \forall n,m \ge n_0:
+\ d(x_n,x_m) < \varepsilon.
+\]
+\end{defi}
+
+\begin{teo}
+Sea $(E,d)$ un espacio métrico y $(x_n)_{n\in\N} \subseteq E$. Entonces:
+\begin{enumerate}[label=(\arabic*)]
+    \item Si $(x_n)$ es de Cauchy, entonces es acotada.
+    \item Si $(x_n)$ es convergente en $E$, entonces es de Cauchy.
+    \item Si $(x_n)$ es de Cauchy y tiene alguna subsucesión convergente,
+    entonces $(x_n)$ es convergente (en $E$) y converge al mismo límite
+    que esa subsucesión.
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+(1) Supongamos que $(x_n)$ es de Cauchy. Tomamos $\varepsilon = 1$ en la
+definición. Entonces existe $n_0 \in \N$ tal que, si $n,m \ge n_0$, se cumple
+\[
+d(x_n,x_m) < 1.
+\]
+En particular, para todo $n \ge n_0$,
+\[
+d(x_n,x_{n_0}) < 1.
+\]
+
+Sea ahora
+\[
+M = \max\bigl\{d(x_1,x_{n_0}), d(x_2,x_{n_0}), \dots, d(x_{n_0-1},x_{n_0}), 1\bigr\}
+\]
+(si $n_0=1$, simplemente tomamos $M=1$). Entonces $M>0$ y, para todo
+$n \in \N$,
+\[
+d(x_n,x_{n_0}) \le M.
+\]
+Por lo tanto,
+\[
+x_n \in B(x_{n_0},M) \quad \text{para todo } n \in \N,
+\]
+lo que muestra que la sucesión $(x_n)$ es acotada.
+
+\medskip
+
+(2) Supongamos que $(x_n)$ converge en $E$ a algún $x \in E$; es decir,
+\[
+\forall \varepsilon>0\ \exists n_0 \in \N\ \forall n \ge n_0:
+\ d(x_n,x) < \varepsilon/2.
+\]
+(Escribimos $\varepsilon/2$ para simplificar las cuentas que siguen.)
+
+Sea ahora $\varepsilon>0$ fijo. Tomamos $n_0$ como arriba.
+Si $n,m \ge n_0$, por la desigualdad triangular:
+\[
+d(x_n,x_m) \le d(x_n,x) + d(x,x_m) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2}
+= \varepsilon.
+\]
+Hemos mostrado que para todo $\varepsilon>0$ existe $n_0$ tal que,
+si $n,m \ge n_0$, se cumple $d(x_n,x_m) < \varepsilon$; es decir,
+$(x_n)$ es de Cauchy.
+
+\medskip
+
+(3) Supongamos que $(x_n)$ es de Cauchy y que existe una subsucesión
+$(x_{n_k})_{k\in\N}$ tal que $x_{n_k} \to x \in E$.
+
+Debemos probar que $x_n \to x$.
+
+Sea $\varepsilon>0$. Como $(x_{n_k})$ converge a $x$, existe $K \in \N$ tal que,
+si $k \ge K$,
+\[
+d(x_{n_k},x) < \varepsilon/2.
+\]
+Como $(x_n)$ es de Cauchy, existe $n_0 \in \N$ tal que, si $n,m \ge n_0$,
+\[
+d(x_n,x_m) < \varepsilon/2.
+\]
+
+Definimos
+\[
+N = \max\{n_0, n_K\}.
+\]
+Sea ahora $n \ge N$. Entonces $n \ge n_0$ y $n_K \ge n_0$, por lo que
+aplicando la propiedad de Cauchy con $m = n_K$ obtenemos:
+\[
+d(x_n,x_{n_K}) < \varepsilon/2.
+\]
+Por otra parte, como $n_K \ge K$, tenemos
+\[
+d(x_{n_K},x) < \varepsilon/2.
+\]
+
+Usando la desigualdad triangular,
+\[
+d(x_n,x) \le d(x_n,x_{n_K}) + d(x_{n_K},x)
+< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+
+Hemos probado que
+\[
+\forall \varepsilon>0\ \exists N \in \N\ \forall n \ge N:\ d(x_n,x) < \varepsilon,
+\]
+lo cual significa que $x_n \to x$ en $(E,d)$.
+\end{proof}
+
+\begin{defi}
+Un espacio métrico $(E,d)$ se dice \emph{completo} si toda sucesión de
+Cauchy en $E$ es convergente a un punto de $E$.
+\end{defi}
+
+% (Opcional, pero muy usado en ejercicios)
+\begin{prop}
+Sea $(E,d)$ un espacio métrico completo y sea $F \subseteq E$ un subconjunto
+cerrado. Entonces el subespacio métrico $(F,d)$ es completo.
+\end{prop}
+
+\begin{proof}
+Sea $(x_n)_{n\in\N}$ una sucesión de Cauchy en $F$ (con la métrica $d$
+restringida). Como $F \subseteq E$, también es una sucesión de Cauchy en $E$.
+Dado que $(E,d)$ es completo, existe $x \in E$ tal que $x_n \to x$ en $E$.
+
+Como $F$ es cerrado en $E$ y todos los $x_n$ están en $F$, por la
+caracterización secuencial de cerrados se tiene necesariamente $x \in F$.
+Por lo tanto, $(x_n)$ converge a un punto de $F$, y así $(F,d)$ es completo.
+\end{proof}
