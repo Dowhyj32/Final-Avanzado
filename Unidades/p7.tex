@@ -1,0 +1,225 @@
+\subsection{Convergencia puntual y uniforme}
+
+\begin{defi}[Convergencia puntual]
+Sean $(E,d)$ y $(E',d')$ espacios métricos y sea
+$(f_n)_{n\in\N}$ una sucesión de funciones $f_n : E \to E'$.
+Decimos que $(f_n)$ \emph{converge puntualmente} a una función
+$f : E \to E'$ si
+\[
+\forall x \in E:\quad \lim_{n\to\infty} d'\bigl(f_n(x),f(x)\bigr) = 0.
+\]
+Equivalentemente,
+\[
+\forall x \in E,\ \forall \varepsilon>0\ \exists N\in\N\ \forall n\ge N:
+\ d'\bigl(f_n(x),f(x)\bigr) < \varepsilon.
+\]
+En este caso escribimos $f_n(x) \to f(x)$ puntualmente, o simplemente
+$f_n \to f$ puntualmente en $E$.
+\end{defi}
+
+\begin{defi}[Convergencia uniforme]
+Con la notación anterior, diremos que $(f_n)$ \emph{converge uniformemente}
+a $f$ en $E$ si
+\[
+\forall \varepsilon>0\ \exists N\in\N\ \forall n\ge N\ \forall x\in E:
+\ d'\bigl(f_n(x),f(x)\bigr) < \varepsilon.
+\]
+En este caso escribimos $f_n \rightrightarrows f$ en $E$.
+\end{defi}
+
+\subsection{Límite uniforme de funciones continuas}
+
+\begin{teo}
+Sea $(E,d)$, $(E',d')$ espacios métricos y sea
+$(f_n)_{n\in\N}$ una sucesión de funciones continuas
+$f_n : E \to E'$, que converge uniformemente a
+$f : E \to E'$. Entonces $f$ es continua.
+\end{teo}
+
+\begin{proof}
+Sea $x_0 \in E$ y sea $\varepsilon>0$ dado.  
+Como $f_n \rightrightarrows f$, existe $N \in \N$ tal que
+\[
+d'\bigl(f_n(x),f(x)\bigr) < \frac{\varepsilon}{3}
+\quad \forall x\in E,\ \forall n\ge N.
+\]
+En particular,
+\[
+d'\bigl(f_N(x_0),f(x_0)\bigr) < \frac{\varepsilon}{3}.
+\]
+
+Como $f_N$ es continua en $x_0$, existe $\delta>0$ tal que
+\[
+d(x,x_0) < \delta \Rightarrow
+d'\bigl(f_N(x),f_N(x_0)\bigr) < \frac{\varepsilon}{3}.
+\]
+
+Tomemos ahora un $x\in E$ con $d(x,x_0)<\delta$. Entonces
+\[
+\begin{aligned}
+d'\bigl(f(x),f(x_0)\bigr)
+&\le d'\bigl(f(x),f_N(x)\bigr)
+   + d'\bigl(f_N(x),f_N(x_0)\bigr)
+   + d'\bigl(f_N(x_0),f(x_0)\bigr) \\
+&< \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3}
+= \varepsilon.
+\end{aligned}
+\]
+Como $\varepsilon>0$ era arbitrario, esto prueba que $f$ es continua en
+$x_0$. Dado que $x_0$ era un punto cualquiera de $E$, $f$ es continua
+en todo $E$.
+\end{proof}
+
+\subsection{Pasaje al límite bajo el signo integral}
+
+\begin{prop}
+Sea $[a,b] \subset \R$ con $a<b$ y sean $f_n,f : [a,b]\to\R$ funciones
+continuas tales que $f_n \rightrightarrows f$ en $[a,b]$. Entonces
+\[
+\lim_{n\to\infty} \int_a^b f_n(t)\,dt
+= \int_a^b f(t)\,dt.
+\]
+\end{prop}
+
+\begin{proof}
+Sea $\varepsilon>0$ arbitrario. Como $f_n \rightrightarrows f$ en $[a,b]$,
+por definición de convergencia uniforme existe $N\in\N$ tal que
+\[
+\forall n \ge N\ \forall x\in[a,b]:
+\ |f_n(x)-f(x)| < \frac{\varepsilon}{b-a}.
+\]
+
+Fijemos $n \ge N$. Entonces, para todo $t\in[a,b]$,
+\[
+|f_n(t)-f(t)| < \frac{\varepsilon}{b-a}.
+\]
+Integrando en el intervalo $[a,b]$ y usando la desigualdad
+triangular para integrales, obtenemos
+\[
+\begin{aligned}
+\left|\int_a^b f_n(t)\,dt - \int_a^b f(t)\,dt\right|
+&= \left|\int_a^b (f_n(t)-f(t))\,dt\right| \\
+&\le \int_a^b |f_n(t)-f(t)|\,dt \\
+&\le \int_a^b \frac{\varepsilon}{b-a}\,dt \\
+&= \frac{\varepsilon}{b-a}\,(b-a) = \varepsilon.
+\end{aligned}
+\]
+
+Hemos probado que
+\[
+\forall \varepsilon>0\ \exists N\in\N\ \forall n\ge N:
+\left|\int_a^b f_n(t)\,dt - \int_a^b f(t)\,dt\right| < \varepsilon,
+\]
+lo cual es precisamente
+\[
+\lim_{n\to\infty} \int_a^b f_n(t)\,dt
+= \int_a^b f(t)\,dt.
+\]
+\end{proof}
+
+\subsection{Convergencia de derivadas}
+
+\begin{prop}
+Sean $f_n : [a,b]\to\R$ funciones de clase $C^1$ en $[a,b]$, tales que
+\begin{itemize}
+    \item $f_n \to f$ puntualmente en $[a,b]$;
+    \item $f_n' \rightrightarrows g$ en $[a,b]$.
+\end{itemize}
+Entonces $f$ es derivable en $[a,b]$ y
+\[
+f' = g.
+\]
+\end{prop}
+
+\begin{proof}
+Sea $x_0 \in [a,b]$ fijo. Por el Teorema Fundamental del Cálculo aplicado
+a cada $f_n$, para todo $x\in[a,b]$ se cumple
+\[
+f_n(x) - f_n(x_0) = \int_{x_0}^x f_n'(t)\,dt.
+\]
+
+Tomando límite cuando $n\to\infty$ en ambos lados:
+
+- Por la convergencia puntual $f_n(x)\to f(x)$ y $f_n(x_0)\to f(x_0)$,
+  el lado izquierdo converge a $f(x)-f(x_0)$.
+
+- Por la proposición anterior (pasaje al límite bajo el integral) y la
+  convergencia uniforme de $f_n'$ a $g$, el lado derecho converge a
+  \(
+  \displaystyle \int_{x_0}^x g(t)\,dt.
+  \)
+
+Por lo tanto,
+\[
+f(x) - f(x_0) = \int_{x_0}^x g(t)\,dt
+\quad\text{para todo } x\in[a,b].
+\]
+
+Definamos
+\[
+F(x) := f(x_0) + \int_{x_0}^x g(t)\,dt.
+\]
+La función $F$ es de clase $C^1$ en $[a,b]$ y satisface $F' = g$.
+Además, la igualdad anterior muestra que $f(x)=F(x)$ para todo $x$.
+Luego $f$ es derivable y $f' = g$.
+\end{proof}
+
+\subsection{Sucesiones uniformemente de Cauchy}
+
+\begin{defi}[Sucesión uniformemente de Cauchy]
+Sea $(E,d)$ un espacio métrico, $A\subseteq E$ y
+$(E',d')$ otro espacio métrico. Una sucesión
+$(f_n)_{n\in\N}$ de funciones $f_n : A \to E'$ se dice
+\emph{uniformemente de Cauchy} si
+\[
+\forall \varepsilon>0\ \exists n_0\in\N\ \forall m,n\ge n_0\
+\forall x\in A:\ d'\bigl(f_n(x),f_m(x)\bigr) < \varepsilon.
+\]
+\end{defi}
+
+\begin{teo}
+Sea $A\subseteq E$ y $(f_n)_{n\in\N}$ una sucesión de funciones
+$f_n : A \to \R$ uniformemente de Cauchy. Entonces existe una función
+$f : A \to \R$ tal que $f_n \rightrightarrows f$ en $A$.
+\end{teo}
+
+\begin{proof}
+Fijemos $x\in A$. Consideremos la sucesión numérica
+\[
+\bigl(f_n(x)\bigr)_{n\in\N} \subset \R.
+\]
+De la definición de sucesión uniformemente de Cauchy se deduce en
+particular que, para todo $\varepsilon>0$, existe $n_0$ tal que
+\[
+|f_n(x) - f_m(x)| < \varepsilon
+\quad\text{para todo } m,n\ge n_0.
+\]
+Es decir, para cada $x\in A$, la sucesión $(f_n(x))$ es de Cauchy en $\R$.
+Como $\R$ es completo, existe el límite
+\[
+f(x) := \lim_{n\to\infty} f_n(x) \in \R.
+\]
+Así definimos una función $f : A \to \R$.
+
+Resta ver que $f_n \rightrightarrows f$ en $A$. Sea $\varepsilon>0$.
+Por ser $(f_n)$ uniformemente de Cauchy, existe $n_0 \in \N$ tal que
+\[
+|f_n(x) - f_m(x)| < \varepsilon
+\quad\forall m,n\ge n_0,\ \forall x\in A.
+\]
+
+Fijemos $n\ge n_0$ y $x\in A$ arbitrarios. Tomando el límite cuando
+$m\to\infty$ en la desigualdad anterior, obtenemos
+\[
+|f_n(x) - f(x)| \le \varepsilon,
+\]
+ya que $f_m(x)\to f(x)$ para cada $x$.
+
+Como la cota $\varepsilon$ es independiente de $x$ y vale para todo
+$n\ge n_0$, concluimos que
+\[
+\sup_{x\in A} |f_n(x) - f(x)| \le \varepsilon
+\quad\text{para todo } n\ge n_0.
+\]
+Esto es precisamente $f_n \rightrightarrows f$ en $A$.
+\end{proof}
