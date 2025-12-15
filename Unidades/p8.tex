@@ -1,0 +1,328 @@
+\subsection{Conjuntos nulos}
+
+\begin{defi}[Conjunto nulo]
+Sea $A \subseteq \R$. Decimos que $A$ es un \emph{conjunto nulo}
+si para todo $\varepsilon > 0$ existen intervalos abiertos
+contables $(U_n)_{n \in \N}$ tales que
+\[
+A \subseteq \bigcup_{n\in\N} U_n
+\quad\text{y}\quad
+\sum_{n\in\N} \operatorname{long}(U_n) < \varepsilon.
+\]
+\end{defi}
+
+\subsection{$\sigma$-álgebras y conjuntos medibles de Lebesgue}
+
+\begin{defi}[$\sigma$-álgebra]
+Sea $X$ un conjunto y sea $\mathcal{A} \subseteq \mathcal{P}(X)$
+una familia de subconjuntos de $X$. Decimos que $\mathcal{A}$ es
+una \emph{$\sigma$-álgebra} si se verifica:
+\begin{enumerate}[label=(\roman*)]
+    \item $X \in \mathcal{A}$;
+    \item si $A \in \mathcal{A}$, entonces $A^c = X \setminus A \in \mathcal{A}$;
+    \item si $(A_n)_{n\in\N} \subseteq \mathcal{A}$, entonces
+    \[
+    \bigcup_{n\in\N} A_n \in \mathcal{A}
+    \quad\text{y}\quad
+    \bigcap_{n\in\N} A_n \in \mathcal{A}.
+    \]
+\end{enumerate}
+\end{defi}
+
+\begin{defi}[Conjuntos medibles de Lebesgue]
+Sea $\mathcal{M}$ la $\sigma$-álgebra generada por los intervalos abiertos
+y los conjuntos nulos de $\R$. A $\mathcal{M}$ la llamamos
+\emph{$\sigma$-álgebra de conjuntos medibles de Lebesgue} en $\R$.
+
+Si $I$ es un intervalo de $\R$, denotamos por $\mathcal{M}(I)$ a la
+$\sigma$-álgebra de subconjuntos medibles de Lebesgue de $I$.
+\end{defi}
+
+\subsection{Medida de Lebesgue}
+
+\begin{teo}[Existencia y unicidad de la medida de Lebesgue]
+Existe una única función
+\[
+\mu : \mathcal{M} \longrightarrow [0,+\infty]
+\]
+tal que:
+\begin{enumerate}[label=(\roman*)]
+    \item si $A = (a,b)$ es un intervalo abierto acotado, entonces
+    \[
+    \mu(A) = b-a;
+    \]
+    \item si $(A_n)_{n\in\N} \subseteq \mathcal{M}$, entonces
+    \[
+    \mu\Bigl(\bigcup_{n\in\N} A_n\Bigr)
+    \le \sum_{n\in\N} \mu(A_n);
+    \]
+    \item si, además, los $A_n$ son dos a dos disjuntos, entonces
+    \[
+    \mu\Bigl(\bigcup_{n\in\N} A_n\Bigr)
+    = \sum_{n\in\N} \mu(A_n);
+    \]
+    \item para todo $A \in \mathcal{M}$ se cumple la propiedad de
+    \emph{regularidad exterior}:
+    \[
+    \mu(A) = \inf\{\mu(U) : A \subseteq U,\ U \text{ abierto}\}.
+    \]
+\end{enumerate}
+La función $\mu$ se llama \emph{medida de Lebesgue}.
+\end{teo}
+
+\subsection{Propiedades básicas de la medida de Lebesgue}
+
+En esta subsección trabajamos, salvo aclaración en contrario,
+en el intervalo $I = [0,1]$ con la medida de Lebesgue, y escribimos
+$\mathcal{M}(I)$ para la $\sigma$-álgebra de subconjuntos medibles de $I$.
+
+\begin{teo}[Propiedades básicas]
+Sea $\mu : \mathcal{M}(I) \to [0,+\infty]$ la medida de Lebesgue. Entonces:
+\begin{enumerate}[label=(\roman*)]
+    \item \emph{Monotonía:} si $A,B \in \mathcal{M}(I)$ y $A \subseteq B$,
+    entonces
+    \[
+    \mu(A) \le \mu(B).
+    \]
+    \item \emph{Conjuntos nulos:} si $A \subseteq \R$ es un conjunto nulo,
+    entonces $A \in \mathcal{M}$ y $\mu(A) = 0$. Recíprocamente,
+    si $A \in \mathcal{M}$ y $\mu(A) = 0$, entonces $A$ es un conjunto nulo.
+    \item \emph{Invariancia por traslaciones:} dados $A \in \mathcal{M}$
+    y $c \in \R$, se tiene $A+c := \{x+c : x\in A\} \in \mathcal{M}$ y
+    \[
+    \mu(A+c) = \mu(A).
+    \]
+\end{enumerate}
+\end{teo}
+
+\begin{proof}[Idea de la demostración]
+La monotonía se obtiene escribiendo $B$ como unión disjunta de $A$ y
+$B \setminus A$ y usando la $\sigma$-aditividad. Las afirmaciones sobre
+conjuntos nulos se deducen de la relación entre definición de conjunto
+nulo y la regularidad exterior. La invariancia por traslaciones se
+prueba primero en intervalos (donde es obvia) y luego se extiende a
+$\mathcal{M}$ usando que ésta es la $\sigma$-álgebra generada por
+intervalos y conjuntos nulos, y que la traslación preserva nulos.
+\end{proof}
+
+\begin{prop}
+Sea $I = [0,1]$ y sea $\mu$ la medida de Lebesgue en $\mathcal{M}(I)$.
+Si $A,B \in \mathcal{M}(I)$, entonces:
+\begin{enumerate}[label=(\roman*)]
+    \item $A \setminus B \in \mathcal{M}(I)$;
+    \item
+    \[
+        \mu(A \cup B) = \mu(A \setminus B) + \mu(B).
+    \]
+\end{enumerate}
+En particular,
+\[
+\mu(A^c) = 1 - \mu(A), \qquad A^c = I \setminus A.
+\]
+\end{prop}
+
+\begin{proof}
+(i) Como $\mathcal{M}(I)$ es una $\sigma$-álgebra,
+es cerrada por complementos e intersecciones. Observamos que
+\[
+A \setminus B = A \cap B^c,
+\]
+por lo que $A \setminus B \in \mathcal{M}(I)$.
+
+\medskip
+
+(ii) Notamos que
+\[
+A \cup B = (A \setminus B) \cup B
+\]
+y que $(A \setminus B)$ y $B$ son disjuntos. Por $\sigma$-aditividad,
+\[
+\mu(A \cup B) = \mu(A \setminus B) + \mu(B).
+\]
+
+La igualdad $\mu(A^c) = 1 - \mu(A)$ se obtiene aplicando esta fórmula
+con $A$ y $A^c$ observando que $I = A \cup A^c$ y $\mu(I)=1$.
+\end{proof}
+
+\subsection{Regularidad de la medida de Lebesgue}
+
+\begin{prop}[Regularidad exterior]
+Sea $A \in \mathcal{M}(I)$. Entonces
+\[
+\mu(A) = \inf\{\mu(U) : A \subseteq U,\ U \text{ abierto en } I\}.
+\]
+\end{prop}
+
+\begin{proof}[Esbozo]
+Esta propiedad forma parte de la construcción misma de la medida de Lebesgue
+(en el teorema de existencia). La desigualdad
+\[
+\mu(A) \le \inf\{\mu(U)\}
+\]
+se sigue de la monotonía: si $A \subseteq U$, entonces $\mu(A) \le \mu(U)$.
+En la construcción de la medida se verifica además que para todo
+$\varepsilon>0$ existe un abierto $U \supseteq A$ tal que
+$\mu(U) < \mu(A) + \varepsilon$, lo que da la igualdad.
+\end{proof}
+
+\begin{prop}[Regularidad interior]
+Sea $A \in \mathcal{M}(I)$. Entonces
+\[
+\mu(A) =
+\sup\{\mu(F) : F \subseteq A,\ F \text{ cerrado en } I\}.
+\]
+\end{prop}
+
+\begin{proof}
+Por monotonía, si $F \subseteq A$ entonces $\mu(F) \le \mu(A)$,
+de donde
+\[
+\sup\{\mu(F) : F \subseteq A,\ F \text{ cerrado}\} \le \mu(A).
+\]
+
+Para la otra desigualdad, sea $\varepsilon>0$.  
+Por regularidad exterior aplicada a $A^c$, existe un abierto
+$U \supseteq A^c$ tal que
+\[
+\mu(U) < \mu(A^c) + \varepsilon.
+\]
+Tomando complementos en $I$, el conjunto
+\[
+F := U^c = I \setminus U
+\]
+es cerrado y satisface $F \subseteq A$.
+
+Además, por la proposición anterior,
+\[
+\mu(F) = \mu(I) - \mu(U).
+\]
+Como $\mu(I)=1$ y $\mu(A^c) = 1 - \mu(A)$, obtenemos
+\[
+\mu(F) = 1 - \mu(U)
+> 1 - (\mu(A^c) + \varepsilon)
+= \mu(A) - \varepsilon.
+\]
+Por lo tanto, para todo $\varepsilon>0$ existe un cerrado $F \subseteq A$
+tal que $\mu(F) > \mu(A) - \varepsilon$, lo que implica
+\[
+\mu(A) \le
+\sup\{\mu(F) : F \subseteq A,\ F \text{ cerrado}\}.
+\]
+\end{proof}
+
+\begin{prop}[Regularidad fuerte]
+Sea $A \in \mathcal{M}(I)$ y $\varepsilon>0$. Entonces existen
+un cerrado $C$ y un abierto $U$ tales que
+\[
+C \subseteq A \subseteq U
+\quad\text{y}\quad
+\mu(A) - \varepsilon < \mu(C) \le \mu(A) \le \mu(U) < \mu(A) + \varepsilon.
+\]
+Además, $U$ puede elegirse como una unión numerable de intervalos
+abiertos dos a dos disjuntos.
+\end{prop}
+
+\begin{proof}
+Sea $\varepsilon>0$.  
+Por regularidad interior, existe un cerrado $C \subseteq A$ tal que
+\[
+\mu(C) > \mu(A) - \frac{\varepsilon}{2}.
+\]
+Por regularidad exterior, existe un abierto $U \supseteq A$ tal que
+\[
+\mu(U) < \mu(A) + \frac{\varepsilon}{2}.
+\]
+De aquí se obtiene
+\[
+\mu(A) - \varepsilon
+< \mu(A) - \frac{\varepsilon}{2}
+< \mu(C) \le \mu(A) \le \mu(U)
+< \mu(A) + \frac{\varepsilon}{2}
+< \mu(A) + \varepsilon.
+\]
+
+El hecho de que cualquier abierto $U \subseteq I$ puede escribirse
+como unión numerable de intervalos abiertos dos a dos disjuntos es
+un resultado clásico de análisis real (se prueba usando que $U$ es
+una unión numerable de componentes conexas, que en $\R$ son intervalos).
+Aplicándolo a este $U$, se obtiene la última afirmación.
+\end{proof}
+
+\subsection{Continuidad de la medida}
+
+\begin{teo}[Continuidad de la medida]
+Sea $\{A_n\}_{n\in\N} \subseteq \mathcal{M}(I)$. Entonces:
+\begin{enumerate}[label=(\roman*)]
+    \item (Continuidad desde abajo) Si
+    \[
+    A_1 \subseteq A_2 \subseteq \cdots \subseteq A_n \subseteq \cdots
+    \]
+    y $A = \bigcup_{n\in\N} A_n$, entonces
+    \[
+    \mu(A) = \lim_{n\to\infty} \mu(A_n).
+    \]
+    \item (Continuidad desde arriba) Si
+    \[
+    B_1 \supseteq B_2 \supseteq \cdots \supseteq B_n \supseteq \cdots
+    \]
+    y $B = \bigcap_{n\in\N} B_n$, con $\mu(B_1)<\infty$, entonces
+    \[
+    \mu(B) = \lim_{n\to\infty} \mu(B_n).
+    \]
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+(i) Definimos
+\[
+C_1 = A_1, \qquad
+C_n = A_n \setminus A_{n-1} \quad (n \ge 2).
+\]
+Entonces los conjuntos $C_n$ son dos a dos disjuntos y
+\[
+A = \bigcup_{n\in\N} A_n = \bigcup_{n\in\N} C_n.
+\]
+Por $\sigma$-aditividad,
+\[
+\mu(A) = \sum_{n=1}^\infty \mu(C_n).
+\]
+Además, para cada $n$,
+\[
+\mu(A_n) = \mu\Bigl(\bigcup_{k=1}^n C_k\Bigr)
+= \sum_{k=1}^n \mu(C_k).
+\]
+La sucesión de sumas parciales converge a la suma infinita, luego
+\[
+\lim_{n\to\infty} \mu(A_n)
+= \sum_{k=1}^\infty \mu(C_k)
+= \mu(A).
+\]
+
+\medskip
+
+(ii) Definimos
+\[
+A_n = B_1 \setminus B_n \quad (n\in\N).
+\]
+Entonces $A_1 \subseteq A_2 \subseteq \cdots$ y
+\[
+\bigcup_{n\in\N} A_n = B_1 \setminus \bigcap_{n\in\N} B_n
+= B_1 \setminus B.
+\]
+Aplicando (i) a la familia $(A_n)$,
+\[
+\mu(B_1 \setminus B)
+= \lim_{n\to\infty} \mu(A_n)
+= \lim_{n\to\infty} \bigl(\mu(B_1) - \mu(B_n)\bigr),
+\]
+donde usamos que $A_n = B_1 \setminus B_n$ y $\mu(B_1)<\infty$.
+Entonces
+\[
+\mu(B_1) - \mu(B)
+= \lim_{n\to\infty} \bigl(\mu(B_1) - \mu(B_n)\bigr).
+\]
+Restando $\mu(B_1)$ en ambos lados se obtiene
+\[
+\mu(B) = \lim_{n\to\infty} \mu(B_n).
+\]
+\end{proof}
