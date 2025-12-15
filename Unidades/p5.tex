@@ -1,0 +1,402 @@
+\section{Unidad 5: Compacidad}
+
+\subsection{Definiciones básicas}
+
+\begin{defi}[Conjunto compacto]
+Sea $(E,d)$ un espacio métrico y $K \subseteq E$.
+Decimos que $K$ es \emph{compacto} si para toda familia de abiertos
+$\{G_i\}_{i \in I}$ de $E$ tal que
+\[
+K \subseteq \bigcup_{i \in I} G_i,
+\]
+existe un subíndice finito $i_1,\dots,i_n \in I$ con
+\[
+K \subseteq \bigcup_{k=1}^n G_{i_k}.
+\]
+Es decir, todo recubrimiento abierto de $K$ admite un subcubrimiento
+finito.
+\end{defi}
+
+\begin{defi}[Compacidad secuencial]
+Sea $(E,d)$ un espacio métrico y $K \subseteq E$.
+Decimos que $K$ es \emph{secuencialmente compacto} si para toda sucesión
+$(x_n)_{n\in\N}$ con $x_n \in K$ para todo $n$, existe una subsucesión
+$(x_{n_j})_{j\in\N}$ y un punto $x \in K$ tales que
+\[
+x_{n_j} \xrightarrow[j\to\infty]{} x.
+\]
+\end{defi}
+
+\begin{defi}[Conjunto totalmente acotado]
+Sea $(E,d)$ un espacio métrico y $A \subseteq E$.
+Decimos que $A$ es \emph{totalmente acotado} (T.T.A.) si
+\[
+\forall \varepsilon>0\ \exists x_1,\dots,x_{n(\varepsilon)} \in E
+\ \text{tales que}\ 
+A \subseteq \bigcup_{k=1}^{n(\varepsilon)} B(x_k,\varepsilon),
+\]
+donde $B(x_k,\varepsilon)=\{y\in E : d(x_k,y)<\varepsilon\}$.
+\end{defi}
+
+\begin{defi}[Punto de acumulación]
+Sea $(E,d)$ un espacio métrico y $A \subseteq E$.
+Un punto $x \in E$ se llama \emph{punto de acumulación} (o punto límite)
+de $A$ si
+\[
+\forall r>0 \quad \bigl(B(x,r)\setminus\{x\}\bigr) \cap A \neq \varnothing.
+\]
+Denotamos por $A'$ al conjunto de puntos de acumulación de $A$.
+\end{defi}
+
+\begin{prop}[Caracterización secuencial de puntos de acumulación]
+Sea $A \subseteq E$ y $x \in E$. Entonces
+\[
+x \in A' \iff \exists (a_n)_{n\in\N} \subseteq A\setminus\{x\}
+\text{ tal que } a_n \to x.
+\]
+\end{prop}
+
+\subsection{Compacidad y puntos de acumulación}
+
+\begin{teo}[Equivalencias de compacidad en espacios métricos]
+Sea $(E,d)$ un espacio métrico y $K \subseteq E$. Son equivalentes:
+\begin{enumerate}[label=(\roman*)]
+    \item $K$ es compacto.
+    \item $K$ es secuencialmente compacto.
+    \item Todo subconjunto infinito $A \subseteq K$ tiene al menos un punto
+    de acumulación en $K$, es decir, $A' \cap K \neq \varnothing$.
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+$(i) \Rightarrow (ii)$.
+Sea $(x_n)$ una sucesión en $K$. Si el conjunto de valores
+$A=\{x_n:n\in\N\}$ es finito, alguna de sus constantes se repite
+infinitas veces y obtenemos una subsucesión constante, luego convergente.
+
+Si $A$ es infinito, como $K$ es compacto, también lo es $\overline{A}$,
+y por tanto $A$ tiene un punto de acumulación $x\in K$.
+Por la caracterización secuencial de puntos de acumulación, existe una
+subsucesión $(x_{n_j})$ con $x_{n_j}\to x\in K$.
+En ambos casos, $(x_n)$ admite una subsucesión convergente en $K$.
+
+\medskip
+
+$(ii) \Rightarrow (iii)$.
+Sea $A\subseteq K$ infinito. Elegimos una sucesión de puntos distintos
+$(x_n)\subseteq A$ (por ejemplo, una enumeración inyectiva de $A$).
+Por (ii), existe una subsucesión $(x_{n_j})$ y un punto $x\in K$ tales
+que $x_{n_j}\to x$. Como todos los $x_{n_j}\in A$, la caracterización
+secuencial de puntos de acumulación dice que $x\in A'$. Por tanto
+$A'\cap K\neq \varnothing$.
+
+\medskip
+
+$(iii) \Rightarrow (ii)$.
+Sea $(x_n)$ una sucesión en $K$ y sea $A=\{x_n:n\in\N\}\subseteq K$.
+Si $A$ es finito, como antes obtenemos una subsucesión constante y
+convergente.
+
+Si $A$ es infinito, por (iii) existe $x\in A'\cap K$. Entonces, por la
+caracterización secuencial de puntos de acumulación, existe una
+subsucesión $(x_{n_j})$ de $(x_n)$ tal que $x_{n_j}\to x\in K$.
+En todo caso, $(x_n)$ admite una subsucesión convergente en $K$.
+
+\medskip
+
+$(ii) \Rightarrow (i)$.
+Probamos la contrarrecíproca. Supongamos que $K$ no es compacto.
+Entonces existe un recubrimiento abierto $\{G_i\}_{i\in I}$ de $K$
+que no admite subcubrimiento finito.
+
+Construimos inductivamente una sucesión $(x_n)$ en $K$ del siguiente modo:
+
+- Elegimos $x_1\in K$ y un índice $i_1$ con $x_1\in G_{i_1}$.
+- Supuesto elegido $x_1,\dots,x_n$ con índices $i_1,\dots,i_n$ tales
+  que $x_k\in G_{i_k}$, como
+  \(
+    K \nsubseteq \bigcup_{k=1}^n G_{i_k}
+  \)
+  existe
+  \(
+    x_{n+1}\in K \setminus \bigcup_{k=1}^n G_{i_k}.
+  \)
+  Elegimos $i_{n+1}$ con $x_{n+1}\in G_{i_{n+1}}$.
+
+Entonces cada $x_n$ pertenece a un abierto nuevo de la familia, distinto
+de los anteriores. Sea $(x_{n_j})$ una subsucesión cualquiera.
+Si fuera convergente, digamos $x_{n_j}\to x\in K$, algún abierto $G_i$
+contendría a $x$ y a todos los términos suficientemente avanzados de
+la subsucesión; en particular, ese solo $G_i$ cubriría casi todos los
+$x_n$, y un número finito de abiertos de la familia cubriría $K$,
+contradiciendo la elección de $\{G_i\}$ sin subcubrimiento finito.
+Luego $(x_n)$ no posee subsucesión convergente, y $K$ no es secuencialmente
+compacto.
+
+La contrarrecíproca muestra que (ii) implica (i).
+\end{proof}
+
+\subsection{Compacidad, completitud y total acotación}
+
+\begin{teo}
+Sea $(E,d)$ un espacio métrico y $K \subseteq E$. Entonces:
+\begin{enumerate}[label=(\roman*)]
+    \item Si $K$ es compacto, entonces $K$ es completo y totalmente acotado.
+    \item Si $K$ es completo y totalmente acotado, entonces $K$ es compacto.
+\end{enumerate}
+En particular,
+\[
+K \text{ compacto} \iff
+K \text{ completo y totalmente acotado}.
+\]
+\end{teo}
+
+\begin{proof}
+(i) Si $K$ es compacto, por el teorema anterior es secuencialmente
+compacto. Toda sucesión de Cauchy en $K$ admite una subsucesión convergente;
+un argumento estándar muestra que la sucesión completa converge al mismo
+límite, que pertenece a $K$, de modo que $K$ es completo.
+
+Para ver que $K$ es T.T.A., sea $\varepsilon>0$ y consideremos la familia
+de bolas $\{B(x,\varepsilon):x\in K\}$, que es un recubrimiento abierto
+de $K$. Por compacidad, existe un subcubrimiento finito
+$K\subset \bigcup_{k=1}^n B(x_k,\varepsilon)$, que es precisamente la
+definición de T.T.A.
+
+\medskip
+
+(ii) Supongamos que $K$ es completo y totalmente acotado.
+Sea $(x_n)$ una sucesión en $K$. Por total acotación, usando el clásico
+método de “subsucesiones encajadas”, se puede extraer una subsucesión
+$(x_{n_j})$ que resulta ser de Cauchy. Como $K$ es completo, esa
+subsucesión converge en $K$. Así, toda sucesión en $K$ tiene una
+subsucesión convergente en $K$, es decir, $K$ es secuencialmente compacto.
+Por el teorema anterior, $K$ es compacto.
+\end{proof}
+
+\begin{prop}
+Si $(E,d)$ es un espacio métrico y $K \subseteq E$ es compacto, entonces
+$K$ es cerrado y acotado.
+\end{prop}
+
+\begin{proof}
+Ya vimos que todo compacto es totalmente acotado, luego es acotado.
+
+Resta ver que es cerrado. Sea $\overline{K}$ la clausura de $K$.
+Si $x\in \overline{K}$, existe una sucesión $(x_n)\subseteq K$
+tal que $x_n\to x$. Como $K$ es compacto, es secuencialmente compacto,
+por lo que $(x_n)$ admite una subsucesión convergente con límite en $K$;
+la unicidad del límite en espacios métricos fuerza que ese límite sea $x$,
+por lo que $x\in K$. Se obtiene $\overline{K}\subseteq K$, y como siempre
+$K\subseteq\overline{K}$, concluimos $\overline{K}=K$, es decir, $K$ es
+cerrado.
+\end{proof}
+
+\begin{teo}[Heine--Borel en $\R^m$]
+Sea $K \subseteq \R^m$ con la métrica euclídea usual. Entonces
+\[
+K \text{ es compacto} \iff K \text{ es cerrado y acotado}.
+\]
+\end{teo}
+
+\subsection{Propiedades estructurales de compactos y T.T.A.}
+
+\begin{prop}[Subconjunto cerrado de un compacto]
+Sea $(E,d)$ un espacio métrico y $K \subseteq E$ compacto.
+Si $F \subseteq K$ es cerrado (en $E$), entonces $F$ es compacto.
+\end{prop}
+
+\begin{proof}
+Sea $\{G_\alpha\}_{\alpha\in A}$ un recubrimiento abierto de $F$ en $E$.
+Como $F$ es cerrado, $E\setminus F$ es abierto. Entonces
+\[
+\{G_\alpha : \alpha\in A\} \cup \{E\setminus F\}
+\]
+es un recubrimiento abierto de $K$. Por compacidad, existe una subfamilia
+finita que recubre $K$, y por lo tanto $F$ queda cubierto por una subfamilia
+finita de los $G_\alpha$. Así, $F$ es compacto.
+\end{proof}
+
+\begin{cor}
+La intersección arbitraria de subconjuntos compactos de un espacio
+métrico es un conjunto compacto (en particular, $\varnothing$ es compacto).
+\end{cor}
+
+\begin{proof}
+Si $\{K_i\}_{i\in I}$ son compactos, cada uno es cerrado en $E$.
+La intersección $K = \bigcap_{i\in I} K_i$ es cerrada y satisface
+$K\subseteq K_{i_0}$ para cualquier índice fijo $i_0$. Como $K$ es un
+subconjunto cerrado de $K_{i_0}$, por la proposición anterior $K$ es compacto.
+El caso $K=\varnothing$ también es compacto por definición.
+\end{proof}
+
+\begin{prop}[Propiedades de conjuntos totalmente acotados]
+Sea $(E,d)$ un espacio métrico.
+\begin{enumerate}[label=(\roman*)]
+    \item Si $A \subseteq B \subseteq E$ y $B$ es T.T.A., entonces $A$ es T.T.A.
+    \item Si $A$ es T.T.A., entonces $\overline{A}$ es T.T.A.
+    \item Si $A$ y $B$ son T.T.A., entonces $A \cup B$ es T.T.A.
+    (en general, la unión finita de conjuntos T.T.A. es T.T.A.).
+    \item Si $A$ es T.T.A., entonces $A$ es acotado.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+(i) y (iii) se obtienen directamente de la definición observando que
+un recubrimiento finito de $B$ o de $A$ y $B$ provee uno de $A$ o
+de $A\cup B$.
+
+(ii) Dado $\varepsilon>0$, se cubre $A$ con finitas bolas
+$B(x_k,\varepsilon/2)$; se comprueba que la clausura de cada una de ellas
+queda incluida en $B(x_k,\varepsilon)$, y se deduce que
+$\overline{A}$ queda cubierta por la unión finita
+\(\bigcup_k B(x_k,\varepsilon)\).
+
+(iv) Tomando $\varepsilon=1$, se ve que $A$ queda contenido en la unión
+finita de bolas de radio $1$, por lo que todo punto de $A$ está a distancia
+acotada de cualquiera de sus centros; esto da una cota global para $A$.
+\end{proof}
+
+\begin{prop}[Imagen de T.T.A. por función uniformemente continua]
+Sean $(E,d)$ y $(E',d')$ espacios métricos, $A \subseteq E$
+totalmente acotado y $f : E \to E'$ uniformemente continua.
+Entonces $f(A)$ es totalmente acotado en $(E',d')$.
+\end{prop}
+
+\begin{proof}
+Sea $\varepsilon>0$. Por uniformidad de $f$, existe $\delta>0$ tal que
+\[
+d(x,y)<\delta \Rightarrow d'(f(x),f(y))<\varepsilon
+\quad \forall x,y\in E.
+\]
+Como $A$ es T.T.A., existen $x_1,\dots,x_n$ con
+\[
+A \subseteq \bigcup_{k=1}^n B(x_k,\delta).
+\]
+Entonces
+\[
+f(A) \subseteq \bigcup_{k=1}^n f(B(x_k,\delta))
+\subseteq \bigcup_{k=1}^n B_{d'}(f(x_k),\varepsilon).
+\]
+Hemos cubierto $f(A)$ con finit­as bolas de radio $\varepsilon$; como
+$\varepsilon$ era arbitrario, $f(A)$ es T.T.A.
+\end{proof}
+
+\subsection{Funciones continuas sobre compactos}
+
+\begin{teo}[Imagen continua de un compacto]
+Sean $(E,d)$ y $(E',d')$ espacios métricos y sea
+$f : E \to E'$ continua. Si $K \subseteq E$ es compacto, entonces
+$f(K)$ es compacto en $E'$.
+\end{teo}
+
+\begin{proof}
+Sea $\{V_\alpha\}_{\alpha\in A}$ un recubrimiento abierto de $f(K)$ en $E'$.
+Para cada $\alpha$ definimos $U_\alpha = f^{-1}(V_\alpha)$, que es abierto
+en $E$ por continuidad de $f$. Además,
+\[
+K \subseteq \bigcup_{\alpha\in A} U_\alpha,
+\]
+pues si $x\in K$ entonces $f(x)\in f(K)\subseteq \bigcup V_\alpha$.
+
+Como $K$ es compacto, existe un subcubrimiento finito
+$K \subseteq \bigcup_{j=1}^n U_{\alpha_j}$. Aplicando $f$,
+\[
+f(K) \subseteq \bigcup_{j=1}^n f(U_{\alpha_j})
+\subseteq \bigcup_{j=1}^n V_{\alpha_j},
+\]
+que es un subcubrimiento finito de $f(K)$. Así, $f(K)$ es compacto.
+\end{proof}
+
+\begin{cor}[Teorema de Weierstrass]
+Sea $K \subseteq E$ compacto y $f : K \to \R$ continua.
+Entonces:
+\begin{enumerate}[label=(\roman*)]
+    \item $f$ es acotada en $K$: existe $c>0$ tal que
+    $|f(x)|\le c$ para todo $x\in K$;
+    \item $f$ alcanza su máximo y su mínimo en $K$, es decir,
+    existen $x_{\min},x_{\max}\in K$ con
+    \[
+    f(x_{\min}) \le f(x) \le f(x_{\max}) \quad \forall x\in K.
+    \]
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+Por el teorema anterior, $f(K)$ es compacto en $\R$. Todo compacto
+no vacío de $\R$ es cerrado y acotado, de modo que admite supremo e
+ínfimo que pertenecen al conjunto; eso da el máximo y el mínimo.
+La acotación se deduce de la existencia de supremo y de ínfimo.
+\end{proof}
+
+\begin{teo}[Continuidad uniforme en compactos]
+Sean $(E,d)$ y $(E',d')$ espacios métricos y sea
+$f : E \to E'$ continua. Si $E$ es compacto, entonces $f$ es
+uniformemente continua.
+\end{teo}
+
+\begin{proof}
+Sea $\varepsilon>0$. Para cada $x\in E$, por continuidad de $f$ en $x$
+existe $\delta_x>0$ tal que
+\[
+d(x,y)<\delta_x \Rightarrow d'(f(x),f(y))<\varepsilon
+\quad \forall y\in E.
+\]
+La familia de bolas $B(x,\delta_x)$ (o $B(x,\delta_x/2)$) es un
+cubrimiento abierto de $E$. Por compacidad, existe un subcubrimiento
+finito
+\[
+E \subseteq \bigcup_{k=1}^n B\bigl(x_k,\delta_{x_k}\bigr).
+\]
+Definimos
+\[
+\delta = \min_{1\le k\le n} \delta_{x_k} > 0.
+\]
+
+Si $x,y\in E$ satisfacen $d(x,y)<\delta$, entonces ambos pertenecen a
+alguna de las bolas del subcubrimiento (por ejemplo, a la de centro
+$x_k$ que contiene a $x$), y como en esa bola vale la condición
+de continuidad con $\delta_{x_k}\ge\delta$, obtenemos
+$d'(f(x),f(y))<\varepsilon$. Por lo tanto,
+\[
+\forall \varepsilon>0\ \exists \delta>0\ \forall x,y\in E:
+d(x,y)<\delta \Rightarrow d'(f(x),f(y))<\varepsilon,
+\]
+y $f$ es uniformemente continua.
+\end{proof}
+
+\begin{cor}[Funciones continuas sobre compacto son cerradas]
+Sean $(E,d)$ y $(E',d')$ espacios métricos, $E$ compacto y
+$f : E \to E'$ continua. Entonces $f$ es una aplicación cerrada:
+si $G \subseteq E$ es cerrado, entonces $f(G)$ es cerrado en $E'$.
+\end{cor}
+
+\begin{proof}
+Si $G$ es cerrado en $E$, entonces $G$ es compacto (cerrado en un
+compacto). Por el teorema de la imagen de un compacto, $f(G)$ es
+compacto en $E'$. En un espacio métrico, todo compacto es cerrado,
+así que $f(G)$ es cerrado.
+\end{proof}
+
+\begin{cor}[Homeomorfismos desde compactos]
+Sean $(E,d)$ y $(E',d')$ espacios métricos, con $E$ compacto, y sea
+$f : E \to E'$ continua y biyectiva. Entonces $f$ es un homeomorfismo,
+es decir, $f^{-1} : E' \to E$ es continua.
+\end{cor}
+
+\begin{proof}
+Del corolario anterior, $f$ es una aplicación cerrada.  
+Sea $F' \subseteq E'$ cerrado. Como $f$ es biyectiva, se tiene
+\[
+f^{-1}(F') \subseteq E.
+\]
+Además
+\[
+E' \setminus F' \text{ es abierto} \Rightarrow
+f^{-1}(E'\setminus F') = E \setminus f^{-1}(F')
+\text{ es abierto en }E,
+\]
+por continuidad de $f$. Por lo tanto $f^{-1}(F')$ es cerrado en $E$.
+La preimagen por $f^{-1}$ de todo cerrado de $E$ es cerrada, lo que
+equivale a la continuidad de $f^{-1}$. Luego $f$ es un homeomorfismo.
+\end{proof}
