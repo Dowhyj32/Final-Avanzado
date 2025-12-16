@@ -1,0 +1,141 @@
+Sea $(X,\mathcal A)$ un espacio medible (es decir, $X$ es un conjunto y
+$\mathcal A$ una $\sigma$-álgebra de subconjuntos de $X$).
+
+\begin{defi}[Función medible real]
+Una función $f : X \to \R$ se llama \emph{(Lebesgue) medible} si para
+todo $a \in \R$ se cumple
+\[
+\{x \in X : f(x) < a\} \in \mathcal A.
+\]
+\end{defi}
+
+\begin{teo}[Caracterizaciones de función medible]
+Sea $(X,\mathcal A)$ un espacio medible y $f : X \to \R$ una función.
+Son equivalentes las siguientes afirmaciones:
+\begin{enumerate}[label=(\roman*)]
+    \item Para todo $a \in \R$ se tiene
+    \[
+    \{x \in X : f(x) < a\} \in \mathcal A.
+    \]
+    \item Para todo $a \in \R$ se tiene
+    \[
+    \{x \in X : f(x) \le a\} \in \mathcal A.
+    \]
+    \item Para todo $a \in \R$ se tiene
+    \[
+    \{x \in X : f(x) > a\} \in \mathcal A.
+    \]
+    \item Para todo $a \in \R$ se tiene
+    \[
+    \{x \in X : f(x) \ge a\} \in \mathcal A.
+    \]
+\end{enumerate}
+En particular, cualquiera de estas condiciones puede tomarse como
+definición de función medible.
+\end{teo}
+
+\begin{proof}
+$(i) \Rightarrow (ii)$.
+Sea $a \in \R$. Mostramos que
+\[
+\{f \le a\} = \bigcap_{n=1}^{\infty} \{f < a + \tfrac{1}{n}\}.
+\]
+
+Primero, si $x \in \{f \le a\}$, entonces $f(x) \le a < a + \tfrac{1}{n}$
+para todo $n \in \N$, y por lo tanto $x \in \{f < a + 1/n\}$ para todo $n$.
+Esto prueba la inclusión
+\[
+\{f \le a\} \subseteq \bigcap_{n=1}^{\infty} \{f < a + \tfrac{1}{n}\}.
+\]
+
+Recíprocamente, sea $x$ tal que $x \in \{f < a + 1/n\}$ para todo $n$.
+Entonces
+\[
+f(x) < a + \frac{1}{n} \quad \text{para todo } n \in \N.
+\]
+Supongamos, por absurdo, que $f(x) > a$. Entonces $f(x) - a > 0$ y
+podemos definir
+\[
+\varepsilon = \frac{f(x) - a}{2} > 0.
+\]
+Tomamos $n$ suficientemente grande tal que $\tfrac{1}{n} < \varepsilon$.
+Entonces
+\[
+a + \frac{1}{n} < a + \varepsilon = \frac{a + f(x)}{2} < f(x),
+\]
+lo cual contradice $f(x) < a + 1/n$. Por lo tanto no puede ser
+$f(x) > a$, y forzosamente $f(x) \le a$, es decir $x \in \{f \le a\}$.
+
+Concluimos la igualdad de conjuntos. Cada conjunto
+$\{f < a + 1/n\}$ es medible por hipótesis (i), y las intersecciones
+numerables de conjuntos medibles pertenecen a $\mathcal A$. Por lo tanto
+$\{f \le a\}$ es medible. Así, (ii) se cumple.
+
+\medskip
+
+$(ii) \Rightarrow (iii)$.
+Sea $a \in \R$. Observamos que
+\[
+\{f > a\} = X \setminus \{f \le a\}.
+\]
+En efecto, si $f(x) > a$ entonces $f(x)$ no puede satisfacer
+$f(x) \le a$, y viceversa. Como $\mathcal A$ es una $\sigma$-álgebra,
+es estable por complementos; de la medibilidad de $\{f \le a\}$ se
+deduce la medibilidad de $\{f > a\}$. Luego (iii) se verifica.
+
+\medskip
+
+$(iii) \Rightarrow (iv)$.
+Sea $a \in \R$. Mostramos que
+\[
+\{f \ge a\}
+= \bigcap_{n=1}^{\infty} \{f > a - \tfrac{1}{n}\}.
+\]
+
+Si $x \in \{f \ge a\}$, entonces $f(x) \ge a > a - \tfrac{1}{n}$ para
+todo $n$, y en particular $x \in \{f > a - 1/n\}$ para todo $n$.
+Esto prueba la inclusión
+\[
+\{f \ge a\} \subseteq \bigcap_{n=1}^{\infty} \{f > a - \tfrac{1}{n}\}.
+\]
+
+Para la inclusión recíproca, sea $x$ tal que
+$x \in \{f > a - 1/n\}$ para todo $n$, es decir,
+\[
+f(x) > a - \frac{1}{n} \quad \forall n \in \N.
+\]
+Supongamos, por absurdo, que $f(x) < a$. Entonces $a - f(x) > 0$ y
+podemos definir
+\[
+\varepsilon = \frac{a - f(x)}{2} > 0.
+\]
+Elegimos $n$ suficientemente grande tal que $\tfrac{1}{n} < \varepsilon$.
+Entonces
+\[
+a - \frac{1}{n} > a - \varepsilon = \frac{a + f(x)}{2} > f(x),
+\]
+lo cual contradice $f(x) > a - 1/n$. Por lo tanto no puede ser
+$f(x) < a$, y debe cumplirse $f(x) \ge a$, es decir $x \in \{f \ge a\}$.
+
+Hemos probado la igualdad. Cada conjunto $\{f > a - 1/n\}$ es medible
+por hipótesis (iii), y la intersección numerable de medibles también
+lo es; por lo tanto $\{f \ge a\}$ es medible. Se verifica (iv).
+
+\medskip
+
+$(iv) \Rightarrow (i)$.
+Sea $a \in \R$. Notamos que
+\[
+\{f < a\} = X \setminus \{f \ge a\}.
+\]
+En efecto, si $f(x) < a$ entonces no puede ser $f(x)\ge a$, y si
+$f(x)\ge a$ entonces no puede ser $f(x)<a$. Si $\{f \ge a\}$ es medible
+por (iv), su complemento también pertenece a $\mathcal A$, de modo que
+$\{f < a\}$ es medible.
+
+Con esto cerramos el ciclo
+\[
+(i) \Rightarrow (ii) \Rightarrow (iii) \Rightarrow (iv) \Rightarrow (i),
+\]
+y las cuatro condiciones son equivalentes.
+\end{proof}
