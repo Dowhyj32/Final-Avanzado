@@ -293,6 +293,48 @@ si se cumplen:
 \end{enumerate}
 \end{defi}
 
+\begin{prop}[Buena definición del orden entre cardinales]
+Sean $A, B, X, Y$ conjuntos tales que $\#A \le \#B$, $A \sim X$ y $B \sim Y$.
+Entonces $\#X \le \#Y$.
+\end{prop}
+
+\begin{proof}
+Como $\#A \le \#B$, existe una función inyectiva $f : A \to B$. Como $A \sim X$
+y $B \sim Y$, existen biyecciones $h : A \to X$ y $g : B \to Y$. Como $h$ es
+biyectiva, también lo es su inversa $h^{-1} : X \to A$. Consideremos la
+composición
+\[
+g \circ f \circ h^{-1} : X \to Y.
+\]
+Como $h^{-1}$, $f$ y $g$ son inyectivas, y la composición de funciones
+inyectivas es inyectiva, concluimos que $g \circ f \circ h^{-1}$ es inyectiva.
+Por lo tanto, $\#X \le \#Y$.
+\end{proof}
+
+\begin{prop}[Propiedades de orden]
+La relación $\le$ entre cardinales es reflexiva y transitiva. Es decir:
+\begin{enumerate}[label=(\roman*)]
+\item $\#A \le \#A$ para todo conjunto $A$.
+\item Si $\#A \le \#B$ y $\#B \le \#C$, entonces $\#A \le \#C$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+(i) La función identidad $\operatorname{id}_A : A \to A$ es inyectiva, luego
+$\#A \le \#A$.
+
+(ii) Supongamos $\#A \le \#B$ y $\#B \le \#C$. Entonces existen funciones
+inyectivas $f : A \to B$ y $g : B \to C$. La composición $g \circ f : A \to C$
+es inyectiva, por ser composición de funciones inyectivas. Por lo tanto,
+$\#A \le \#C$.
+\end{proof}
+
+\begin{obs}
+La antisimetría de $\le$ (es decir, que $\#A \le \#B$ y $\#B \le \#A$
+impliquen $\#A = \#B$) no es inmediata: es el contenido del Teorema de
+Cantor--Schröder--Bernstein, enunciado más adelante.
+\end{obs}
+
 \begin{prop}
 Sean $X$ e $Y$ conjuntos. Existe una función inyectiva
 $f : X \to Y$ si y sólo si existe una función sobreyectiva
@@ -804,4 +846,92 @@ cardinales, esto implica que $A$ es a lo sumo numerable.
 
 Si además $A$ es infinito, por definición de “a lo sumo numerable”
 resulta que $A$ es numerable.
+\end{proof}
+
+\subsection{Cardinalidad de $\R$}
+
+\begin{prop}
+$\R \sim (0,1)$.
+\end{prop}
+
+\begin{proof}
+Veamos primero que $\R \sim (-1,1)$. Consideremos la función
+\[
+f : \R \to (-1,1), \qquad f(x) = \frac{x}{1+|x|}.
+\]
+Comprobemos que $f$ es biyectiva exhibiendo su inversa
+\[
+f^{-1} : (-1,1) \to \R, \qquad f^{-1}(y) = \frac{y}{1-|y|}.
+\]
+Sea $x \in \R$. Como $f(x)$ tiene el mismo signo que $x$, se tiene
+$|f(x)| = \dfrac{|x|}{1+|x|}$, de donde
+\[
+1 - |f(x)| = 1 - \frac{|x|}{1+|x|} = \frac{1}{1+|x|},
+\]
+y por lo tanto
+\[
+f^{-1}(f(x)) = \frac{f(x)}{1-|f(x)|}
+= \frac{\dfrac{x}{1+|x|}}{\dfrac{1}{1+|x|}} = x.
+\]
+Análogamente, para $y \in (-1,1)$ se tiene $|f^{-1}(y)| = \dfrac{|y|}{1-|y|}$,
+de donde $1+|f^{-1}(y)| = \dfrac{1}{1-|y|}$, y por lo tanto
+\[
+f(f^{-1}(y)) = \frac{f^{-1}(y)}{1+|f^{-1}(y)|}
+= \frac{\dfrac{y}{1-|y|}}{\dfrac{1}{1-|y|}} = y.
+\]
+Como $f^{-1}\circ f = \operatorname{id}_\R$ y $f\circ f^{-1} = \operatorname{id}_{(-1,1)}$,
+concluimos que $f$ es biyectiva, y por lo tanto $\R \sim (-1,1)$.
+
+Por otro lado, la función
+\[
+g : (-1,1) \to (0,1), \qquad g(x) = \frac{x+1}{2},
+\]
+es biyectiva: es inyectiva porque $g(x_1)=g(x_2) \Rightarrow x_1=x_2$, y es
+sobreyectiva porque dado $y \in (0,1)$, el elemento $x = 2y-1 \in (-1,1)$
+cumple $g(x)=y$. Luego $(-1,1) \sim (0,1)$.
+
+Por transitividad de $\sim$, concluimos que $\R \sim (0,1)$.
+\end{proof}
+
+\begin{teo}
+El conjunto $\R$ no es numerable.
+\end{teo}
+
+\begin{proof}
+Por la proposición anterior, $\R \sim (0,1)$, así que basta probar que
+$(0,1)$ no es numerable.
+
+Supongamos, buscando una contradicción, que $(0,1)$ es numerable, es decir,
+que existe una función biyectiva $f : \N \to (0,1)$. Escribiendo
+$x_n = f(n)$, obtenemos una lista $(x_n)_{n\in\N}$ que enumera todos los
+elementos de $(0,1)$, cada uno con un desarrollo decimal
+\[
+x_n = 0,x_{n1}x_{n2}x_{n3}\dots, \qquad x_{nm} \in \{0,1,\dots,9\}.
+\]
+
+Definimos un número $y = 0,y_1y_2y_3\dots \in (0,1)$ eligiendo, para cada
+$i \in \N$,
+\[
+y_i =
+\begin{cases}
+2 & \text{si } x_{ii} \neq 2, \\
+3 & \text{si } x_{ii} = 2.
+\end{cases}
+\]
+Como todos los dígitos de $y$ son $2$ o $3$, $y$ tiene un único desarrollo
+decimal (no es de los números con doble representación, que terminan en
+$9$'s o $0$'s periódicos).
+
+Veamos que $y \neq x_n$ para todo $n \in \N$. Fijado $n$, por construcción
+$y_n \neq x_{nn}$. Si fuera $y = x_n$ como números reales, como $y$ tiene un
+único desarrollo decimal, el desarrollo de $x_n$ debería coincidir dígito a
+dígito con el de $y$, en particular $x_{nn} = y_n$, lo cual es absurdo. Por
+lo tanto $y \neq x_n$ para todo $n$.
+
+Pero entonces $y \in (0,1)$ y $y \neq x_n$ para todo $n \in \N$, lo cual
+contradice que $(x_n)_{n\in\N}$ enumere a todos los elementos de $(0,1)$, es
+decir, contradice que $f$ sea sobreyectiva.
+
+Esta contradicción muestra que $(0,1)$ no puede ser numerable, y por lo
+tanto $\R$ tampoco lo es.
 \end{proof}
