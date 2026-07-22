@@ -190,7 +190,45 @@ demostrar.
 
 \subsection{Sucesiones}
 
-\begin{prop}
+\begin{defi}[Sucesión]
+Una sucesión de números reales es una función $a : \N \to \R$. Para cada $n \in \N$
+notamos $a_n = a(n)$, y a la sucesión completa la notamos $(a_n)_{n\in\N}$.
+\end{defi}
+
+\begin{defi}[Límite de una sucesión]
+Sea $(a_n)_{n\in\N}$ una sucesión real y $l \in \R$. Decimos que $(a_n)$ converge a
+$l$, y notamos $\lim_{n\to\infty} a_n = l$ o $a_n \to l$, si
+\[
+\forall \varepsilon > 0 \ \exists n_0 \in \N \ \text{tal que} \ \forall n \ge n_0:
+\ |a_n - l| < \varepsilon.
+\]
+\end{defi}
+
+\begin{prop}[Unicidad del límite]
+Sea $(a_n)_{n\in\N}$ una sucesión real. Supongamos que $a_n \to l_1$ y $a_n \to l_2$
+con $l_1, l_2 \in \R$. Entonces $l_1 = l_2$.
+\end{prop}
+
+\begin{proof}
+Sea $\varepsilon > 0$. Como $a_n \to l_1$, existe $n_1 \in \N$ tal que
+$|a_n - l_1| < \tfrac{\varepsilon}{2}$ para todo $n \ge n_1$. Como $a_n \to l_2$,
+existe $n_2 \in \N$ tal que $|a_n - l_2| < \tfrac{\varepsilon}{2}$ para todo
+$n \ge n_2$. Tomando $n = \max\{n_1, n_2\}$ y usando la desigualdad triangular,
+\[
+|l_1 - l_2| = |l_1 - a_n + a_n - l_2| \le |l_1 - a_n| + |a_n - l_2|
+< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+Como esto vale para todo $\varepsilon > 0$, no puede ser $|l_1 - l_2| > 0$: si lo
+fuera, tomando $\varepsilon = |l_1 - l_2|$ obtendríamos $|l_1 - l_2| < |l_1 - l_2|$,
+lo cual es absurdo. Por lo tanto $|l_1 - l_2| = 0$, es decir, $l_1 = l_2$.
+\end{proof}
+
+\begin{defi}[Sucesión acotada]
+Una sucesión $(a_n)_{n\in\N}$ está acotada si el conjunto $\{a_n : n \in \N\}$ está
+acotado, es decir, si existe $M > 0$ tal que $|a_n| \le M$ para todo $n \in \N$.
+\end{defi}
+
+\begin{prop}[Sucesión convergente es acotada]
 Sea $(a_n)_{n\in\N}$ una sucesión real y sea $l \in \R$ tal que
 \[
 \lim_{n\to\infty} a_n = l.
@@ -248,6 +286,104 @@ En ambos casos obtenemos
 \]
 Por lo tanto, la sucesión $(a_n)$ está acotada.
 \end{proof}
+
+\begin{prop}[Álgebra de límites]
+Sean $(a_n)_{n\in\N}$ y $(b_n)_{n\in\N}$ sucesiones reales tales que
+$\lim_{n\to\infty} a_n = a$ y $\lim_{n\to\infty} b_n = b$, con $a, b \in \R$.
+Entonces:
+\begin{enumerate}[label=(\roman*)]
+\item $\displaystyle\lim_{n\to\infty} (c \cdot a_n) = c \cdot a$ para todo $c \in \R$.
+\item $\displaystyle\lim_{n\to\infty} (a_n + b_n) = a + b$.
+\item $\displaystyle\lim_{n\to\infty} (a_n b_n) = ab$.
+\item Si $b \neq 0$, entonces $\displaystyle\lim_{n\to\infty} \left(\frac{a_n}{b_n}\right) = \frac{a}{b}$.
+\item Si existe $n_0 \in \N$ tal que $a_n \le b_n$ para todo $n \ge n_0$, entonces $a \le b$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Probamos cada ítem por separado.
+
+\medskip
+\noindent\textbf{(i)} Si $c = 0$, entonces $c \cdot a_n = 0 = c \cdot a$ para todo
+$n$, y la propiedad se cumple trivialmente. Supongamos $c \neq 0$ y sea
+$\varepsilon > 0$. Como $a_n \to a$, existe $n_0 \in \N$ tal que
+$|a_n - a| < \tfrac{\varepsilon}{|c|}$ para todo $n \ge n_0$. Entonces
+\[
+|c a_n - c a| = |c||a_n - a| < |c| \cdot \frac{\varepsilon}{|c|} = \varepsilon
+\]
+para todo $n \ge n_0$.
+
+\medskip
+\noindent\textbf{(ii)} Sea $\varepsilon > 0$. Como $a_n \to a$, existe $n_1 \in \N$
+tal que $|a_n - a| < \tfrac{\varepsilon}{2}$ para todo $n \ge n_1$. Como
+$b_n \to b$, existe $n_2 \in \N$ tal que $|b_n - b| < \tfrac{\varepsilon}{2}$ para
+todo $n \ge n_2$. Sea $n_0 = \max\{n_1, n_2\}$. Entonces, para todo $n \ge n_0$,
+\[
+|(a_n + b_n) - (a+b)| \le |a_n - a| + |b_n - b| < \frac{\varepsilon}{2} +
+\frac{\varepsilon}{2} = \varepsilon.
+\]
+
+\medskip
+\noindent\textbf{(iii)} Como $(a_n)$ converge, por la proposición anterior está
+acotada: existe $M > 0$ tal que $|a_n| \le M$ para todo $n \in \N$. Sea
+$\varepsilon > 0$. Como $b_n \to b$, existe $n_1 \in \N$ tal que
+$|b_n - b| < \tfrac{\varepsilon}{2M}$ para todo $n \ge n_1$. Como $a_n \to a$,
+existe $n_2 \in \N$ tal que $|a_n - a| < \tfrac{\varepsilon}{2(|b|+1)}$ para todo
+$n \ge n_2$. Sea $n_0 = \max\{n_1, n_2\}$. Entonces, para todo $n \ge n_0$,
+\[
+|a_n b_n - ab| = |a_n b_n - a_n b + a_n b - ab|
+\le |a_n||b_n - b| + |b||a_n - a|
+\le M|b_n - b| + |b||a_n - a|.
+\]
+Acotando cada término,
+\[
+M|b_n - b| < M \cdot \frac{\varepsilon}{2M} = \frac{\varepsilon}{2},
+\qquad
+|b||a_n - a| < |b| \cdot \frac{\varepsilon}{2(|b|+1)} < \frac{\varepsilon}{2},
+\]
+donde en la última desigualdad usamos $\frac{|b|}{|b|+1} < 1$. Sumando,
+\[
+|a_n b_n - ab| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+\]
+para todo $n \ge n_0$.
+
+\medskip
+\noindent\textbf{(iv)} Por el ítem (iii), alcanza con probar que
+$\dfrac{1}{b_n} \to \dfrac{1}{b}$, ya que entonces
+$\dfrac{a_n}{b_n} = a_n \cdot \dfrac{1}{b_n} \to a \cdot \dfrac{1}{b} = \dfrac{a}{b}$.
+
+Por el lema anterior, existe $n_1 \in \N$ tal que $|b_n| \ge \tfrac{|b|}{2}$ para
+todo $n \ge n_1$. Sea $\varepsilon > 0$. Como $b_n \to b$, existe $n_2 \in \N$ tal
+que $|b_n - b| < \tfrac{\varepsilon |b|^2}{2}$ para todo $n \ge n_2$. Sea
+$n_0 = \max\{n_1, n_2\}$. Entonces, para todo $n \ge n_0$,
+\[
+\left| \frac{1}{b_n} - \frac{1}{b} \right|
+= \frac{|b - b_n|}{|b_n||b|}
+\le \frac{|b_n - b|}{\tfrac{|b|}{2} \cdot |b|}
+= \frac{2|b_n - b|}{|b|^2}
+< \frac{2}{|b|^2} \cdot \frac{\varepsilon |b|^2}{2}
+= \varepsilon.
+\]
+
+\medskip
+\noindent\textbf{(v)} Supongamos, buscando una contradicción, que $a > b$. Sea
+$\varepsilon = \tfrac{a-b}{2} > 0$. Como $a_n \to a$, existe $n_1 \in \N$ tal que
+$a_n > a - \varepsilon$ para todo $n \ge n_1$. Como $b_n \to b$, existe
+$n_2 \in \N$ tal que $b_n < b + \varepsilon$ para todo $n \ge n_2$. Sea
+$n' = \max\{n_0, n_1, n_2\}$, donde $n_0$ es el índice de la hipótesis
+$a_n \le b_n$. Entonces, para todo $n \ge n'$,
+\[
+a_n > a - \varepsilon = a - \frac{a-b}{2} = \frac{a+b}{2}
+= b + \frac{a-b}{2} = b + \varepsilon > b_n,
+\]
+lo cual contradice que $a_n \le b_n$ para todo $n \ge n_0$. Por lo tanto,
+necesariamente $a \le b$.
+\end{proof}
+
+\begin{defi}[Sucesión monótona]
+Una sucesión $(a_n)_{n\in\N}$ es monótona creciente si $a_n \le a_{n+1}$ para todo
+$n \in \N$, y es monótona decreciente si $a_n \ge a_{n+1}$ para todo $n \in \N$.
+\end{defi}
 
 \begin{prop}
 Sea $(a_n)_{n\in\N}$ una sucesión real monótona creciente y acotada superiormente.
@@ -451,6 +587,12 @@ $s$ es la menor de las cotas superiores de $A$, es decir, $s = \sup A$.
 
 Queda así demostrada la equivalencia.
 \end{proof}
+
+\begin{defi}[Subsucesión]
+Sea $(a_n)_{n\in\N}$ una sucesión real. Una subsucesión de $(a_n)$ es una sucesión
+de la forma $(a_{n_j})_{j\in\N}$, donde $(n_j)_{j\in\N}$ es una sucesión
+estrictamente creciente de números naturales, es decir, $n_1 < n_2 < n_3 < \dots$.
+\end{defi}
 
 \begin{prop}
 Sea $(a_n)_{n\in\N}$ una sucesión real y sea $(a_{n_j})_{j\in\N}$ una subsucesión de $(a_n)$,
