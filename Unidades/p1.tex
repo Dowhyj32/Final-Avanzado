@@ -2,6 +2,37 @@
 Dado $A \subset\mathbb{R}$ no vacío y acotado superiormente, existe $\sup A$.\\
 Dado $A \subset\mathbb{R}$ no vacío y acotado inferiormente, existe $\inf A$.
 
+\subsection{Completitud para ínfimos}
+La existencia del ínfimo no necesita postularse como un axioma aparte: se deduce
+de la existencia del supremo.
+\[
+\text{Sea } A \subset \R \text{ no vacío y acotado inferiormente. Entonces existe } i = \inf A \in \R.
+\]
+\begin{proof}
+Consideremos el conjunto
+\[
+-A = \{-a : a \in A\}.
+\]
+Como $A \neq \emptyset$, también $-A \neq \emptyset$. Veamos que $-A$ está acotado
+superiormente: sea $c$ una cota inferior de $A$, es decir $c \le a$ para todo
+$a \in A$. Multiplicando por $-1$ obtenemos $-c \ge -a$ para todo $a \in A$, es
+decir, $-c$ es cota superior de $-A$. Por el axioma de completitud (para
+supremos), existe $s = \sup(-A)$.
+
+Afirmamos que $i = -s$ es el ínfimo de $A$.
+
+(i) $i$ es cota inferior de $A$: como $s$ es cota superior de $-A$, se cumple
+$-a \le s$ para todo $a \in A$, es decir, $-s \le a$ para todo $a \in A$, o sea
+$i \le a$ para todo $a \in A$.
+
+(ii) $i$ es la mayor de las cotas inferiores de $A$: sea $c$ una cota inferior
+de $A$. Como vimos, $-c$ es cota superior de $-A$, y como $s = \sup(-A)$ es la
+menor de las cotas superiores de $-A$, se cumple $s \le -c$, es decir,
+$c \le -s = i$.
+
+De (i) y (ii) concluimos que $i = -s = \inf A$.
+\end{proof}
+
 \subsection{Infimo}
 Sea $A \subset\mathbb{R}$, no vacío y acotado inferiormente.
 \[
@@ -118,6 +149,43 @@ Como $n > 0$, al invertir la desigualdad obtenemos
 \]
 Por lo tanto, para todo $y > 0$ existe $n \in \N$ tal que $0 < \dfrac{1}{n} < y$,
 como queríamos demostrar.
+\end{proof}
+
+\subsection{Densidad de $\Q$}
+\[
+\forall x, y \in \R \text{ con } x < y \ \exists q \in \Q \text{ tal que } x < q < y.
+\]
+\begin{proof}[Demostración]
+Sean $x, y \in \R$ con $x < y$. Entonces $y - x > 0$ y, por la Versión 2 del
+Principio de Arquímedes, existe $n \in \N$ tal que
+\[
+0 < \frac{1}{n} < y - x,
+\]
+es decir, $n(y-x) > 1$, o equivalentemente,
+\[
+ny - nx > 1.
+\]
+
+Veamos que existe un entero $m$ tal que $nx < m < ny$. Sea
+\[
+S = \{ j \in \Z : j > nx \}.
+\]
+Por la Versión 1 del Principio de Arquímedes, existe un natural mayor que $nx$,
+así que $S \neq \emptyset$; además $S$ está acotado inferiormente por $nx$. Como
+todo subconjunto no vacío de $\Z$ acotado inferiormente tiene mínimo, sea
+$m = \min S$. Por definición de $S$, $m > nx$. Como $m$ es el mínimo de $S$,
+$m - 1 \notin S$, es decir $m - 1 \le nx$, de donde
+\[
+m \le nx + 1 < ny,
+\]
+usando que $ny - nx > 1$. Por lo tanto, $nx < m < ny$.
+
+Dividiendo por $n > 0$ obtenemos
+\[
+x < \frac{m}{n} < y.
+\]
+Tomando $q = \dfrac{m}{n} \in \Q$, concluimos que $x < q < y$, como queríamos
+demostrar.
 \end{proof}
 
 \subsection{Sucesiones}
