@@ -133,12 +133,12 @@ Entonces la sucesión $(a_n)$ está acotada.
 \begin{proof}
 Por hipótesis, $\lim_{n\to\infty} a_n = l$. Esto significa que
 \[
-\forall \varepsilon > 0 \ \exists N \in \N \ \text{tal que} \ \forall n \ge N:
+\forall \varepsilon > 0 \ \exists n_0 \in \N \ \text{tal que} \ \forall n \ge n_0:
 \ |a_n - l| < \varepsilon.
 \]
 
-Tomamos ahora $\varepsilon = 1$. Entonces existe $N \in \N$ tal que para todo
-$n \ge N$ se cumple
+Tomamos ahora $\varepsilon = 1$. Entonces existe $n_0 \in \N$ tal que para todo
+$n \ge n_0$ se cumple
 \[
 |a_n - l| < 1.
 \]
@@ -146,24 +146,24 @@ Por la desigualdad triangular,
 \[
 |a_n| = |(a_n - l) + l| \le |a_n - l| + |l| < 1 + |l|
 \]
-para todo $n \ge N$. Es decir, para todos los índices grandes,
+para todo $n \ge n_0$. Es decir, para todos los índices grandes,
 \[
 |a_n| \le |l| + 1.
 \]
 
 Consideremos ahora los primeros términos de la sucesión:
 \[
-a_1, a_2, \dots, a_{N-1}.
+a_1, a_2, \dots, a_{n_0-1}.
 \]
 Se trata de un conjunto finito de números reales, por lo que el conjunto
 \[
-\{|a_1|, |a_2|, \dots, |a_{N-1}|\}
+\{|a_1|, |a_2|, \dots, |a_{n_0-1}|\}
 \]
 tiene un máximo. Sea
 \[
-M_0 = \max\{|a_1|, |a_2|, \dots, |a_{N-1}|\}
+M_0 = \max\{|a_1|, |a_2|, \dots, |a_{n_0-1}|\}
 \]
-(en el caso $N = 1$ podemos tomar, por ejemplo, $M_0 = 0$).
+(en el caso $n_0 = 1$ podemos tomar, por ejemplo, $M_0 = 0$).
 
 Definimos ahora
 \[
@@ -171,8 +171,8 @@ M = \max\{M_0,\ |l| + 1\}.
 \]
 
 Entonces:
-\\- Si $n < N$, se cumple $|a_n| \le M_0 \le M$.
-\\- Si $n \ge N$, se cumple $|a_n| \le |l| + 1 \le M$.
+\\- Si $n < n_0$, se cumple $|a_n| \le M_0 \le M$.
+\\- Si $n \ge n_0$, se cumple $|a_n| \le |l| + 1 \le M$.
 \\
 En ambos casos obtenemos
 \[
@@ -202,42 +202,42 @@ tiene supremo $s \in \R$.
 
 Queremos probar que $\lim_{n\to\infty} a_n = s$, es decir,
 \[
-\forall \varepsilon > 0 \ \exists N \in \N \ \forall n \ge N:
+\forall \varepsilon > 0 \ \exists n_0 \in \N \ \forall n \ge n_0:
 \ |a_n - s| < \varepsilon.
 \]
 
 Sea entonces $\varepsilon > 0$ arbitrario. Por la propiedad
 caracterizadora del supremo aplicada al conjunto $A$, existe
-$N \in \N$ tal que
+$n_0 \in \N$ tal que
 \[
-s - \varepsilon < a_N \le s.
+s - \varepsilon < a_{n_0} \le s.
 \]
 
 Como la sucesión $(a_n)$ es monótona creciente, se cumple
 \[
-a_N \le a_n \le s \quad \text{para todo } n \ge N.
+a_{n_0} \le a_n \le s \quad \text{para todo } n \ge n_0.
 \]
 
 De $a_n \le s$ obtenemos $a_n - s \le 0$, luego
 \[
 |a_n - s| = s - a_n.
 \]
-Además, de $a_N \le a_n$ se sigue
+Además, de $a_{n_0} \le a_n$ se sigue
 \[
-s - a_n \le s - a_N.
+s - a_n \le s - a_{n_0}.
 \]
 Juntando estas desigualdades,
 \[
 |a_n - s|
 = s - a_n
-\le s - a_N
+\le s - a_{n_0}
 < s - (s - \varepsilon)
 = \varepsilon
 \]
-para todo $n \ge N$.
+para todo $n \ge n_0$.
 
-Por lo tanto, para todo $\varepsilon>0$ encontramos $N \in \N$ tal que
-para todo $n \ge N$ se cumple $|a_n - s|<\varepsilon$, y esto significa
+Por lo tanto, para todo $\varepsilon>0$ encontramos $n_0 \in \N$ tal que
+para todo $n \ge n_0$ se cumple $|a_n - s|<\varepsilon$, y esto significa
 exactamente que $\lim_{n\to\infty} a_n = s$.
 \end{proof}
 
@@ -262,41 +262,41 @@ tiene ínfimo $i \in \R$.
 
 Queremos probar que $\lim_{n\to\infty} a_n = i$, es decir,
 \[
-\forall \varepsilon > 0 \ \exists N \in \N \ \forall n \ge N:
+\forall \varepsilon > 0 \ \exists n_0 \in \N \ \forall n \ge n_0:
 \ |a_n - i| < \varepsilon.
 \]
 
 Sea $\varepsilon>0$ arbitrario. Por la propiedad caracterizadora del
-ínfimo aplicada al conjunto $A$, existe $N \in \N$ tal que
+ínfimo aplicada al conjunto $A$, existe $n_0 \in \N$ tal que
 \[
-i \le a_N < i + \varepsilon.
+i \le a_{n_0} < i + \varepsilon.
 \]
 
 Como la sucesión $(a_n)$ es monótona decreciente, se cumple
 \[
-i \le a_n \le a_N \quad \text{para todo } n \ge N.
+i \le a_n \le a_{n_0} \quad \text{para todo } n \ge n_0.
 \]
 
 De $a_n \ge i$ se obtiene $a_n - i \ge 0$, luego
 \[
 |a_n - i| = a_n - i.
 \]
-Además, de $a_n \le a_N$ se sigue
+Además, de $a_n \le a_{n_0}$ se sigue
 \[
-a_n - i \le a_N - i.
+a_n - i \le a_{n_0} - i.
 \]
 Por lo tanto,
 \[
 |a_n - i|
 = a_n - i
-\le a_N - i
+\le a_{n_0} - i
 < (i + \varepsilon) - i
 = \varepsilon
 \]
-para todo $n \ge N$.
+para todo $n \ge n_0$.
 
-Entonces, para todo $\varepsilon>0$ encontramos $N \in \N$ tal que
-para todo $n \ge N$ se cumple $|a_n - i|<\varepsilon$, lo cual prueba
+Entonces, para todo $\varepsilon>0$ encontramos $n_0 \in \N$ tal que
+para todo $n \ge n_0$ se cumple $|a_n - i|<\varepsilon$, lo cual prueba
 que $\lim_{n\to\infty} a_n = i$.
 \end{proof}
 
@@ -332,9 +332,10 @@ s - \frac{1}{n} < a_n \le s.
 \]
 Esto define una sucesión $(a_n)_{n\in\N}$ de elementos de $A$.
 
-Veamos ahora que $\lim_{n\to\infty} a_n = s$. Sea $\varepsilon > 0$. Elegimos
-$N \in \N$ tal que $\frac{1}{N} < \varepsilon$. Entonces, si $n \ge N$,
-se tiene $\frac{1}{n} \le \frac{1}{N} < \varepsilon$, y por la construcción
+Veamos ahora que $\lim_{n\to\infty} a_n = s$. Sea $\varepsilon > 0$. Por la
+Versión 2 del Principio de Arquímedes, existe $n_0 \in \N$ tal que
+$\frac{1}{n_0} < \varepsilon$. Entonces, si $n \ge n_0$,
+se tiene $\frac{1}{n} \le \frac{1}{n_0} < \varepsilon$, y por la construcción
 de $(a_n)$ se cumple
 \[
 s - \frac{1}{n} < a_n \le s.
@@ -349,7 +350,7 @@ lo que implica
 \]
 Por lo tanto,
 \[
-\forall \varepsilon > 0\ \exists N \in \N\ \forall n \ge N:\ |a_n - s| < \varepsilon,
+\forall \varepsilon > 0\ \exists n_0 \in \N\ \forall n \ge n_0:\ |a_n - s| < \varepsilon,
 \]
 es decir, $\lim_{n\to\infty} a_n = s$. Esto prueba (ii).
 
@@ -357,38 +358,27 @@ es decir, $\lim_{n\to\infty} a_n = s$. Esto prueba (ii).
 
 Recíprocamente, supongamos que se cumplen (i) y (ii). Entonces $s$ es cota
 superior de $A$. Para ver que $s = \sup A$, basta probar que $s$ es la menor
-de las cotas superiores de $A$. Sea $M$ otra cota superior de $A$. Queremos
-ver que $s \le M$.
+de las cotas superiores de $A$. Sea $s'$ otra cota superior de $A$. Queremos
+ver que $s \le s'$.
 
-Supongamos, buscando una contradicción, que $s > M$. Definimos
+Supongamos, buscando una contradicción, que $s > s'$. Definimos
 \[
-\varepsilon = \frac{s - M}{2} > 0.
+\varepsilon = s - s' > 0.
 \]
-Como $\lim_{n\to\infty} a_n = s$, existe $N \in \N$ tal que, para todo
-$n \ge N$, se cumple
+Como $\lim_{n\to\infty} a_n = s$, existe $n_0 \in \N$ tal que, para todo
+$n \ge n_0$, se cumple
 \[
 |a_n - s| < \varepsilon.
 \]
-En particular, para $n \ge N$ tenemos
+En particular, para $n \ge n_0$ tenemos
 \[
-a_n > s - \varepsilon = s - \frac{s - M}{2}
-= \frac{2s - s + M}{2}
-= \frac{s + M}{2}.
+a_n > s - \varepsilon = s - (s - s') = s'.
 \]
-Pero, como $s > M$, se tiene
-\[
-\frac{s + M}{2} > M,
-\]
-de modo que
-\[
-a_n > \frac{s + M}{2} > M
-\]
-para todo $n \ge N$. Sin embargo, $a_n \in A$ y $M$ es cota superior de $A$,
-luego debería cumplirse $a_n \le M$ para todo $n$, lo que contradice la
-desigualdad anterior.
+Pero $a_n \in A$ y $s'$ es cota superior de $A$, luego debería cumplirse
+$a_n \le s'$, lo que contradice la desigualdad anterior.
 
-Esta contradicción muestra que no puede ocurrir $s > M$, por lo que necesariamente
-$s \le M$. Como $M$ era una cota superior cualquiera de $A$, concluimos que
+Esta contradicción muestra que no puede ocurrir $s > s'$, por lo que necesariamente
+$s \le s'$. Como $s'$ era una cota superior cualquiera de $A$, concluimos que
 $s$ es la menor de las cotas superiores de $A$, es decir, $s = \sup A$.
 
 Queda así demostrada la equivalencia.
@@ -410,32 +400,32 @@ entonces
 \begin{proof}
 Supongamos que $\lim_{n\to\infty} a_n = l$. Por definición de límite, esto significa que
 \[
-\forall \varepsilon > 0 \ \exists N \in \N \ \text{tal que} \ \forall n \ge N:
+\forall \varepsilon > 0 \ \exists n_0 \in \N \ \text{tal que} \ \forall n \ge n_0:
 \ |a_n - l| < \varepsilon.
 \]
 
-Sea ahora $\varepsilon > 0$ fijo. Por la hipótesis anterior, existe $N \in \N$ tal que
+Sea ahora $\varepsilon > 0$ fijo. Por la hipótesis anterior, existe $n_0 \in \N$ tal que
 \[
-n \ge N \ \Rightarrow\ |a_n - l| < \varepsilon.
+n \ge n_0 \ \Rightarrow\ |a_n - l| < \varepsilon.
 \]
 
 Como $(n_j)_{j\in\N}$ es una sucesión estrictamente creciente de números naturales,
-podemos elegir $J \in \N$ tal que
+podemos elegir $j_0 \in \N$ tal que
 \[
-n_J \ge N.
+n_{j_0} \ge n_0.
 \]
-Entonces, para todo $j \ge J$ se tiene
+Entonces, para todo $j \ge j_0$ se tiene
 \[
-n_j \ge n_J \ge N.
+n_j \ge n_{j_0} \ge n_0.
 \]
 Aplicando la propiedad de arriba a $n = n_j$, obtenemos
 \[
-|a_{n_j} - l| < \varepsilon \quad \text{para todo } j \ge J.
+|a_{n_j} - l| < \varepsilon \quad \text{para todo } j \ge j_0.
 \]
 
 Por lo tanto,
 \[
-\forall \varepsilon > 0 \ \exists J \in \N \ \forall j \ge J:\ |a_{n_j} - l| < \varepsilon,
+\forall \varepsilon > 0 \ \exists j_0 \in \N \ \forall j \ge j_0:\ |a_{n_j} - l| < \varepsilon,
 \]
 lo cual significa exactamente que
 \[
