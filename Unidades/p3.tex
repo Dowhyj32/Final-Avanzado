@@ -1,3 +1,55 @@
+\subsection{Espacios métricos}
+
+\begin{defi}[Métrica]
+Sea $M$ un conjunto. Una \emph{métrica} (o \emph{distancia}) en $M$ es una función
+\[
+d : M \times M \to \R
+\]
+que cumple, para todo $x,y,z \in M$:
+\begin{enumerate}[label=(\roman*)]
+\item $d(x,y) \ge 0$;
+\item $d(x,y) = 0$ si y sólo si $x=y$;
+\item $d(x,y) = d(y,x)$ (simetría);
+\item $d(x,z) \le d(x,y) + d(y,z)$ (desigualdad triangular).
+\end{enumerate}
+Al par $(M,d)$ se lo llama \emph{espacio métrico}.
+\end{defi}
+
+\subsection{Sucesiones en espacios métricos}
+
+\begin{defi}[Sucesión en un espacio métrico]
+Sea $(M,d)$ un espacio métrico. Una sucesión en $(M,d)$ es una función
+$f : \N \to M$. Notamos $x_n = f(n)$ para el $n$-ésimo término, y
+$(x_n)_{n\in\N}$ para la sucesión completa.
+\end{defi}
+
+\begin{defi}[Convergencia]
+Sea $(x_n)_{n\in\N}$ una sucesión en $(M,d)$ y $x \in M$. Decimos que $(x_n)$
+converge a $x$, y notamos $x_n \to x$ o $\lim_{n\to\infty} x_n = x$, si
+\[
+\forall \varepsilon > 0 \ \exists n_0 \in \N \ \text{tal que} \ \forall n \ge n_0:
+\ d(x_n,x) < \varepsilon.
+\]
+\end{defi}
+
+\begin{prop}[Unicidad del límite]
+Sea $(M,d)$ un espacio métrico y $(x_n)_{n\in\N}$ una sucesión en $M$.
+Supongamos que $x_n \to x$ y $x_n \to y$, con $x,y \in M$. Entonces $x=y$.
+\end{prop}
+
+\begin{proof}
+Sea $\varepsilon > 0$. Como $x_n \to x$, existe $n_1 \in \N$ tal que
+$d(x_n,x) < \varepsilon/2$ para todo $n \ge n_1$. Como $x_n \to y$, existe
+$n_2 \in \N$ tal que $d(x_n,y) < \varepsilon/2$ para todo $n \ge n_2$. Tomando
+$n = \max\{n_1,n_2\}$ y usando la desigualdad triangular,
+\[
+d(x,y) \le d(x,x_n) + d(x_n,y) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+Como esto vale para todo $\varepsilon>0$, no puede ser $d(x,y)>0$: si lo
+fuera, tomando $\varepsilon = d(x,y)$ obtendríamos $d(x,y) < d(x,y)$, absurdo.
+Por lo tanto $d(x,y)=0$, y por definición de métrica, $x=y$.
+\end{proof}
+
 \subsection{Conjuntos abiertos}
 
 \begin{defi}
@@ -1231,6 +1283,100 @@ lo cual significa que $x_n \to x$ en $(E,d)$.
 Un espacio métrico $(E,d)$ se dice \emph{completo} si toda sucesión de
 Cauchy en $E$ es convergente a un punto de $E$.
 \end{defi}
+
+\begin{teo}
+$(\R, |\cdot|)$ es completo.
+\end{teo}
+
+\begin{proof}
+Sea $(x_n)_{n\in\N} \subseteq \R$ una sucesión de Cauchy. Vamos a construir una
+subsucesión convergente; por el ítem (3) del teorema anterior sobre sucesiones
+de Cauchy, esto implica que la sucesión completa converge.
+
+Para cada $k \in \N$, consideremos el conjunto
+\[
+X_k = \{x_n : n > k\}.
+\]
+Por el ítem (1) de ese teorema, $(x_n)$ está acotada, y por lo tanto cada
+$X_k \subseteq \R$ también está acotado. Por el axioma de completitud de
+$\R$, existen
+\[
+a_k = \inf X_k \in \R, \qquad b_k = \sup X_k \in \R.
+\]
+
+Como $X_1 \supseteq X_2 \supseteq X_3 \supseteq \dots$, por propiedades del
+ínfimo y del supremo se tiene
+\[
+a_1 \le a_2 \le a_3 \le \dots, \qquad a_k \le b_k \le b_1 \quad \text{para todo } k \in \N.
+\]
+Es decir, $(a_k)_{k\in\N}$ es monótona creciente y acotada superiormente por
+$b_1$. Por la proposición de convergencia de sucesiones monótonas, existe
+\[
+x = \lim_{k\to\infty} a_k \in \R.
+\]
+
+Construimos ahora una subsucesión $(x_{n_j})_{j\in\N}$ de $(x_n)$. Como
+$a_1 = \inf X_1$, existe $n_1 \in \N$ (con $x_{n_1} \in X_1$) tal que
+\[
+a_1 \le x_{n_1} < a_1 + 1.
+\]
+Supuesto definido $n_{j-1}$, como $a_{n_{j-1}} = \inf X_{n_{j-1}}$, existe
+$n_j > n_{j-1}$ (con $x_{n_j} \in X_{n_{j-1}}$, lo cual garantiza $n_j >
+n_{j-1}$) tal que
+\[
+a_{n_{j-1}} \le x_{n_j} < a_{n_{j-1}} + \frac{1}{j}.
+\]
+Así, $(n_j)_{j\in\N}$ resulta estrictamente creciente, y $(x_{n_j})_{j\in\N}$
+es una subsucesión de $(x_n)_{n\in\N}$.
+
+Veamos que $x_{n_j} \to x$. De la desigualdad anterior,
+\[
+|x_{n_j} - a_{n_{j-1}}| < \frac{1}{j}.
+\]
+Como $(a_{n_{j-1}})_j$ es una subsucesión de $(a_k)_k$ y $a_k \to x$,
+también $a_{n_{j-1}} \to x$ cuando $j \to \infty$. Sea $\varepsilon>0$;
+elegimos $J \in \N$ tal que para todo $j \ge J$ se cumpla simultáneamente
+$1/j < \varepsilon/2$ y $|a_{n_{j-1}} - x| < \varepsilon/2$. Entonces, para
+$j \ge J$,
+\[
+|x_{n_j} - x| \le |x_{n_j} - a_{n_{j-1}}| + |a_{n_{j-1}} - x|
+< \frac{1}{j} + \frac{\varepsilon}{2} < \varepsilon.
+\]
+Esto prueba que $x_{n_j} \to x$.
+
+Como $(x_n)$ es de Cauchy y tiene una subsucesión convergente a $x$, por el
+teorema anterior concluimos que $x_n \to x$. Por lo tanto, $(\R,|\cdot|)$ es
+completo.
+\end{proof}
+
+\begin{cor}
+$(\R^n, d_\infty)$ es completo.
+\end{cor}
+
+\begin{proof}
+Sea $(v_k)_{k\in\N} \subseteq \R^n$ una sucesión de Cauchy, con
+$v_k = (x_1^k, \dots, x_n^k)$.
+
+Fijado $i \in \{1,\dots,n\}$, veamos que $(x_i^k)_{k\in\N}$ es de Cauchy en
+$\R$. Para $k,j \in \N$,
+\[
+|x_i^k - x_i^j| \le \max_{1\le l \le n} |x_l^k - x_l^j| = d_\infty(v_k,v_j).
+\]
+Dado $\varepsilon>0$, como $(v_k)$ es de Cauchy existe $n_0 \in \N$ tal que
+$d_\infty(v_k,v_j) < \varepsilon$ para todo $k,j \ge n_0$, y por la
+desigualdad anterior también $|x_i^k - x_i^j| < \varepsilon$ para esos
+$k,j$. Por el teorema anterior, $(\R,|\cdot|)$ es completo, así que existe
+$x_i \in \R$ con $x_i^k \to x_i$. Repitiendo para cada $i=1,\dots,n$,
+obtenemos $x_1,\dots,x_n \in \R$.
+
+Sea $v=(x_1,\dots,x_n)$. Dado $\varepsilon>0$, para cada $i$ existe $n_i \in
+\N$ tal que $|x_i^k - x_i| < \varepsilon$ para todo $k \ge n_i$. Tomando
+$n_0 = \max\{n_1,\dots,n_n\}$, para todo $k \ge n_0$ se cumple
+\[
+d_\infty(v_k, v) = \max_{1\le i \le n} |x_i^k - x_i| < \varepsilon.
+\]
+Por lo tanto $v_k \to v$, y $(\R^n, d_\infty)$ es completo.
+\end{proof}
 
 % (Opcional, pero muy usado en ejercicios)
 \begin{prop}
