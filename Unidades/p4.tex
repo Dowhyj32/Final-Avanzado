@@ -6,10 +6,25 @@ Consideramos funciones $f : A \to F$.
 \begin{defi}[Continuidad en un punto]
 Sea $x_0 \in A$. Decimos que $f$ es \emph{continua en $x_0$} si
 \[
-\forall \varepsilon > 0\ \exists \delta > 0\ \text{tal que}\ 
+\forall \varepsilon > 0\ \exists \delta > 0\ \text{tal que}\
 \forall x \in A,\ d_E(x,x_0) < \delta \ \Rightarrow\ d_F\bigl(f(x),f(x_0)\bigr) < \varepsilon.
 \]
 \end{defi}
+
+\begin{obs}[Reformulación con bolas]
+Escribiendo $B_{d_E}(x_0,\delta) = \{x\in E : d_E(x,x_0)<\delta\}$ y
+$B_{d_F}(f(x_0),\varepsilon) = \{z\in F : d_F(z,f(x_0))<\varepsilon\}$, la
+condición de continuidad de $f$ en $x_0$ se puede reescribir como:
+\[
+\forall \varepsilon>0\ \exists \delta>0 \text{ tal que }
+f\bigl(B_{d_E}(x_0,\delta)\cap A\bigr) \subseteq B_{d_F}(f(x_0),\varepsilon).
+\]
+En efecto, $x\in A$ con $d_E(x,x_0)<\delta$ es lo mismo que decir
+$x\in B_{d_E}(x_0,\delta)\cap A$, y $d_F(f(x),f(x_0))<\varepsilon$ es lo
+mismo que $f(x)\in B_{d_F}(f(x_0),\varepsilon)$; ambas formulaciones dicen
+exactamente lo mismo, sólo que la segunda agrupa los puntos cercanos a
+$x_0$ (resp. a $f(x_0)$) en un conjunto.
+\end{obs}
 
 \begin{defi}[Continuidad en un conjunto]
 Decimos que $f$ es \emph{continua en $A$} si es continua en todo punto
@@ -608,4 +623,103 @@ entonces $x$ estaría en el abierto $E \setminus \overline{D}$, que por
 definición de clausura no intersecta a $D$. Esto contradice (ii).
 Por lo tanto, $E \setminus \overline{D} = \varnothing$, es decir,
 $\overline{D} = E$.
+\end{proof}
+
+\begin{lema}
+Sea $f : E \to E'$ una función uniformemente continua entre espacios
+métricos $(E,d)$ y $(E',d')$. Si $(x_n)_{n\in\N} \subseteq E$ es una
+sucesión de Cauchy, entonces $(f(x_n))_{n\in\N} \subseteq E'$ es una
+sucesión de Cauchy.
+\end{lema}
+
+\begin{proof}
+Sea $\varepsilon>0$. Como $f$ es uniformemente continua, existe $\delta>0$
+tal que para todo $x,y\in E$,
+\[
+d(x,y)<\delta \ \Rightarrow\ d'(f(x),f(y))<\varepsilon.
+\]
+Como $(x_n)$ es de Cauchy, existe $n_0\in\N$ tal que $d(x_n,x_m)<\delta$
+para todo $n,m\ge n_0$. Entonces, para $n,m\ge n_0$,
+\[
+d(x_n,x_m)<\delta \ \Rightarrow\ d'(f(x_n),f(x_m))<\varepsilon.
+\]
+Por lo tanto, $(f(x_n))$ es de Cauchy.
+\end{proof}
+
+\begin{teo}[Extensión de funciones uniformemente continuas]
+Sean $(M,d)$ y $(N,d')$ espacios métricos, $E \subseteq M$ un subconjunto
+denso y $N$ completo. Sea $f : E \to N$ una función uniformemente
+continua. Entonces existe una única función $\tilde f : M \to N$
+uniformemente continua tal que $\tilde f|_E = f$.
+\end{teo}
+
+\begin{proof}
+\textbf{Construcción de $\tilde f$.} Sea $x \in M$. Como $E$ es denso en
+$M$, por la caracterización secuencial de la clausura existe una sucesión
+$(x_n)_{n\in\N} \subseteq E$ tal que $x_n \to x$. En particular $(x_n)$ es
+de Cauchy en $M$, y por el lema anterior $(f(x_n))_{n\in\N}$ es de Cauchy
+en $N$. Como $N$ es completo, existe
+\[
+y = \lim_{n\to\infty} f(x_n) \in N.
+\]
+Definimos $\tilde f(x) = y$. Si $x \in E$, tomando la sucesión constante
+$x_n=x$ obtenemos $\tilde f(x)=f(x)$, así que $\tilde f|_E = f$.
+
+\medskip
+
+\textbf{Buena definición.} Sea $(z_n)_{n\in\N} \subseteq E$ otra sucesión
+con $z_n \to x$, y sea $w = \lim_n f(z_n)$. Por la desigualdad triangular,
+\[
+d(x_n,z_n) \le d(x_n,x) + d(x,z_n) \xrightarrow[n\to\infty]{} 0.
+\]
+Por la caracterización secuencial de continuidad uniforme, esto implica
+$d'(f(x_n),f(z_n)) \to 0$. Entonces
+\[
+d'(y,w) \le d'(y,f(x_n)) + d'(f(x_n),f(z_n)) + d'(f(z_n),w)
+\xrightarrow[n\to\infty]{} 0,
+\]
+y como $d'(y,w)$ no depende de $n$, se sigue $d'(y,w)=0$, es decir $y=w$.
+Por lo tanto $\tilde f$ está bien definida.
+
+\medskip
+
+\textbf{$\tilde f$ es uniformemente continua.} Sea $\varepsilon>0$. Como
+$f$ es uniformemente continua en $E$, existe $\delta>0$ tal que para todo
+$u,v\in E$,
+\[
+d(u,v) < \delta \ \Rightarrow\ d'(f(u),f(v)) < \frac{\varepsilon}{3}.
+\]
+Sean $x,y \in M$ con $d(x,y) < \delta/3$, y tomemos $(x_n),(y_n)
+\subseteq E$ con $x_n \to x$, $y_n \to y$. Elegimos $n_0$ tal que, para
+$n\ge n_0$, $d(x_n,x)<\delta/3$ y $d(y_n,y)<\delta/3$. Entonces, para
+$n\ge n_0$,
+\[
+d(x_n,y_n) \le d(x_n,x)+d(x,y)+d(y,y_n) < \delta,
+\]
+y por lo tanto $d'(f(x_n),f(y_n)) < \varepsilon/3$.
+
+Por construcción, $f(x_n) \to \tilde f(x)$ y $f(y_n) \to \tilde f(y)$, así
+que existe $n_1$ tal que, para $n\ge n_1$,
+\[
+d'(f(x_n),\tilde f(x)) < \frac{\varepsilon}{3}, \qquad
+d'(f(y_n),\tilde f(y)) < \frac{\varepsilon}{3}.
+\]
+Tomando $n \ge \max\{n_0,n_1\}$,
+\[
+d'(\tilde f(x),\tilde f(y)) \le d'(\tilde f(x),f(x_n)) +
+d'(f(x_n),f(y_n)) + d'(f(y_n),\tilde f(y))
+< \frac{\varepsilon}{3}+\frac{\varepsilon}{3}+\frac{\varepsilon}{3}
+= \varepsilon.
+\]
+Esto prueba que $\tilde f$ es uniformemente continua (con constante
+$\delta/3$ para cada $\varepsilon$).
+
+\medskip
+
+\textbf{Unicidad.} Sea $g : M \to N$ continua con $g|_E = f$. Dado $x\in
+M$, tomemos $(x_n)\subseteq E$ con $x_n \to x$. Como $g$ es continua,
+$g(x_n) \to g(x)$; pero $g(x_n)=f(x_n)$ para todo $n$, así que $f(x_n)
+\to g(x)$. Por construcción, también $f(x_n) \to \tilde f(x)$. Por
+unicidad del límite, $g(x) = \tilde f(x)$. Como $x$ era arbitrario, $g =
+\tilde f$.
 \end{proof}
