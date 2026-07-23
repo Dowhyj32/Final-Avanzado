@@ -1,0 +1,475 @@
+\subsection{Normas y espacios normados}
+
+\begin{defi}[Norma]
+Sea $E$ un espacio vectorial real. Una función $\|\cdot\| : E \to \R$ es
+una \emph{norma} si cumple:
+\begin{enumerate}[label=(N\arabic*)]
+    \item $\|x\| \ge 0$ para todo $x\in E$, y $\|x\|=0 \iff x=0$.
+    \item $\|\lambda x\| = |\lambda|\,\|x\|$ para todo $\lambda\in\R$,
+    $x\in E$.
+    \item $\|x+y\| \le \|x\|+\|y\|$ para todo $x,y\in E$ (desigualdad
+    triangular).
+\end{enumerate}
+Al par $(E,\|\cdot\|)$ se lo llama \emph{espacio normado}.
+\end{defi}
+
+\begin{ej}[Normas clásicas]
+En $\R^n$, para $x=(x_1,\dots,x_n)$:
+\begin{itemize}
+    \item $\|x\|_1 = \displaystyle\sum_{i=1}^n |x_i|$.
+    \item $\|x\|_2 = \displaystyle\Big(\sum_{i=1}^n x_i^2\Big)^{1/2}$
+    (norma euclídea).
+    \item $\|x\|_\infty = \displaystyle\max_{1\le i\le n} |x_i|$.
+\end{itemize}
+En el espacio $C([a,b])$ de funciones continuas $f:[a,b]\to\R$:
+\[
+\|f\|_\infty = \sup_{t\in[a,b]} |f(t)|,
+\]
+que está bien definida pues toda función continua en un compacto es
+acotada (Unidad 5).
+\end{ej}
+
+\begin{obs}
+Todo espacio normado $(E,\|\cdot\|)$ es un espacio métrico con la
+métrica inducida
+\[
+d(x,y) = \|x-y\|.
+\]
+En efecto, $d(x,y)\ge0$ y $d(x,y)=0 \iff x=y$ por (N1); $d(x,y)=\|x-y\|=
+|-1|\,\|y-x\|=d(y,x)$ por (N2); y
+\[
+d(x,z)=\|x-z\|=\|(x-y)+(y-z)\|\le\|x-y\|+\|y-z\|=d(x,y)+d(y,z)
+\]
+por (N3).
+\end{obs}
+
+\begin{obs}
+Toda norma induce una métrica, pero el recíproco no es válido: no toda
+métrica proviene de una norma.
+
+Por ejemplo, sea $E=\R$ (o cualquier espacio vectorial no trivial) con
+la métrica discreta $\delta(x,y)=1$ si $x\ne y$ y $\delta(x,y)=0$ si
+$x=y$. Si $\delta$ proviniera de una norma, es decir
+$\delta(x,y)=\|x-y\|$ para alguna norma $\|\cdot\|$, entonces por
+homogeneidad
+\[
+\delta(2x,0) = \|2x\| = 2\|x\| = 2\,\delta(x,0)
+\]
+para todo $x\ne0$. Pero $\delta(2x,0)=1=\delta(x,0)$, lo cual da $1=2$,
+absurdo. Por lo tanto $\delta$ no proviene de ninguna norma.
+\end{obs}
+
+\subsection{Normas equivalentes}
+
+\begin{defi}[Normas equivalentes]
+Sea $E$ un espacio vectorial con dos normas $\|\cdot\|_a,\|\cdot\|_b$, y
+sean $d_a,d_b$ las métricas inducidas por cada una. Decimos que
+$\|\cdot\|_a$ y $\|\cdot\|_b$ son \emph{equivalentes} si $d_a$ y $d_b$
+son métricas equivalentes (Unidad 3), es decir, si inducen los mismos
+conjuntos abiertos.
+\end{defi}
+
+\begin{prop}[Criterio de equivalencia de normas]
+Sean $\|\cdot\|_a,\|\cdot\|_b$ dos normas en $E$. Son equivalentes si y
+sólo si existen constantes $c_1,c_2>0$ tales que
+\[
+c_1\,\|x\|_a \le \|x\|_b \le c_2\,\|x\|_a \quad \text{para todo }
+x\in E.
+\]
+\end{prop}
+
+\begin{proof}
+($\Leftarrow$) Supongamos que existen tales $c_1,c_2>0$. Entonces, para
+todo $x,y\in E$,
+\[
+c_1\,d_a(x,y) = c_1\,\|x-y\|_a \le \|x-y\|_b = d_b(x,y)
+\le c_2\,\|x-y\|_a = c_2\,d_a(x,y),
+\]
+es decir, $d_a$ y $d_b$ son métricas fuertemente equivalentes (Unidad
+3). Por la proposición de la Unidad 3 (fuertemente equivalentes implica
+equivalentes), $d_a$ y $d_b$ inducen los mismos conjuntos abiertos, es
+decir, $\|\cdot\|_a$ y $\|\cdot\|_b$ son equivalentes.
+
+($\Rightarrow$) Supongamos que $d_a$ y $d_b$ inducen los mismos
+conjuntos abiertos. La bola $B_b(0,1)=\{x\in E:\|x\|_b<1\}$ es abierta
+para $d_b$, luego también es abierta para $d_a$. Como $0\in B_b(0,1)$,
+existe $\delta>0$ tal que
+\[
+B_a(0,\delta) \subseteq B_b(0,1), \quad \text{es decir,} \quad
+\|x\|_a<\delta \implies \|x\|_b<1.
+\]
+Sea $x\in E$; si $x=0$ la desigualdad que sigue es trivial, así que
+suponemos $x\ne0$. Tomando $y=\dfrac{\delta}{2\|x\|_a}\,x$, tenemos
+$\|y\|_a=\delta/2<\delta$, luego $\|y\|_b<1$. Por homogeneidad de
+$\|\cdot\|_b$,
+\[
+\|y\|_b = \frac{\delta}{2\|x\|_a}\,\|x\|_b < 1
+\implies \|x\|_b < \frac{2}{\delta}\,\|x\|_a.
+\]
+Llamando $c_2:=2/\delta$, obtuvimos $\|x\|_b\le c_2\|x\|_a$ para todo
+$x\in E$.
+
+Veamos ahora, de la misma manera pero intercambiando los roles de
+$\|\cdot\|_a$ y $\|\cdot\|_b$, que existe una constante que acota
+$\|\cdot\|_a$ en términos de $\|\cdot\|_b$. La bola
+$B_a(0,1)=\{x\in E:\|x\|_a<1\}$ es abierta para $d_a$, luego también es
+abierta para $d_b$. Como $0\in B_a(0,1)$, existe $\eps>0$ tal que
+\[
+B_b(0,\eps) \subseteq B_a(0,1), \quad \text{es decir,} \quad
+\|x\|_b<\eps \implies \|x\|_a<1.
+\]
+Sea $x\in E$; si $x=0$ la desigualdad que sigue es trivial, así que
+suponemos $x\ne0$. Tomando $z=\dfrac{\eps}{2\|x\|_b}\,x$, tenemos
+$\|z\|_b=\eps/2<\eps$, luego $\|z\|_a<1$. Por homogeneidad de
+$\|\cdot\|_a$,
+\[
+\|z\|_a = \frac{\eps}{2\|x\|_b}\,\|x\|_a < 1
+\implies \|x\|_a < \frac{2}{\eps}\,\|x\|_b.
+\]
+Llamando $c_1:=\eps/2$, obtuvimos $\|x\|_a < \dfrac{1}{c_1}\|x\|_b$,
+es decir, $c_1\,\|x\|_a \le \|x\|_b$ para todo $x\in E$.
+
+Combinando ambas cotas, $c_1\,\|x\|_a \le \|x\|_b \le c_2\,\|x\|_a$
+para todo $x\in E$.
+\end{proof}
+
+\subsection{Equivalencia de normas en $\R^n$}
+
+\begin{teo}
+En $\R^n$, todas las normas son equivalentes.
+\end{teo}
+
+\begin{proof}
+Sea $\|\cdot\|$ una norma cualquiera en $\R^n$. Veamos que existen
+$c_1,c_2>0$ tales que
+\[
+c_1\,\|x\|_\infty \le \|x\| \le c_2\,\|x\|_\infty \quad
+\text{para todo } x\in\R^n.
+\]
+
+\textbf{Parte 1 (cota superior).} Sea $\{e_1,\dots,e_n\}$ la base
+canónica de $\R^n$, y sea $x=(x_1,\dots,x_n)=\sum_{i=1}^n x_i e_i$. Por
+la desigualdad triangular y la homogeneidad de $\|\cdot\|$,
+\[
+\|x\| \le \sum_{i=1}^n |x_i|\,\|e_i\| \le
+\Big(\max_{1\le i\le n}|x_i|\Big)\sum_{i=1}^n \|e_i\|
+= \|x\|_\infty \underbrace{\sum_{i=1}^n \|e_i\|}_{=:c_2} .
+\]
+Además, por la desigualdad triangular al revés,
+\[
+\bigl|\|x\|-\|y\|\bigr| \le \|x-y\| \le c_2\,\|x-y\|_\infty \quad
+\forall x,y\in\R^n,
+\]
+así que $\|\cdot\| : (\R^n,\|\cdot\|_\infty)\to\R$ es continua.
+
+\textbf{Parte 2 (compacidad de la esfera unitaria).} Sea
+$S=\{x\in\R^n : \|x\|_\infty=1\}$.
+
+\emph{Acotado:} para $x\in S$,
+\[
+\|x\|_2^2 = \sum_{i=1}^n x_i^2 \le n \max_{1\le i\le n} x_i^2
+= n\,\|x\|_\infty^2 = n,
+\]
+luego $\|x\|_2 \le \sqrt n$.
+
+\emph{Cerrado:} la función $\|\cdot\|_\infty$ es continua respecto de
+$d_2$, pues
+\[
+\bigl|\|x\|_\infty-\|y\|_\infty\bigr| \le \|x-y\|_\infty \le \|x-y\|_2
+\quad \forall x,y\in\R^n
+\]
+(cada coordenada de $x-y$ está acotada en valor absoluto por
+$\|x-y\|_2$). Luego $S=\|\cdot\|_\infty^{-1}(\{1\})$ es la preimagen de
+un cerrado por una función continua, y por lo tanto cerrado.
+
+Por el Teorema de Heine--Borel (Unidad 5), $S$ es compacto en
+$(\R^n,d_2)$.
+
+Como además
+\[
+\|x\|_\infty \le \|x\|_2 \le \sqrt n\,\|x\|_\infty \quad
+\forall x\in\R^n
+\]
+(la primera desigualdad porque $\max_i x_i^2 \le \sum_i x_i^2$), toda
+sucesión converge en una de las dos normas si y sólo si converge en la
+otra, al mismo límite. En particular, $S$ es también compacto respecto
+de $\|\cdot\|_\infty$.
+
+\textbf{Parte 3 (cota inferior).} Por la Parte 1, $\|\cdot\|$ es
+continua respecto de $\|\cdot\|_\infty$; como $S$ es compacto (Parte
+2), por el corolario de Weierstrass (Unidad 5) existe $x_0\in S$ tal
+que
+\[
+m := \|x_0\| = \min_{x\in S} \|x\|.
+\]
+Como $x_0\ne 0$ (pues $\|x_0\|_\infty=1$) y $\|\cdot\|$ es una norma,
+$m=\|x_0\|>0$.
+
+Sea ahora $x\in\R^n$, $x\ne0$, cualquiera. Como $x/\|x\|_\infty \in S$,
+\[
+\left\|\frac{x}{\|x\|_\infty}\right\| \ge m \implies \|x\| \ge
+m\,\|x\|_\infty,
+\]
+desigualdad que también vale trivialmente si $x=0$. Con $c_1:=m$,
+combinando con la Parte 1,
+\[
+c_1\,\|x\|_\infty \le \|x\| \le c_2\,\|x\|_\infty \quad \text{para
+todo } x\in\R^n,
+\]
+es decir, $\|\cdot\|$ es equivalente a $\|\cdot\|_\infty$.
+
+\textbf{Conclusión.} Lo anterior vale para toda norma en $\R^n$. Dadas
+dos normas cualesquiera $\|\cdot\|_a,\|\cdot\|_b$ en $\R^n$, existen
+entonces constantes $c_1,c_2,c_1',c_2'>0$ tales que
+\[
+c_1\|x\|_\infty \le \|x\|_a \le c_2\|x\|_\infty, \qquad
+c_1'\|x\|_\infty \le \|x\|_b \le c_2'\|x\|_\infty
+\quad \forall x\in\R^n.
+\]
+De la primera cadena, $\|x\|_\infty \le \|x\|_a/c_1$ y
+$\|x\|_a/c_2 \le \|x\|_\infty$; combinando con la segunda,
+\[
+\frac{c_1'}{c_2}\,\|x\|_a \le \|x\|_b \le \frac{c_2'}{c_1}\,\|x\|_a
+\quad \forall x\in\R^n,
+\]
+es decir, $\|\cdot\|_a$ y $\|\cdot\|_b$ son equivalentes.
+\end{proof}
+
+\begin{cor}
+Sea $(E,\|\cdot\|)$ un espacio normado de dimensión finita $n$.
+Entonces:
+\begin{enumerate}[label=(\roman*)]
+    \item $E$ es completo.
+    \item Todo $K\subseteq E$ cerrado y acotado es compacto.
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+Sea $\{u_1,\dots,u_n\}$ una base de $E$, y sea $T:\R^n\to E$ el
+isomorfismo lineal dado por $T(x_1,\dots,x_n) = \sum_{i=1}^n x_i u_i$
+(es lineal y biyectivo por ser $\{u_i\}$ base).
+
+Definimos en $\R^n$ la función $\|x\|' := \|T(x)\|_E$. Es una norma: la
+homogeneidad y la desigualdad triangular se heredan de $\|\cdot\|_E$
+por linealidad de $T$, y $\|x\|'=0 \iff T(x)=0 \iff x=0$, usando que
+$T$ es inyectiva.
+
+Por el teorema anterior, $\|\cdot\|'$ es equivalente a $\|\cdot\|_2$:
+existen $c,C>0$ tales que
+\[
+c\,\|x\|_2 \le \|T(x)\|_E \le C\,\|x\|_2 \quad \text{para todo }
+x\in\R^n. \tag{$\dagger$}
+\]
+En particular, $T$ y $T^{-1}$ son Lipschitz (luego continuas): de
+$(\dagger)$, para $x,y\in\R^n$,
+\[
+\|T(x)-T(y)\|_E = \|T(x-y)\|_E \le C\,\|x-y\|_2,
+\]
+y
+\[
+\|x-y\|_2 \le \frac{1}{c}\,\|T(x)-T(y)\|_E = \frac1c\, \|T(x-y)\|_E.
+\]
+
+\textbf{(i)} Sea $(y_k)_{k\in\N}\subseteq E$ una sucesión de Cauchy, y
+sea $x_k=T^{-1}(y_k)\in\R^n$. Por la desigualdad anterior (aplicada a
+$x=x_k,\,y=x_j$, es decir escribiendo $y_k=T(x_k)$, $y_j=T(x_j)$),
+\[
+\|x_k-x_j\|_2 \le \frac1c\, \|y_k-y_j\|_E,
+\]
+así que $(x_k)$ es de Cauchy en $(\R^n,d_2)$. Como $(\R^n,d_2)$ es
+completo (Unidad 3), existe $x\in\R^n$ tal que $x_k\to x$. Entonces
+\[
+\|y_k - T(x)\|_E = \|T(x_k)-T(x)\|_E = \|T(x_k-x)\|_E \le C\,\|x_k-x\|_2
+\to 0,
+\]
+por lo que $y_k \to T(x) \in E$. Concluimos que $E$ es completo.
+
+\textbf{(ii)} Sea $K\subseteq E$ cerrado y acotado, y sea $K' =
+T^{-1}(K) \subseteq \R^n$.
+
+$K'$ es acotado: si $K\subseteq B(0,R)$ para algún $R>0$ (en la métrica
+de $E$), entonces para $y\in K$, con $x=T^{-1}(y)$,
+\[
+\|x\|_2 \le \frac1c\, \|T(x)\|_E = \frac1c\, \|y\|_E \le \frac{R}{c},
+\]
+por lo que $K' \subseteq B(0,R/c)$ en $(\R^n,d_2)$.
+
+$K'$ es cerrado: como $T$ es continua y $K$ es cerrado en $E$,
+$K'=T^{-1}(K)$ es cerrado en $\R^n$.
+
+Por el Teorema de Heine--Borel (Unidad 5), $K'$ es compacto en
+$(\R^n,d_2)$. Como $T$ es continua y $K=T(K')$, por el teorema de la
+imagen continua de un compacto (Unidad 5), $K$ es compacto.
+\end{proof}
+
+\begin{defi}[Espacio de Banach]
+Un espacio normado $(E,\|\cdot\|)$ se dice \emph{espacio de Banach} si
+es completo respecto de la métrica inducida $d(x,y)=\|x-y\|$.
+\end{defi}
+
+\begin{cor}
+Todo espacio normado de dimensión finita es un espacio de Banach.
+\end{cor}
+
+\begin{proof}
+Inmediato del corolario anterior, parte (i): $E$ es completo, y por
+hipótesis es normado, luego es de Banach.
+\end{proof}
+
+\subsection{Operadores lineales continuos}
+
+\begin{defi}[Operador lineal continuo]
+Sean $(E,\|\cdot\|_E)$ y $(F,\|\cdot\|_F)$ espacios normados. Una
+función $T:E\to F$ es un \emph{operador lineal} si
+\[
+T(x+y)=T(x)+T(y) \quad \text{y} \quad T(\lambda x)=\lambda\,T(x)
+\qquad \forall x,y\in E,\ \forall \lambda\in\R.
+\]
+Decimos que $T$ es un \emph{operador lineal continuo} si, además, $T$
+es continuo en todo punto de $E$, respecto de las métricas inducidas
+por $\|\cdot\|_E$ y $\|\cdot\|_F$ (Unidad 4).
+\end{defi}
+
+\begin{defi}[Continuidad de un operador]
+Sean $(E,\|\cdot\|_E)$ y $(F,\|\cdot\|_F)$ espacios normados y
+$T:E\to F$ un operador lineal. Decimos que $T$ es \emph{continuo en}
+$x_0\in E$ si
+\[
+\forall \varepsilon>0\ \exists \delta>0 :\quad
+\|x-x_0\|_E<\delta \implies \|T(x)-T(x_0)\|_F<\varepsilon.
+\]
+Decimos que $T$ es \emph{continuo} si lo es en todo punto de $E$, y que
+es \emph{uniformemente continuo} si el $\delta$ anterior puede
+elegirse independientemente de $x_0$, es decir,
+\[
+\forall \varepsilon>0\ \exists \delta>0\ \forall x,y\in E:\quad
+\|x-y\|_E<\delta \implies \|T(x)-T(y)\|_F<\varepsilon.
+\]
+Estas son, respectivamente, las nociones de continuidad y continuidad
+uniforme de la Unidad 4, particularizadas a $T$ vista como función
+entre los espacios métricos inducidos por $\|\cdot\|_E$ y
+$\|\cdot\|_F$.
+\end{defi}
+
+\begin{defi}[Operador lineal acotado]
+Sean $(E,\|\cdot\|_E)$ y $(F,\|\cdot\|_F)$ espacios normados. Un
+operador lineal $T:E\to F$ se dice \emph{acotado} si existe $M>0$ tal
+que
+\[
+\|T(x)\|_F \le M\,\|x\|_E \quad \text{para todo } x\in E.
+\]
+\end{defi}
+
+\begin{teo}[Equivalencias para operadores lineales]
+Sean $(E,\|\cdot\|_E),(F,\|\cdot\|_F)$ espacios normados y
+$T:E\to F$ un operador lineal. Son equivalentes:
+\begin{enumerate}[label=(\alph*)]
+    \item $T$ es continuo en $0$.
+    \item Existe $x_0\in E$ tal que $T$ es continuo en $x_0$.
+    \item $T$ es continuo.
+    \item $T$ es uniformemente continuo.
+    \item $T$ es acotado.
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+Como $T$ es lineal, $T(0)=0$ (pues $T(0)=T(0+0)=T(0)+T(0)$, y restando
+$T(0)$ de ambos lados se obtiene $T(0)=0$).
+
+Para probar que varias proposiciones son equivalentes entre sí, alcanza
+con probar una cadena \emph{cíclica} de implicaciones que las conecte a
+todas: si se prueba $P_1\Rightarrow P_2 \Rightarrow \cdots \Rightarrow
+P_n \Rightarrow P_1$, entonces dadas dos cualesquiera $P_i,P_j$ de la
+lista, se puede llegar de $P_i$ a $P_j$ recorriendo el ciclo las veces
+que haga falta ($P_i\Rightarrow P_{i+1}\Rightarrow\cdots\Rightarrow
+P_j$), y de la misma manera se puede llegar de $P_j$ a $P_i$. Esto
+prueba $P_i\Leftrightarrow P_j$ para cualquier par, es decir, las $n$
+proposiciones son equivalentes entre sí; no hace falta probar las
+$n(n-1)$ implicaciones posibles una por una.
+
+En nuestro caso, probamos primero el ciclo $(a)\Rightarrow(d)
+\Rightarrow(c)\Rightarrow(b)\Rightarrow(a)$, lo cual ya prueba que (a),
+(b), (c) y (d) son equivalentes entre sí. Para incorporar a (e) a este
+mismo grupo, alcanza con relacionarla con \emph{una} de las otras
+cuatro en ambos sentidos: probamos $(a)\Rightarrow(e)$ y
+$(e)\Rightarrow(a)$, es decir $(a)\Leftrightarrow(e)$. Como (a) ya es
+equivalente a (b), (c) y (d), esto basta para que (e) también lo sea a
+las cuatro (por ejemplo, si valiera (e), por $(e)\Rightarrow(a)$
+valdría (a), y de ahí, siguiendo el ciclo, cualquiera de las otras
+tres).
+
+\medskip
+
+$(a)\Rightarrow(d)$. Sea $\varepsilon>0$. Como $T$ es continuo en $0$ y
+$T(0)=0$, existe $\delta>0$ tal que
+\[
+\|h\|_E<\delta \implies \|T(h)\|_F<\varepsilon.
+\]
+Sean $x,y\in E$ con $\|x-y\|_E<\delta$. Por linealidad,
+$T(x)-T(y)=T(x-y)$, así que $\|T(x)-T(y)\|_F=\|T(x-y)\|_F<\varepsilon$.
+Como $\delta$ no depende de $x,y$, $T$ es uniformemente continuo.
+
+\medskip
+
+$(d)\Rightarrow(c)$. Toda función uniformemente continua es continua
+en cada punto, usando el mismo $\delta$ de la definición de
+continuidad uniforme para cada $x_0\in E$.
+
+\medskip
+
+$(c)\Rightarrow(b)$. Trivial: si $T$ es continuo en todo punto, en
+particular lo es en algún punto (por ejemplo, en $x_0=0$).
+
+\medskip
+
+$(b)\Rightarrow(a)$. Supongamos que $T$ es continuo en $x_0\in E$. Sea
+$\varepsilon>0$; existe $\delta>0$ tal que
+\[
+\|y-x_0\|_E<\delta \implies \|T(y)-T(x_0)\|_F<\varepsilon.
+\]
+Sea $x\in E$ con $\|x\|_E<\delta$, y tomemos $y=x+x_0$. Entonces
+$\|y-x_0\|_E=\|x\|_E<\delta$, así que $\|T(y)-T(x_0)\|_F<\varepsilon$.
+Pero por linealidad,
+\[
+T(y)-T(x_0) = T(x+x_0)-T(x_0) = T(x)+T(x_0)-T(x_0) = T(x),
+\]
+así que $\|T(x)\|_F=\|T(x)-T(0)\|_F<\varepsilon$ (usando $T(0)=0$).
+Esto muestra que $T$ es continuo en $0$.
+
+\medskip
+
+$(a)\Rightarrow(e)$. Tomando $\varepsilon=1$ en la continuidad de $T$
+en $0$, existe $\delta>0$ tal que
+\[
+\|x\|_E<\delta \implies \|T(x)\|_F<1.
+\]
+Sea $x\in E$, $x\ne0$ (para $x=0$ la desigualdad que sigue es
+trivial). Tomando $y=\dfrac{\delta}{2\|x\|_E}\,x$, tenemos
+$\|y\|_E=\delta/2<\delta$, luego $\|T(y)\|_F<1$. Por linealidad y
+homogeneidad de la norma,
+\[
+\|T(y)\|_F = \frac{\delta}{2\|x\|_E}\,\|T(x)\|_F < 1
+\implies \|T(x)\|_F < \frac{2}{\delta}\,\|x\|_E.
+\]
+Con $M:=2/\delta$, obtenemos $\|T(x)\|_F\le M\|x\|_E$ para todo
+$x\in E$, es decir, $T$ es acotado.
+
+\medskip
+
+$(e)\Rightarrow(a)$. Supongamos que $T$ es acotado, con constante $M$.
+Si $M=0$, entonces $T\equiv 0$, que es trivialmente continuo. Si
+$M>0$, dado $\varepsilon>0$ tomemos $\delta=\varepsilon/M$. Si
+$\|x\|_E<\delta$, entonces
+\[
+\|T(x)\|_F \le M\,\|x\|_E < M\delta = \varepsilon,
+\]
+es decir, $\|T(x)-T(0)\|_F<\varepsilon$ (pues $T(0)=0$). Esto muestra
+que $T$ es continuo en $0$.
+
+\medskip
+
+Las implicaciones anteriores cierran el ciclo $(a)\Rightarrow(d)
+\Rightarrow(c)\Rightarrow(b)\Rightarrow(a)$ y la equivalencia
+$(a)\Leftrightarrow(e)$, con lo cual quedan probadas las cinco
+equivalencias.
+\end{proof}
